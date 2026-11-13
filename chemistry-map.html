@@ -1,0 +1,3769 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>化学知识图谱</title>
+<style>
+:root{color-scheme:light;--ink:#172b2a;--muted:#536765;--line:#dce6e2;--paper:#f3f7f4;--green:#10634f;--white:#fff;font-family:Inter,"Microsoft YaHei","PingFang SC",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink)}button,input,select{font:inherit}button,select,summary{cursor:pointer}button,a,summary,input,select{outline-offset:4px}button:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #167a63}button{color:inherit}a{color:var(--green)}p{line-height:1.75;margin:.4rem 0 1rem}h1,h2,h3{margin:0}button{border:1px solid var(--line);background:#fff;border-radius:8px;padding:.63rem .85rem}button:hover{background:#edf5f0}button[aria-pressed=true]{background:#e3f1eb;border-color:#86b3a5;color:#104f42;font-weight:700}
+.wrap{width:min(1240px,calc(100% - 56px));margin-inline:auto}.mast{background:#fff;border-bottom:1px solid var(--line)}.mast .wrap{display:flex;align-items:center;justify-content:space-between;gap:.6rem;min-height:65px}.brand{display:flex;align-items:center;gap:.7rem;font-weight:800}.brand mark{background:#134e43;color:#fff;padding:.37rem .45rem;border-radius:7px;font:700 15px "IBM Plex Mono",monospace}.mast nav{display:flex;gap:.4rem;flex-wrap:wrap}.mast nav button{border:0}.hero{position:relative;overflow:hidden;background:#102f2d;color:#fff;margin-top:26px;border-radius:19px;padding:33px 35px;display:grid;grid-template-columns:1fr minmax(240px,30%);gap:26px;align-items:center;isolation:isolate}.hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 78% 13%,#28695b 0,transparent 49%),radial-gradient(#96c9b851 1px,transparent 1px);background-size:auto,19px 19px;mask-image:linear-gradient(90deg,transparent 7%,black 78%)}.hero h1{font-size:clamp(30px,4vw,54px);letter-spacing:.02em;line-height:1.2}.hero p{color:#d0e6df;margin-bottom:0}.hero .stats{border:1px solid #85bbab70;background:#102f2dba;border-radius:13px;padding:16px 18px}.hero .stats p{margin:0;font-size:.87rem}.statline{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem}.statline strong{font:700 34px "IBM Plex Mono",monospace}.meter{display:block;width:100%;height:7px;border-radius:99px;background:#dbe9e3;overflow:hidden;margin:.55rem 0}.stats .meter{background:#ffffff28}.meter i{display:block;height:100%;background:var(--accent,#7cdbc1);border-radius:99px}.toolbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:22px 0 10px}.search{display:flex;align-items:center;gap:.55rem;background:white;border:1px solid var(--line);border-radius:9px;flex:1 1 245px;padding:0 .75rem;min-height:43px}.search input{border:0;background:transparent;min-width:0;width:100%;padding:.6rem .1rem;color:var(--ink)}select{color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:8px;padding:.59rem .6rem;min-height:43px}.hint{font-size:.87rem;color:var(--muted)}.tools{display:flex;gap:.5rem;flex-wrap:wrap}.map{position:relative;margin:24px 0 28px}.root{width:max-content;max-width:100%;margin:0 auto;background:#173c36;color:#fff;border-radius:10px;padding:.63rem 1.15rem;font-weight:700}.branches{display:grid;grid-template-columns:repeat(var(--cols,3),minmax(0,1fr));gap:17px;position:relative;padding-top:30px}.branches::before{content:"";position:absolute;left:50%;top:0;height:14px;border-left:2px solid #9ab7ab}.branches.multi::after{content:"";position:absolute;left:calc(50% / var(--cols));right:calc(50% / var(--cols));top:13px;border-top:2px solid #9ab7ab}.branch{min-width:0;position:relative;--accent:#19735f;--pale:#e5f4eb}.branch[data-stage=h]{--accent:#24588d;--pale:#e7f1fc}.branch[data-stage=o]{--accent:#8b5421;--pale:#f9eddf}.branch::before{content:"";position:absolute;left:50%;top:-17px;height:17px;border-left:2px solid #9ab7ab}.branch-head{background:var(--pale);border:1px solid color-mix(in srgb,var(--accent) 22%,white);border-top:3px solid var(--accent);border-radius:11px;padding:14px 15px;color:var(--accent)}.branch-head h2{font-size:1.16rem}.branch-head p{margin:.3rem 0;font-size:.85rem;color:var(--muted)}.branch-head .headline{display:flex;justify-content:space-between;align-items:center;gap:.4rem}.branch-head .headline span{font-size:.8rem;font-weight:700}.modules{margin:12px 0 0 10px;padding-left:12px;border-left:1px solid color-mix(in srgb,var(--accent) 37%,white)}details.module{position:relative;margin-bottom:9px;border:1px solid var(--line);background:#fff;border-radius:9px}details.module::before{content:"";position:absolute;top:22px;left:-13px;width:12px;border-top:1px solid color-mix(in srgb,var(--accent) 37%,white)}summary{padding:.72rem .65rem;font-size:.92rem;font-weight:700}summary small{font-weight:500;color:var(--muted);white-space:nowrap}.nodes{padding:0 .55rem .48rem;display:grid;gap:4px}.node{display:flex;align-items:center;text-align:left;gap:.5rem;width:100%;border:0;background:#f4f8f6;padding:.47rem .5rem;border-radius:6px;font-size:.86rem}.node:hover{background:var(--pale)}.node .label{flex:1;line-height:1.45}.dot{width:.62rem;height:.62rem;flex:none;border-radius:50%;background:#fff;border:1px solid #829892}.dot[data-s=1]{background:#ebc67e;border-color:#a67a2a}.dot[data-s=2]{background:#4d8dba;border-color:#386a8e}.dot[data-s=3]{background:#258069;border-color:#246752}.node .arr{color:var(--accent);font-size:.85rem}.legend{display:flex;gap:.9rem;flex-wrap:wrap;align-items:center}.legend span{display:flex;gap:.33rem;align-items:center}.empty{padding:1.3rem;background:white;border:1px solid var(--line);border-radius:10px}.panel{border:1px solid var(--line);background:#fff;border-radius:12px;padding:20px;margin:0 0 24px}.panel h2{font-size:1.2rem}.panel[hidden],.map[hidden]{display:none}.resource-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px;margin-top:14px}.res{border:1px solid var(--line);border-radius:8px;padding:12px}.res a{font-weight:700;text-underline-offset:3px}.res p{font-size:.88rem;margin:.32rem 0 0}.res small{display:block;margin-bottom:.24rem;color:var(--muted)}.route-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:10px}.route-grid article{background:#f1f7f3;padding:13px;border-radius:8px}.route-grid h3{font-size:.98rem}.route-grid p{margin:.35rem 0;font-size:.87rem}.chip{font-size:.84rem;margin:.15rem .24rem .15rem 0;padding:.42rem .55rem}.footer{display:flex;justify-content:space-between;align-items:center;gap:.65rem;flex-wrap:wrap;border-top:1px solid var(--line);padding:15px 0 22px}.footer p{margin:0}#notice{min-height:1.4em;color:var(--green);margin:0 0 18px}
+dialog{border:1px solid var(--line);border-radius:16px;max-height:calc(100dvh - 28px);width:min(680px,calc(100% - 24px));padding:0;color:var(--ink);background:white;box-shadow:0 18px 70px #122e2a52}dialog::backdrop{background:#0c2427a8}.dialog-head{position:sticky;top:0;background:#fff;display:flex;align-items:start;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:16px 20px;z-index:1}.dialog-head h2{font-size:clamp(20px,4vw,26px);line-height:1.3}.dialog-head p{margin:0 0 .25rem}.dialog-body{padding:6px 20px 20px}.dialog-body section{margin-top:16px}.dialog-body h3{font-size:.98rem;margin:0 0 .35rem}.dialog-body p{margin:.25rem 0 .55rem}.quiz{padding:13px;background:#eaf5f0;border-radius:9px}.quiz summary{padding:.4rem 0;color:var(--green)}.quiz textarea{width:100%;resize:vertical;min-height:62px;border:1px solid #b7d0c5;border-radius:6px;padding:7px;font:inherit;margin-top:5px}.status-list{display:flex;flex-wrap:wrap;gap:6px}.status-list button{display:inline-flex;align-items:center;gap:.4rem;padding:.48rem .6rem}.dialog-body .resource-grid{margin-top:4px}
+@media(max-width:860px){.wrap{width:calc(100% - 32px)}.branches{gap:10px}.modules{margin-left:4px;padding-left:7px}details.module::before{left:-8px;width:7px}.branch-head{padding:11px}.hero{padding:25px}.node{font-size:.82rem}}
+@media(max-width:640px){.wrap{width:calc(100% - 22px)}.mast .wrap{flex-wrap:wrap;padding:8px 0}.mast nav button{padding:.45rem .52rem;font-size:.82rem}.hero{margin-top:12px;grid-template-columns:1fr;gap:12px;padding:19px}.hero .stats{padding:9px 12px}.branches{grid-template-columns:1fr;padding-top:15px}.branches.multi::after,.branch::before{display:none}.branches::before{height:15px}.branch-head{padding:11px}.map{margin-top:16px}.toolbar{margin-top:13px}.search{flex-basis:100%}.legend{gap:.65rem}.dialog-body,.dialog-head{padding-left:13px;padding-right:13px}}
+.lesson-example{background:#f3f6fc;border-left:3px solid #48759b;padding:10px 13px;border-radius:5px}
+.lesson-pitfall{background:#faf1e5;border-left:3px solid #ad713b;padding:10px 13px;border-radius:5px}
+.quiz-item{border-top:1px solid #cbded6;padding-top:10px;margin-top:10px}
+.quiz-item h4{margin:0;font-size:.92rem}
+.lesson-rubric{font-size:.88rem;color:var(--muted)}
+.lab-entry{margin-top:14px;background:#d9f4e9;color:#153f36;border-color:transparent;font-weight:700}
+.lab-entry:hover{background:#fff}
+#lab-view{margin-top:20px}
+.lab-layout{display:grid;grid-template-columns:minmax(230px,1fr) minmax(0,1.45fr);gap:18px;margin-top:14px}
+.pet-card{background:#f2f8f4;border:1px solid #cce1d8;border-radius:12px;padding:14px}
+.pet-card h3{font-size:1.05rem}.pet-card p{margin:.3rem 0 .6rem}
+.pet-viewer{--pet-sky:#273c54;position:relative;overflow:hidden;border-radius:12px;margin-bottom:10px;background:radial-gradient(ellipse at 50% 39%,var(--pet-sky),#111c2f 75%);color:#f4f9ff}
+.pet-viewer::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle,#eaf5ff90 1px,transparent 1.5px) 14px 15px/49px 43px,radial-gradient(ellipse at 50% 84%,#8ac8df35,transparent 43%);opacity:.48}
+.pet-viewer::after{content:"";position:absolute;left:18%;right:18%;bottom:13%;height:13%;border:1px solid #adcfe744;border-radius:50%;background:radial-gradient(ellipse,#040917bc,transparent 68%);pointer-events:none}
+.pet-viewer canvas{display:block;position:relative;z-index:1;width:100%;height:auto;aspect-ratio:1.3;touch-action:none;cursor:grab}
+.pet-viewer canvas:active{cursor:grabbing}
+.pet-viewer canvas:focus-visible{outline:2px solid #b6f8e3;outline-offset:-4px}
+.pet-viewer[data-fallback] canvas{cursor:default;touch-action:auto}
+.pet-viewer-tools{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin:-3px 0 10px}
+.pet-viewer-tools button{padding:.35rem .53rem;font-size:.82rem}
+.pet-viewer-tools span{font-size:.79rem;color:var(--muted)}
+.pet-reaction{position:absolute;z-index:2;top:10px;left:50%;transform:translateX(-50%);max-width:90%;pointer-events:none;background:#101e32e6;border:1px solid #b5d2ed55;border-radius:99px;color:#fff;padding:5px 12px;font-size:.85rem;text-align:center}
+.pet-choose .lab-layout{grid-template-columns:minmax(0,1.8fr) minmax(220px,1fr)}
+.pet-status{background:#e0efe8;border-radius:8px;padding:8px 10px;font-size:.88rem}
+.pet-status[data-state="hungry"]{background:#ffedce;color:#684012}
+.pet-choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr));gap:9px;margin:10px 0}
+.pet-choice{background:white;border:1px solid var(--line);border-radius:9px;padding:8px}
+.pet-choice h4{margin:.35rem 0}.pet-choice p{font-size:.82rem}.pet-choice [data-adopt]{width:100%}
+.pet-stats{display:flex;gap:.65rem;flex-wrap:wrap;font-size:.86rem}
+.pet-confirm{padding:0 18px 18px}.pet-confirm .tools{justify-content:flex-end}
+.plant-spot{position:absolute;z-index:3;transform:translate(-50%,-50%);padding:.28rem .52rem;background:#16293dea;color:#eefbf4;border-color:#c4ebd5;font-size:.78rem;white-space:nowrap}
+.plant-spot:hover,.plant-spot:focus-visible{background:#27554d}
+.plant-observation,.plant-update{min-height:1.5em;font-size:.87rem;color:#285d4d}
+.plant-update:empty{display:none}
+.plant-options{display:flex;gap:7px;flex-wrap:wrap;margin:.65rem 0}
+.plant-album-row{display:flex;gap:6px;flex-wrap:wrap;margin:.4rem 0 .9rem}
+.plant-album-row button{padding:.45rem .58rem;font-size:.85rem}
+.plant-album-row button:disabled{opacity:.6;cursor:default}
+.plant-pots{display:grid;gap:6px;margin:.5rem 0}
+.plant-pots button{text-align:left}
+.plant-pots small{display:block;color:var(--muted);margin-top:2px}
+.pet-status[data-state="wilted"]{background:#fff0ce;color:#694612}
+#plant-collection .dialog-body .pet-viewer{max-width:450px;margin-inline:auto}
+.lab-card{border:1px solid var(--line);padding:14px;border-radius:10px;margin-bottom:10px}
+.lab-card h3{font-size:1rem}.lab-card p{margin:.3rem 0 .6rem}
+.lab-choices{display:flex;flex-wrap:wrap;gap:6px}
+.lab-days{list-style:none;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin:8px 0 0}
+.lab-days li{text-align:center;font-size:.79rem;padding:5px 1px;background:#edf4f1;border-radius:5px;color:#4d6660}
+.lab-days li[data-done="true"]{background:#cbe9dc;color:#154b3d;font-weight:700}
+.lab-days time,.lab-days span{display:block}
+.lab-badges{display:flex;gap:6px;flex-wrap:wrap;padding:0;list-style:none;margin:6px 0}
+.lab-badges li{padding:5px 8px;background:#edf3f1;color:var(--muted);border-radius:6px;font-size:.84rem}
+.lab-badges li[data-done="true"]{background:#fae9b5;color:#664414;font-weight:700}
+.practice-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+.practice-actions output{font-size:.86rem;color:var(--green)}
+@media(max-width:840px){.pet-choose .lab-layout{grid-template-columns:1fr}}
+@media(max-width:660px){.lab-layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="mast">
+  <div class="wrap">
+    <div class="brand"><mark>H₂O</mark> 化学知识图谱</div>
+    <nav aria-label="主导航">
+      <button type="button" data-view="map" aria-pressed="true">知识图谱</button>
+      <button type="button" data-view="routes" aria-pressed="false">学习路线</button>
+      <button type="button" data-view="library" aria-pressed="false">资料与网课</button>
+      <button type="button" data-view="lab" aria-pressed="false">植物温室</button>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero" aria-labelledby="page-title">
+    <div><h1 id="page-title">化学知识图谱</h1><p>从初中基础到高中课程与化学竞赛。打开知识点看例题，闭卷做基础题和变式题，再标记掌握度。</p><button class="lab-entry" type="button" data-view="lab" id="lab-entry">去看我的植物</button></div>
+    <div class="stats" id="overall" aria-live="polite"></div>
+  </section>
+  <section id="map-view" aria-label="知识图谱">
+    <div class="toolbar">
+      <label class="search"><span aria-hidden="true">⌕</span><input id="query" type="search" placeholder="搜索知识点，如 pH、配平、晶胞" aria-label="搜索知识点"></label>
+      <select id="stage" aria-label="筛选学段"><option value="">全部学段</option><option value="j">初中</option><option value="h">高中</option><option value="o">竞赛</option></select>
+      <select id="status" aria-label="筛选掌握度"><option value="">全部掌握度</option><option value="0">未评估</option><option value="1">待巩固</option><option value="2">会做基础题</option><option value="3">已掌握</option></select>
+      <div class="tools"><button id="expand" type="button">展开模块</button><button id="collapse" type="button">收起模块</button></div>
+    </div>
+    <div class="hint legend" id="legend"></div>
+    <div class="map" id="map"></div>
+  </section>
+  <section id="routes-view" class="panel" hidden>
+    <h2>学习路线</h2>
+    <p>先闭卷回答，再看解析。答错时沿“前置知识”回查，完成练习后用新题验证。</p>
+    <div class="route-grid" id="routes"></div>
+    <h3 style="font-size:1rem;margin:1.2rem 0 .4rem">跨知识点综合练习</h3>
+    <div id="case-studies"></div>
+    <h3 style="font-size:1rem;margin:1.2rem 0 .4rem">复习节奏</h3>
+    <p>初次学习后隔天闭卷复述，3 天后做一道条件变式，7 天后做一道综合题。记录失分步骤，再用一道同类题验证是否补上。</p>
+    <h3 style="font-size:1rem;margin:1rem 0 .4rem">按表现标记掌握度</h3>
+    <p>未评估表示还没试做。待巩固表示需要提示或存在概念漏洞。会做基础题表示能独立完成典型题。已掌握表示还能解释依据，并在题目条件变化时正确应用。</p>
+  </section>
+  <section id="library-view" class="panel" hidden>
+    <h2>资料与网课</h2>
+    <p>按知识点查对应课程。校内同步课可按教材版本找课时，竞赛课可按专题选看。外部资源需要联网，部分课程和答案需登录。</p>
+    <div id="library" class="resource-grid"></div>
+  </section>
+  <section id="lab-view" class="panel" hidden aria-labelledby="lab-title">
+    <h2 id="lab-title">植物温室</h2>
+    <p>做题赚积分，选择喜欢的植物，再用积分浇水，看它一天天长大。</p>
+    <div class="lab-layout">
+      <div class="pet-card" id="pet-home"></div>
+      <div>
+        <section class="lab-card">
+          <h3>今天做什么</h3>
+          <p class="hint">选一道新题，或回来复习做过的知识点。</p>
+          <select id="lab-stage" aria-label="今日练习学段"><option value="j">初中</option><option value="h">高中</option><option value="o">竞赛</option></select>
+          <div id="lab-missions"></div>
+        </section>
+        <section class="lab-card" id="lab-week"></section>
+        <section class="lab-card" id="lab-awards"></section>
+      </div>
+    </div>
+    <details><summary>积分怎么获得？</summary><p>基础题 +5、变式题 +8、综合题每小问 +5。每题首次作答并核对后可记录一次。基础题隔天首次复习 +6，每个知识点计一次。之后隔天再复习每天最多领取一次 +5。做错也能记录练习，掌握度由你另行标记。</p><p>每周学习目标是任选 3 天练习。浇水按设备当地日期，每天一次，可用之前攒下的积分。进度备份包含植物与浇水记录。</p></details>
+  </section>
+  <footer class="footer">
+    <p class="hint" id="save-message">掌握度、积分和练习记录保存在当前浏览器。换设备时可导出、导入进度。</p>
+    <div class="tools"><button id="export" type="button">导出进度</button><button id="import" type="button">导入进度</button><input id="file" type="file" accept=".json,application/json" hidden></div>
+  </footer>
+  <p id="notice" role="status"></p>
+</main>
+<dialog id="detail" aria-labelledby="topic-title">
+  <header class="dialog-head"><div><p id="topic-path" class="hint"></p><h2 id="topic-title"></h2></div><form method="dialog"><button aria-label="关闭知识点" autofocus>关闭</button></form></header>
+  <div class="dialog-body" id="topic-content"></div>
+</dialog>
+<dialog id="adopt-dialog" aria-labelledby="adopt-title">
+  <header class="dialog-head"><h2 id="adopt-title">确认种植</h2></header>
+  <form method="dialog" class="pet-confirm">
+    <p id="adopt-copy"></p>
+    <div class="tools"><button value="cancel" autofocus>再看看</button><button id="adopt-accept" value="adopt">确认种植</button></div>
+  </form>
+</dialog>
+<dialog id="plant-collection" aria-labelledby="plant-collection-title">
+  <header class="dialog-head"><h2 id="plant-collection-title"></h2><form method="dialog"><button autofocus>关闭</button></form></header>
+  <div class="dialog-body" id="plant-collection-content"></div>
+</dialog>
+<script id="curriculum" type="application/json">
+{
+  "modules": [
+    {
+      "id": "j1",
+      "stage": "j",
+      "title": "物质与微粒",
+      "resources": [
+        "jun",
+        "phetAtom"
+      ],
+      "topics": [
+        {
+          "id": "change",
+          "title": "物理变化与化学变化",
+          "prerequisites": [],
+          "key": "用有无新物质生成判断。颜色、气泡和温度变化是线索，需要结合其他证据。",
+          "method": "给蜡烛熔化与燃烧分别画变化前后的粒子图。",
+          "question": "冰融化、铁生锈分别属于什么变化？",
+          "answer": "冰融化是物理变化，铁锈是新的物质，铁生锈是化学变化。"
+        },
+        {
+          "id": "class",
+          "title": "物质分类",
+          "prerequisites": [
+            "change"
+          ],
+          "key": "区分纯净物与混合物、单质与化合物、氧化物。氧化物由两种元素组成，其中一种是氧。",
+          "method": "按“物质种数→元素种数→是否含氧”三步画分类树。",
+          "question": "液态氧、空气、CO₂各属于哪类？",
+          "answer": "液态氧是单质，空气是混合物，CO₂是化合物中的氧化物。"
+        },
+        {
+          "id": "particle",
+          "title": "分子、原子与离子",
+          "prerequisites": [
+            "class"
+          ],
+          "key": "从微粒解释扩散和状态变化。化学反应中原子重新组合，离子是带电粒子。",
+          "method": "用不同颜色的圆代表原子，画水分子和钠、氯离子。",
+          "question": "NaCl晶体主要由什么微粒构成？",
+          "answer": "Na⁺与Cl⁻。"
+        },
+        {
+          "id": "atom",
+          "title": "原子结构与元素",
+          "prerequisites": [
+            "particle"
+          ],
+          "key": "原子序数等于质子数。中性原子电子数等于质子数。同种元素的质子数相同。",
+          "method": "做“质子数→元素→电子数”的逆向判断。",
+          "question": "Cl⁻有17个质子，有几个电子？",
+          "answer": "18个，形成Cl⁻时多了一个电子。"
+        },
+        {
+          "id": "formula",
+          "title": "元素符号、化合价与化学式",
+          "prerequisites": [
+            "atom"
+          ],
+          "key": "区分系数、右下角下标、右上角电荷。中性化合物中元素化合价代数和为零。",
+          "method": "用化合价推出化学式，再逐个核对原子个数。",
+          "question": "2H₂O中的两个“2”各表示什么？",
+          "answer": "前面的2表示两个水分子，下标2表示每个水分子有两个氢原子。"
+        },
+        {
+          "id": "mass",
+          "title": "相对原子质量与组成计算",
+          "prerequisites": [
+            "formula"
+          ],
+          "key": "相对分子质量为各元素相对原子质量乘个数再求和。元素质量分数的分子也要乘该元素个数。",
+          "method": "先写元素质量比，再把其中一项除以总和。",
+          "question": "CO₂中氧元素质量分数是多少？取C=12、O=16。",
+          "answer": "32/44≈72.7%。"
+        }
+      ]
+    },
+    {
+      "id": "j2",
+      "stage": "j",
+      "title": "常见物质与反应",
+      "resources": [
+        "jun",
+        "phetBalance"
+      ],
+      "topics": [
+        {
+          "id": "air",
+          "title": "空气、氧气与燃烧",
+          "prerequisites": [
+            "class"
+          ],
+          "key": "空气中氮气约占78%、氧气约占21%（体积分数）。理解缓慢氧化与燃烧条件。",
+          "method": "以可燃物、氧气、温度为三条线解释灭火措施。",
+          "question": "隔绝空气为什么能熄灭小火苗？",
+          "answer": "减少可燃物与氧气接触，破坏燃烧的必要条件。"
+        },
+        {
+          "id": "water",
+          "title": "水的组成与净化",
+          "prerequisites": [
+            "particle"
+          ],
+          "key": "沉降、过滤、吸附和蒸馏对应不同性质。水电解说明水由氢、氧两种元素组成。",
+          "method": "给泥沙、色素、溶解盐分别匹配分离方式。",
+          "question": "普通过滤可去除溶在水中的氯化钠吗？",
+          "answer": "不能，溶解态离子随水通过滤纸。"
+        },
+        {
+          "id": "carbon",
+          "title": "碳单质、CO₂与碳酸盐",
+          "prerequisites": [
+            "class"
+          ],
+          "key": "金刚石、石墨体现结构与性质联系。二氧化碳与石灰水反应可生成碳酸钙沉淀。",
+          "method": "画“碳酸盐→CO₂→碳酸钙”转化链。",
+          "question": "适量CO₂通入澄清石灰水为何变浑浊？",
+          "answer": "生成难溶的CaCO₃。"
+        },
+        {
+          "id": "metal",
+          "title": "金属活动性、腐蚀与防护",
+          "prerequisites": [
+            "class"
+          ],
+          "key": "理解活动性顺序的适用条件。铁锈蚀与水、氧气有关，合金性质与组成相关。",
+          "method": "用干燥空气、水和空气、水且隔绝空气三组作对照。",
+          "question": "涂漆为何能减慢铁锈蚀？",
+          "answer": "减少铁与水和氧气接触。"
+        },
+        {
+          "id": "balance",
+          "title": "质量守恒与方程式配平",
+          "prerequisites": [
+            "formula"
+          ],
+          "key": "配平时改系数。检查元素种类、原子数、反应条件和必要的状态符号。",
+          "method": "按较复杂物质入手，配完后逐元素计数。",
+          "question": "配平Fe＋O₂→Fe₃O₄。",
+          "answer": "3Fe＋2O₂→Fe₃O₄（点燃）。"
+        },
+        {
+          "id": "types",
+          "title": "四类基本反应",
+          "prerequisites": [
+            "balance"
+          ],
+          "key": "按反应物、生成物类别和种数识别化合、分解、置换、复分解。",
+          "method": "每种类型各写一条方程式，再总结符号模型。",
+          "question": "CaCO₃受热生成CaO与CO₂属于哪类？",
+          "answer": "分解反应，一种反应物生成两种物质。"
+        },
+        {
+          "id": "calc",
+          "title": "方程式计算与样品纯度",
+          "prerequisites": [
+            "balance",
+            "mass"
+          ],
+          "key": "系数给出粒子数量之比，换算成质量比需乘相对式量。杂质题先求参与反应的纯物质质量。",
+          "method": "按“方程式→系数×式量→已知量和未知量”列表。",
+          "question": "纯CaCO₃ 10.0 g完全分解，理论产生多少CO₂？",
+          "answer": "由100∶44得4.40 g。"
+        },
+        {
+          "id": "hardwater",
+          "title": "硬水、软水与水资源",
+          "prerequisites": [
+            "water"
+          ],
+          "key": "硬水中含较多钙、镁离子。区分软化、净化和消毒。",
+          "method": "把每种水处理方式对应到它能降低的杂质。",
+          "question": "活性炭吸附能充分去除硬水里的钙镁离子吗？",
+          "answer": "通常不能，硬度离子可用离子交换等方法降低。"
+        }
+      ]
+    },
+    {
+      "id": "j3",
+      "stage": "j",
+      "title": "溶液、酸碱与实验",
+      "resources": [
+        "jun",
+        "smart",
+        "phetAcid"
+      ],
+      "topics": [
+        {
+          "id": "sol",
+          "title": "溶液、乳浊液与饱和",
+          "prerequisites": [
+            "particle"
+          ],
+          "key": "溶液均一稳定。饱和需指明温度、溶剂和溶质。乳化把液滴分散。",
+          "method": "用盐水、泥水和油水混合物比较外观及静置结果。",
+          "question": "某温度下硝酸钾饱和溶液还能溶蔗糖吗？",
+          "answer": "可能可以，饱和的判断针对给定溶质。"
+        },
+        {
+          "id": "solub",
+          "title": "溶解度曲线与结晶",
+          "prerequisites": [
+            "sol"
+          ],
+          "key": "固体溶解度通常用一定温度下100 g溶剂溶解的克数表示。用曲线选降温结晶或蒸发结晶。",
+          "method": "在曲线上标温度、读溶解度，再换算实际水量。",
+          "question": "溶解度为40 g/100 g水时，50 g水最多溶多少该物质？",
+          "answer": "20 g。"
+        },
+        {
+          "id": "fraction",
+          "title": "溶质质量分数与稀释",
+          "prerequisites": [
+            "sol"
+          ],
+          "key": "质量分数等于溶质质量除以溶液质量。加水稀释且无损失时溶质质量守恒。",
+          "method": "列稀释前后溶质、水、溶液三列。",
+          "question": "50 g 10%的盐水加50 g水，质量分数是多少？",
+          "answer": "5%，溶质仍为5 g。"
+        },
+        {
+          "id": "acid",
+          "title": "酸、碱、指示剂与pH",
+          "prerequisites": [
+            "sol"
+          ],
+          "key": "理解酸碱性、指示剂变色和pH的定性关系。25 ℃时中性水溶液pH为7。",
+          "method": "把指示剂、pH试纸的读数能力做成对照表。",
+          "question": "25 ℃时pH=3和pH=6的两种溶液哪个酸性更强？",
+          "answer": "pH=3的溶液酸性更强。"
+        },
+        {
+          "id": "neutral",
+          "title": "中和与盐的反应",
+          "prerequisites": [
+            "acid",
+            "types"
+          ],
+          "key": "理解酸与碱的中和。判断复分解时关注沉淀、气体、水等产物及溶液条件。",
+          "method": "写分子式后圈出实际变化的成分。",
+          "question": "盐酸和NaOH反应生成什么？",
+          "answer": "NaCl和H₂O。"
+        },
+        {
+          "id": "safe",
+          "title": "实验基本操作与安全",
+          "prerequisites": [],
+          "key": "识别量筒、烧杯、滴管等仪器用途。读凹液面时视线与最低点水平。记录现象与结论。",
+          "method": "看教师演示，画仪器用途表，逐项解释操作理由。",
+          "question": "量筒读数时视线应对齐哪里？",
+          "answer": "对齐凹液面最低点，视线保持水平。"
+        },
+        {
+          "id": "separate",
+          "title": "过滤、蒸发与物质鉴别",
+          "prerequisites": [
+            "safe",
+            "solub"
+          ],
+          "key": "按颗粒大小、溶解性、挥发性选分离方式。鉴别方案需要明确可观察证据。",
+          "method": "先写目标物和杂质，再写每步保留哪一部分。",
+          "question": "盐水混有泥沙，怎样分别得到澄清盐水和盐？",
+          "answer": "先过滤去泥沙，再蒸发澄清盐水得到盐。"
+        },
+        {
+          "id": "gas",
+          "title": "气体实验与装置选择",
+          "prerequisites": [
+            "safe",
+            "air",
+            "carbon"
+          ],
+          "key": "依据反应物状态和条件辨识发生装置，依据溶解性和密度辨识收集装置。掌握氧气、二氧化碳检验的证据。",
+          "method": "用虚拟实验对比不同气体的收集与检验。",
+          "question": "容易溶于水的气体一般适合排水收集吗？",
+          "answer": "一般不适合，因为收集过程中气体容易溶于水。"
+        },
+        {
+          "id": "inquiry",
+          "title": "变量控制与定量探究",
+          "prerequisites": [
+            "safe",
+            "calc"
+          ],
+          "key": "设置空白或对照，控制其他变量，写出假设、观察、结论与误差方向。",
+          "method": "给每个实验结论补一句“哪组和哪组相比”。",
+          "question": "比较两种温度对溶解速率的影响，要控制哪两类条件？",
+          "answer": "例如相同的水量、溶质质量和颗粒大小，并控制搅拌方式。"
+        },
+        {
+          "id": "soc",
+          "title": "资源、材料与绿色化学",
+          "prerequisites": [
+            "air",
+            "water",
+            "metal"
+          ],
+          "key": "认识水、空气、燃料和金属资源，比较材料性能、使用周期和环境影响。",
+          "method": "选一种包装材料，比较使用、回收和处置三个环节。",
+          "question": "回收铝制品可减少哪些资源消耗？",
+          "answer": "减少铝矿开采，并可减少从矿石制取原铝所需的能耗。"
+        }
+      ]
+    },
+    {
+      "id": "h1",
+      "stage": "h",
+      "title": "必修 · 计量与反应",
+      "resources": [
+        "sen",
+        "smart",
+        "open"
+      ],
+      "topics": [
+        {
+          "id": "mole",
+          "title": "物质的量与摩尔质量",
+          "prerequisites": [
+            "calc"
+          ],
+          "key": "n=m/M，N=nNₐ。列式前指明粒子对象。",
+          "method": "画质量、物质的量、粒子数三角换算图。",
+          "question": "9.0 g水约有多少mol水分子？",
+          "answer": "0.50 mol，取M=18 g/mol。"
+        },
+        {
+          "id": "vm",
+          "title": "气体摩尔体积",
+          "prerequisites": [
+            "mole"
+          ],
+          "key": "同温同压下理想气体的体积比等于物质的量比。摩尔体积须带温度、压力条件。",
+          "method": "每次用Vₘ前先把适用条件写在式旁。",
+          "question": "同温同压下1 mol O₂和1 mol N₂的体积之比？",
+          "answer": "近似1∶1。"
+        },
+        {
+          "id": "conc",
+          "title": "物质的量浓度与配制",
+          "prerequisites": [
+            "mole",
+            "fraction"
+          ],
+          "key": "c=n/V，V是溶液体积。认识容量瓶定容、转移洗涤与误差方向。",
+          "method": "先算所需溶质的物质的量，再分析操作对n、V的影响。",
+          "question": "100 mL溶液含0.020 mol NaCl，浓度是多少？",
+          "answer": "0.20 mol·L⁻¹。"
+        },
+        {
+          "id": "ion",
+          "title": "电解质与离子方程式",
+          "prerequisites": [
+            "neutral",
+            "conc"
+          ],
+          "key": "把水溶液中易溶且强电离的物质写成离子。检查原子、电荷与反应条件。",
+          "method": "先写完整方程式，再拆分、删旁观离子。",
+          "question": "NaCl溶液与AgNO₃溶液混合的净离子方程式？",
+          "answer": "Ag⁺＋Cl⁻→AgCl↓。"
+        },
+        {
+          "id": "redox",
+          "title": "氧化还原与电子守恒",
+          "prerequisites": [
+            "balance"
+          ],
+          "key": "氧化数升高表示失电子，被氧化。还原剂被氧化。电子得失总量相等。",
+          "method": "在变价元素旁写起止价态并核对电子数。",
+          "question": "Zn＋Cu²⁺→Zn²⁺＋Cu中谁是还原剂？",
+          "answer": "Zn失电子，被氧化，是还原剂。"
+        },
+        {
+          "id": "lim",
+          "title": "限量试剂与产率",
+          "prerequisites": [
+            "mole",
+            "balance"
+          ],
+          "key": "比较n/化学计量数找限量试剂。产率为实际产量与理论产量之比。",
+          "method": "每种反应物都独立计算可生成多少产物。",
+          "question": "2 mol H₂与2 mol O₂完全反应，理论生成多少H₂O？",
+          "answer": "2 mol，H₂限量，消耗1 mol O₂。"
+        },
+        {
+          "id": "basicOrg",
+          "title": "必修有机入门与生活应用",
+          "prerequisites": [
+            "formula"
+          ],
+          "key": "认识甲烷、乙烯、乙醇、乙酸及常见有机材料。区分结构简式与分子式。",
+          "method": "为每种代表性物质写出分子式、一个主要性质和一个用途。",
+          "question": "乙醇与乙酸分别含有什么特征官能团？",
+          "answer": "乙醇含醇羟基，乙酸含羧基。"
+        },
+        {
+          "id": "basicEnergy",
+          "title": "必修 · 速率、限度与能量",
+          "prerequisites": [
+            "redox",
+            "conc"
+          ],
+          "key": "认识吸放热、简易原电池、可逆反应及反应条件对速率的影响。",
+          "method": "用燃料燃烧、原电池和可逆反应各解释一个现象。",
+          "question": "升温通常如何影响反应速率？",
+          "answer": "通常使反应加快，达到或超过活化能的有效碰撞更频繁。"
+        }
+      ]
+    },
+    {
+      "id": "h2",
+      "stage": "h",
+      "title": "必修 · 元素与材料",
+      "resources": [
+        "sen",
+        "smart",
+        "open"
+      ],
+      "topics": [
+        {
+          "id": "period",
+          "title": "周期表与周期律",
+          "prerequisites": [
+            "atom"
+          ],
+          "key": "同周期从左到右原子半径一般减小。同主族向下层数增加。等电子离子按核电荷比较。",
+          "method": "把半径、金属性、非金属性分别画趋势箭头。",
+          "question": "Na⁺与F⁻等电子，哪个半径一般更小？",
+          "answer": "Na⁺，核电荷更大，吸引电子更强。"
+        },
+        {
+          "id": "colloid",
+          "title": "分散系与胶体",
+          "prerequisites": [
+            "particle"
+          ],
+          "key": "按分散粒子尺度比较溶液、胶体和浊液。用光散射理解丁达尔效应。",
+          "method": "对照同一束光经过清溶液和胶体时的现象。",
+          "question": "为何胶体中可能看到一条光路？",
+          "answer": "胶体分散粒子散射光。"
+        },
+        {
+          "id": "na",
+          "title": "钠及其常见化合物",
+          "prerequisites": [
+            "ion"
+          ],
+          "key": "比较Na₂CO₃、NaHCO₃与酸反应的计量关系，理解碳酸盐与酸式盐的转化。",
+          "method": "画CO₃²⁻→HCO₃⁻→CO₂的逐步质子化路线。",
+          "question": "使1 mol CO₃²⁻完全变为CO₂理论需多少H⁺？",
+          "answer": "2 mol H⁺。"
+        },
+        {
+          "id": "fe",
+          "title": "铁、铝及其化合物",
+          "prerequisites": [
+            "redox",
+            "ion"
+          ],
+          "key": "掌握Fe²⁺/Fe³⁺互变和Fe³⁺显色，理解Al(OH)₃的两性。",
+          "method": "用价态—物质类别图整理酸碱与氧化还原箭头。",
+          "question": "Al(OH)₃能与酸反应，也能与强碱反应，表现何种性质？",
+          "answer": "两性。"
+        },
+        {
+          "id": "hal",
+          "title": "氯元素与卤素",
+          "prerequisites": [
+            "period",
+            "redox"
+          ],
+          "key": "比较卤素氧化性，认识卤离子的沉淀检验及氧化还原变化。",
+          "method": "用电子得失预测卤素置换，注明溶液条件。",
+          "question": "Br₂氧化I⁻生成什么卤素单质？",
+          "answer": "I₂，Br₂本身被还原为Br⁻。"
+        },
+        {
+          "id": "sn",
+          "title": "硫、氮及其化合物",
+          "prerequisites": [
+            "redox",
+            "acid"
+          ],
+          "key": "按价态整理硫、氮化合物，认识氨与铵盐、硫酸根检验和酸雨成因。",
+          "method": "对照元素价态变化和酸碱反应，标出哪些转化需要电子转移。",
+          "question": "NH₃与H⁺生成NH₄⁺，氮的氧化数改变了吗？",
+          "answer": "没有，均为−3。"
+        },
+        {
+          "id": "si",
+          "title": "硅、无机非金属材料与工艺",
+          "prerequisites": [
+            "period"
+          ],
+          "key": "区分硅单质与SiO₂。比较玻璃、陶瓷、水泥和半导体材料的用途及性质。",
+          "method": "为材料卡片写主要成分、结构或性质、用途各一条。",
+          "question": "芯片的常用半导体基材是硅单质还是二氧化硅？",
+          "answer": "硅单质。"
+        }
+      ]
+    },
+    {
+      "id": "h3",
+      "stage": "h",
+      "title": "选择性必修 1 · 反应原理",
+      "resources": [
+        "smart",
+        "mit",
+        "phetAcid"
+      ],
+      "topics": [
+        {
+          "id": "heat",
+          "title": "反应热、热化学方程式与盖斯定律",
+          "prerequisites": [
+            "balance",
+            "basicEnergy"
+          ],
+          "key": "ΔH符号与反应方向相关，数值随反应计量倍数缩放。标明状态。",
+          "method": "像代数式一样对齐并消去中间物质。",
+          "question": "某正向反应ΔH=−60 kJ·mol⁻¹，逆向同计量的ΔH？",
+          "answer": "＋60 kJ·mol⁻¹。"
+        },
+        {
+          "id": "entropy",
+          "title": "熵变与反应方向",
+          "prerequisites": [
+            "heat"
+          ],
+          "key": "恒温恒压下ΔG=ΔH−TΔS，判定所给条件下的热力学方向。速率另行分析。",
+          "method": "用焓变和熵变的四种符号组合判断温度影响。",
+          "question": "ΔH>0、ΔS>0时，较高温还是较低温更有利于ΔG<0？",
+          "answer": "较高温。"
+        },
+        {
+          "id": "rate",
+          "title": "反应速率、活化能与催化",
+          "prerequisites": [
+            "conc",
+            "basicEnergy"
+          ],
+          "key": "按单位时间浓度变化表示速率。同一反应用不同物种表示的速率可按计量数换算。",
+          "method": "先统一速率单位，再用能量曲线比较有无催化剂。",
+          "question": "同温下加入催化剂会改变平衡常数K吗？",
+          "answer": "不会，催化剂改变反应路径和达到平衡的速度。"
+        },
+        {
+          "id": "eq",
+          "title": "动态平衡、K与反应商Q",
+          "prerequisites": [
+            "rate"
+          ],
+          "key": "平衡时正逆速率相同。以Q和K比较判断移动，纯固体和纯液体通常不写入。",
+          "method": "先写K式，再预测改浓度、压强或温度后Q与K的关系。",
+          "question": "同温度下若Q<K，净反应朝哪边进行？",
+          "answer": "朝正向，直到Q=K。"
+        },
+        {
+          "id": "weak",
+          "title": "弱电解质电离、水的离子积与pH",
+          "prerequisites": [
+            "eq",
+            "acid"
+          ],
+          "key": "区分电离程度与浓度。以Kₐ、K_b、K_w分析弱酸碱和温度影响。",
+          "method": "写出平衡式、初始量、变化量和平衡量，再选近似。",
+          "question": "25 ℃时[H⁺]=10⁻³ mol·L⁻¹的稀溶液pH约为多少？",
+          "answer": "约3。"
+        },
+        {
+          "id": "hydro",
+          "title": "盐类水解与三大守恒",
+          "prerequisites": [
+            "weak",
+            "ion"
+          ],
+          "key": "用电荷、物料、质子守恒列式。弱酸的共轭碱能与水反应生成OH⁻。",
+          "method": "先列溶液全部主要粒子，再写守恒式。",
+          "question": "Na₂CO₃溶液通常显什么性？",
+          "answer": "碱性，CO₃²⁻水解生成OH⁻。"
+        },
+        {
+          "id": "ksp",
+          "title": "沉淀溶解平衡与转化",
+          "prerequisites": [
+            "eq",
+            "ion"
+          ],
+          "key": "比较离子积与Ksp。沉淀量与平衡游离离子浓度需分开计算。",
+          "method": "混合后先求稀释浓度，再写离子积。",
+          "question": "某溶液Qsp>Ksp，通常会发生什么？",
+          "answer": "析出沉淀，游离离子浓度下降。"
+        },
+        {
+          "id": "cell",
+          "title": "原电池、化学电源与腐蚀",
+          "prerequisites": [
+            "redox",
+            "basicEnergy"
+          ],
+          "key": "原电池阳极氧化、阴极还原。用电极反应和离子迁移检查电荷平衡。",
+          "method": "先写两个半反应，再画外电路电子流向。",
+          "question": "锌铜原电池中外电路电子从哪极流向哪极？",
+          "answer": "从锌电极（负极）流向铜电极（正极）。"
+        },
+        {
+          "id": "elect",
+          "title": "电解、电镀与电量计算",
+          "prerequisites": [
+            "cell",
+            "mole"
+          ],
+          "key": "电解池阳极氧化、阴极还原。用电子计量关系分析电解产物和电量。",
+          "method": "标出电源正负端后，先判阴阳极再写反应。",
+          "question": "还原1 mol Cu²⁺至Cu需转移多少mol电子？",
+          "answer": "2 mol。"
+        },
+        {
+          "id": "titrCurve",
+          "title": "酸碱滴定曲线与物种分布",
+          "prerequisites": [
+            "weak",
+            "hydro"
+          ],
+          "key": "把曲线分成起点、缓冲区、等量点和过量区。等量点的酸碱性取决于生成盐是否水解。",
+          "method": "给每个区域写主导平衡，再比较不同指示剂的变色范围。",
+          "question": "用强碱滴定一元弱酸，等量点在25 ℃时通常pH大于还是小于7？",
+          "answer": "通常大于7，因为生成的共轭碱发生水解。"
+        }
+      ]
+    },
+    {
+      "id": "h4",
+      "stage": "h",
+      "title": "选择性必修 2 · 结构与性质",
+      "resources": [
+        "smart",
+        "mit",
+        "open"
+      ],
+      "topics": [
+        {
+          "id": "orb",
+          "title": "核外电子排布与轨道",
+          "prerequisites": [
+            "period"
+          ],
+          "key": "掌握能层、能级、轨道与价电子排布，应用泡利原理与洪特规则。",
+          "method": "先填轨道方框，再写简式和未成对电子数。",
+          "question": "基态N原子的2p轨道有几个未成对电子？",
+          "answer": "3个，三个2p轨道各单占。"
+        },
+        {
+          "id": "bond",
+          "title": "化学键、路易斯式与极性",
+          "prerequisites": [
+            "orb"
+          ],
+          "key": "区分离子键与共价键，数σ键、π键和孤电子对。分子极性取决于键的偶极及空间结构。",
+          "method": "先画路易斯式，再用箭头标出键偶极。",
+          "question": "N₂中的三键含几个σ键、几个π键？",
+          "answer": "1个σ键、2个π键。"
+        },
+        {
+          "id": "vsepr",
+          "title": "VSEPR、杂化与空间构型",
+          "prerequisites": [
+            "bond"
+          ],
+          "key": "用中心原子价层电子域判断构型，多重键通常计一个电子域。",
+          "method": "分开记录电子域几何和分子几何。",
+          "question": "NH₃有几个电子域，分子呈什么形状？",
+          "answer": "4个，分子呈三角锥形。"
+        },
+        {
+          "id": "forces",
+          "title": "分子间作用力与氢键",
+          "prerequisites": [
+            "bond"
+          ],
+          "key": "区分键与分子间作用。比较沸点时综合氢键、色散力、极性和结构。",
+          "method": "选同族氢化物对照，以沸点异常定位氢键影响。",
+          "question": "H₂O相较H₂S沸点更高，一个主要原因是什么？",
+          "answer": "水分子间能形成较强的氢键。"
+        },
+        {
+          "id": "crystal",
+          "title": "晶体类型、晶胞与密度",
+          "prerequisites": [
+            "bond"
+          ],
+          "key": "比较离子、分子、共价和金属晶体。按顶点、面心、体心等位置分摊粒子。",
+          "method": "画晶胞并给每个位置标共享数，再核算化学式。",
+          "question": "简单立方晶胞仅在8个顶点各放一个相同原子，折合几个原子？",
+          "answer": "1个，每个顶点贡献1/8。"
+        },
+        {
+          "id": "complex",
+          "title": "配位键与常见配合物",
+          "prerequisites": [
+            "vsepr",
+            "ion"
+          ],
+          "key": "区分中心离子、配体、配位原子、配位数与内界电荷。",
+          "method": "先框出内界，再用配体电荷计算中心离子价态。",
+          "question": "[Cu(NH₃)₄]²⁺中配位数和中心离子氧化数？",
+          "answer": "配位数4，Cu为＋2。"
+        }
+      ]
+    },
+    {
+      "id": "h5",
+      "stage": "h",
+      "title": "选择性必修 3 · 有机化学",
+      "resources": [
+        "smart",
+        "org",
+        "moocOrg"
+      ],
+      "topics": [
+        {
+          "id": "func",
+          "title": "有机表示、命名与同分异构",
+          "prerequisites": [
+            "bond",
+            "basicOrg"
+          ],
+          "key": "识别骨架、官能团、系统命名与构造异构，兼顾顺反异构的结构条件。",
+          "method": "按“碳架→位置→官能团”有序枚举并查重复。",
+          "question": "C₂H₆O的两种构造异构体是什么？",
+          "answer": "乙醇CH₃CH₂OH与二甲醚CH₃OCH₃。"
+        },
+        {
+          "id": "hydrocarbon",
+          "title": "烷烃、烯烃、炔烃与芳香烃",
+          "prerequisites": [
+            "func"
+          ],
+          "key": "比较取代、加成、氧化等反应，区分苯环和普通碳碳双键。",
+          "method": "按键型给每类烃写一张“反应类型—结构变化”卡。",
+          "question": "乙烯与H₂生成乙烷属于哪类反应？",
+          "answer": "加成，也属于还原。"
+        },
+        {
+          "id": "oxygen",
+          "title": "醇、酚、醚、醛、酮、酸、酯",
+          "prerequisites": [
+            "func"
+          ],
+          "key": "按官能团归纳氧化、酯化、水解与鉴别，区分醇羟基与酚羟基。",
+          "method": "画乙醇→乙醛→乙酸→乙酸乙酯的转化图。",
+          "question": "乙醇逐步氧化为乙酸的中间有机产物是什么？",
+          "answer": "乙醛。"
+        },
+        {
+          "id": "macro",
+          "title": "油脂、糖类、氨基酸与蛋白质",
+          "prerequisites": [
+            "oxygen"
+          ],
+          "key": "认识酯键、糖苷键和肽键。比较小分子水解产物以及氨基酸两性。",
+          "method": "为每类分子标出特征键和典型水解产物。",
+          "question": "两个氨基酸缩合形成一个肽键时净脱去什么？",
+          "answer": "一分子水。"
+        },
+        {
+          "id": "poly",
+          "title": "加聚、缩聚与高分子材料",
+          "prerequisites": [
+            "hydrocarbon",
+            "oxygen"
+          ],
+          "key": "从单体推重复单元，识别加聚与缩聚。比较聚合物结构及用途。",
+          "method": "在重复单元两端画断键，逆推单体。",
+          "question": "聚乙烯的单体和重复单元分别是什么？",
+          "answer": "CH₂=CH₂与–CH₂–CH₂–。"
+        },
+        {
+          "id": "spec",
+          "title": "有机分离、鉴定与合成路线",
+          "prerequisites": [
+            "oxygen",
+            "separate"
+          ],
+          "key": "用相对分子质量、元素组成、IR及¹H NMR等线索推断结构。按官能团互变组织合成。",
+          "method": "先列不饱和度和候选结构，再用谱图逐一排除。",
+          "question": "乙醇的CH₃与CH₂在¹H NMR中是否属于同一类氢？",
+          "answer": "不属于，两者的化学环境不同。"
+        },
+        {
+          "id": "haloamine",
+          "title": "卤代烃、胺与官能团转化",
+          "prerequisites": [
+            "func",
+            "hydrocarbon"
+          ],
+          "key": "识别碳卤键、氨基及其反应。比较卤代烃的水解和消去，认识胺的碱性。",
+          "method": "标注官能团在反应前后的去向，区分加成和取代。",
+          "question": "乙胺与盐酸发生反应时生成什么类型的产物？",
+          "answer": "形成乙基铵盐，胺氮接受质子。"
+        }
+      ]
+    },
+    {
+      "id": "h6",
+      "stage": "h",
+      "title": "综合实验与工业流程",
+      "resources": [
+        "smart",
+        "sen",
+        "open"
+      ],
+      "topics": [
+        {
+          "id": "labsep",
+          "title": "萃取、分液、蒸馏与重结晶",
+          "prerequisites": [
+            "separate"
+          ],
+          "key": "按分配系数、密度、沸点或溶解度差异选择操作。分析回收率与纯度。",
+          "method": "每一步都写出“目的、留下哪一层或相”。",
+          "question": "两种互溶液体的沸点差较大，通常用什么分离？",
+          "answer": "蒸馏。"
+        },
+        {
+          "id": "titr",
+          "title": "滴定、终点与误差",
+          "prerequisites": [
+            "conc",
+            "weak",
+            "safe"
+          ],
+          "key": "理解等量点与指示终点，按反应计量换算。分析滴定管气泡、润洗、过量的影响。",
+          "method": "画滴定曲线，检查指示剂变色范围与突跃是否匹配。",
+          "question": "25.00 mL一元酸恰好消耗20.00 mL 0.1000 mol·L⁻¹ NaOH，酸浓度？",
+          "answer": "0.08000 mol·L⁻¹。"
+        },
+        {
+          "id": "flow",
+          "title": "工艺流程与综合实验设计",
+          "prerequisites": [
+            "labsep",
+            "ion",
+            "redox"
+          ],
+          "key": "识别浸取、调pH、分离、洗涤、结晶的功能。用守恒、对照和误差分析评价证据。",
+          "method": "从流程末端逆推目标物在哪一相，标出杂质去向。",
+          "question": "过滤后为什么要洗涤所得晶体？",
+          "answer": "减少晶体表面附着母液所带的可溶性杂质。"
+        },
+        {
+          "id": "green",
+          "title": "资源利用、绿色化学与循环",
+          "prerequisites": [
+            "flow",
+            "soc"
+          ],
+          "key": "用原子经济性、能耗、溶剂与废物比较路线。认识资源提取及回收、能源与污染治理。",
+          "method": "写目标产物与副产物，再画物料流和回用路径。",
+          "question": "高产率能单独说明原子经济性高吗？",
+          "answer": "不能，原子经济性由计量关系决定，产率描述实际产量与理论产量之比。"
+        }
+      ]
+    },
+    {
+      "id": "h7",
+      "stage": "h",
+      "title": "选修 · 实验、社会与化学科学",
+      "resources": [
+        "smart",
+        "sen",
+        "open"
+      ],
+      "topics": [
+        {
+          "id": "chrom",
+          "title": "色谱与物质分离",
+          "prerequisites": [
+            "labsep"
+          ],
+          "key": "利用各组分在固定相与流动相之间作用差异实现分离。",
+          "method": "画固定相、流动相和组分移动方向。",
+          "question": "在同一薄层色谱条件下，哪个斑点的Rf更大？",
+          "answer": "距原点更远的斑点。"
+        },
+        {
+          "id": "env",
+          "title": "大气、水体与环境化学",
+          "prerequisites": [
+            "green",
+            "sn"
+          ],
+          "key": "结合污染来源、迁移、转化和治理评价措施。比较去除率与污染物总排放量。",
+          "method": "画一个污染物的“来源→转化→治理”路径。",
+          "question": "为什么只比较排放浓度可能不足以判断总排放量？",
+          "answer": "总排放量还取决于排放流量和持续时间。"
+        },
+        {
+          "id": "modern",
+          "title": "现代化学与材料表征",
+          "prerequisites": [
+            "spec",
+            "crystal"
+          ],
+          "key": "认识结构表征、分子设计和新材料应用，了解不同实验信号能回答的结构问题。",
+          "method": "选择一种材料，写出性能指标、结构假设和验证工具。",
+          "question": "要研究晶体的长程周期结构，可以优先查哪种表征方法？",
+          "answer": "X射线衍射。"
+        }
+      ]
+    },
+    {
+      "id": "o1",
+      "stage": "o",
+      "title": "物理化学 · 热力学与动力学",
+      "resources": [
+        "mit",
+        "mooc",
+        "open"
+      ],
+      "topics": [
+        {
+          "id": "ideal",
+          "title": "理想气体、分压与分布",
+          "prerequisites": [
+            "vm"
+          ],
+          "key": "pV=nRT，理想混合气体pᵢ=yᵢp。统一单位，辨识等温、等压与绝热过程。",
+          "method": "列状态变量初末表，再判断需要哪种过程关系。",
+          "question": "总压1.20 bar、氧摩尔分数0.25，氧分压？",
+          "answer": "0.30 bar。"
+        },
+        {
+          "id": "therm",
+          "title": "热力学第一定律与量热",
+          "prerequisites": [
+            "heat",
+            "ideal"
+          ],
+          "key": "采用ΔU=q+w（对体系做功为正）；恒外压体积功w=−pₑₓₜΔV。区分qᵥ与qₚ的条件。",
+          "method": "每题先画系统边界，再标热与功的流向。",
+          "question": "体系吸热20 J并对外做功8 J，ΔU是多少？",
+          "answer": "＋12 J。"
+        },
+        {
+          "id": "gibbs",
+          "title": "自由能、活度与平衡",
+          "prerequisites": [
+            "entropy",
+            "eq",
+            "therm"
+          ],
+          "key": "ΔᵣG=ΔᵣG°＋RT ln Q。平衡时ΔᵣG=0，用无量纲活度写热力学常数。",
+          "method": "写反应式后从活度幂次构造Q，再检查标准态。",
+          "question": "ΔᵣG°<0时，K与1的大小关系？",
+          "answer": "K>1，由ΔᵣG°=−RT ln K得出。"
+        },
+        {
+          "id": "phase",
+          "title": "相平衡与相图",
+          "prerequisites": [
+            "therm"
+          ],
+          "key": "掌握相律F=C−P＋2的适用条件。读相区、相界、三相点，二元相图可用杠杆规则。",
+          "method": "先数独立组分和共存相，再找等温连线。",
+          "question": "纯物质三相共存时有几个自由度？",
+          "answer": "0，F=1−3＋2。"
+        },
+        {
+          "id": "kin",
+          "title": "速率级数、积分式与半衰期",
+          "prerequisites": [
+            "rate"
+          ],
+          "key": "用实验测级数。一级反应ln([A]ₜ/[A]₀)=−kt，t½=ln 2/k。",
+          "method": "比较[A]、ln[A]、1/[A]对t的线性及斜率。",
+          "question": "一级反应过两个半衰期，还剩初始量的多少？",
+          "answer": "1/4。"
+        },
+        {
+          "id": "arr",
+          "title": "Arrhenius关系与反应机理",
+          "prerequisites": [
+            "kin"
+          ],
+          "key": "ln k对1/T作图斜率为−Eₐ/R。用基元反应、稳态或预平衡假设建立速率式。",
+          "method": "把中间体浓度换成可测物种并检查近似。",
+          "question": "ln k对1/T的斜率为−6000 K，活化能约多少？",
+          "answer": "49.9 kJ·mol⁻¹，Eₐ=6000R。"
+        },
+        {
+          "id": "collig",
+          "title": "依数性与稀溶液",
+          "prerequisites": [
+            "ideal",
+            "phase"
+          ],
+          "key": "理想稀溶液中凝固点降低、沸点升高与溶质有效粒子浓度有关。理解渗透压与范特霍夫因子。",
+          "method": "先判断电解质是否近似完全解离，再比较有效粒子数。",
+          "question": "理想稀溶液中，相同质量摩尔浓度的NaCl与蔗糖，哪种凝固点降低更多？",
+          "answer": "NaCl，近似解离为两种离子，有效粒子数更多。"
+        }
+      ]
+    },
+    {
+      "id": "o2",
+      "stage": "o",
+      "title": "分析化学 · 定量平衡与仪器",
+      "resources": [
+        "open",
+        "mit",
+        "icho"
+      ],
+      "topics": [
+        {
+          "id": "buffer",
+          "title": "缓冲、多元酸与分布分数",
+          "prerequisites": [
+            "hydro",
+            "gibbs"
+          ],
+          "key": "理解pH≈pKₐ＋log([A⁻]/[HA])的适用条件。多元酸用各级常数和物料守恒求物种分布。",
+          "method": "先做完全反应的物料账，再求缓冲平衡。",
+          "question": "稀缓冲液中[A⁻]=[HA]时，pH约为多少？",
+          "answer": "约等于pKₐ。"
+        },
+        {
+          "id": "analPrecip",
+          "title": "条件平衡与选择性沉淀",
+          "prerequisites": [
+            "ksp",
+            "buffer"
+          ],
+          "key": "区分自由离子与总浓度，考虑酸碱、配位等副反应对沉淀的影响。",
+          "method": "以给定残余浓度定义分离标准，计算沉淀起点和终点。",
+          "question": "同浓度Cl⁻、Br⁻中缓慢提高自由Ag⁺浓度，哪种银盐先沉淀？",
+          "answer": "AgBr，Ksp更小，达到饱和所需的[Ag⁺]更低。"
+        },
+        {
+          "id": "edta",
+          "title": "配位平衡与EDTA滴定",
+          "prerequisites": [
+            "complex",
+            "buffer",
+            "titr"
+          ],
+          "key": "EDTA通常与金属离子按1∶1络合。用有效配体分数修正条件稳定常数。",
+          "method": "列金属总量与自由金属离子浓度，再判断pH和干扰。",
+          "question": "EDTA滴定Ca²⁺时，理想等量点n(EDTA)和n(Ca²⁺)怎样？",
+          "answer": "相等，配合比1∶1。"
+        },
+        {
+          "id": "nernst",
+          "title": "能斯特方程与电势图",
+          "prerequisites": [
+            "cell",
+            "gibbs"
+          ],
+          "key": "E=E°−RT ln Q/(nF)。电势为强度量，组合半反应用ΔG加和。用Latimer图判断歧化趋势。",
+          "method": "先配平电子数和总反应，再写Q并检查正负号。",
+          "question": "某自发原电池反应的E和ΔG符号？",
+          "answer": "E>0，ΔG<0，因为ΔG=−nFE。"
+        },
+        {
+          "id": "analTitr",
+          "title": "氧化还原滴定与间接滴定",
+          "prerequisites": [
+            "titr",
+            "nernst"
+          ],
+          "key": "理解直接、返滴定及间接滴定。按电子或反应计量逐步换算，认识空白扣除。",
+          "method": "把加入量、剩余量和被样品消耗量分别写清。",
+          "question": "加入10 mmol试剂，返滴定得到3 mmol未反应试剂，被样品消耗多少？",
+          "answer": "7 mmol。"
+        },
+        {
+          "id": "absorb",
+          "title": "吸光光度与校准曲线",
+          "prerequisites": [
+            "conc"
+          ],
+          "key": "在线性区A=εbc。用空白和标准曲线控制背景，判断稀释倍数与外推风险。",
+          "method": "画A对c图，写单位，核算稀释前后浓度。",
+          "question": "相同光程且在线性范围，浓度减半，扣除空白后的吸光度如何变化？",
+          "answer": "约减半。"
+        },
+        {
+          "id": "error",
+          "title": "不确定度、有效数字与质量控制",
+          "prerequisites": [
+            "inquiry",
+            "titr"
+          ],
+          "key": "区分随机误差和系统误差。识别平行样、空白、回收率的用途。",
+          "method": "做一张误差源、方向、证据及改进表。",
+          "question": "仪器始终多读0.10 mL，多测几次取均值能消除吗？",
+          "answer": "不能，这是系统偏差，需校准或修正。"
+        }
+      ]
+    },
+    {
+      "id": "o3",
+      "stage": "o",
+      "title": "无机与结构 · 竞赛拓展",
+      "resources": [
+        "moocInorg",
+        "mit",
+        "icho"
+      ],
+      "topics": [
+        {
+          "id": "mo",
+          "title": "分子轨道、键级与磁性",
+          "prerequisites": [
+            "orb",
+            "bond"
+          ],
+          "key": "由成键与反键轨道电子数求键级。磁性判断看有无未成对电子，注意不同双原子分子的能级顺序。",
+          "method": "从价电子总数出发，按相应能级图填电子。",
+          "question": "基态O₂为何呈顺磁性？",
+          "answer": "两个π*轨道各有一个未成对电子。"
+        },
+        {
+          "id": "sym",
+          "title": "分子对称性与等效位置",
+          "prerequisites": [
+            "vsepr"
+          ],
+          "key": "识别旋转轴、镜面和反演中心，用空间操作判断等效位点。",
+          "method": "用模型实作旋转、反射及反演并验证是否重合。",
+          "question": "理想正四面体CH₄的四个H是否等效？",
+          "answer": "等效，可通过分子的对称操作彼此交换。"
+        },
+        {
+          "id": "lattice",
+          "title": "堆积、空隙、离子晶体与晶格能",
+          "prerequisites": [
+            "crystal",
+            "therm"
+          ],
+          "key": "掌握hcp、ccp、四面体空隙与八面体空隙的计数，认识Born–Haber循环。",
+          "method": "由骨架粒子数和空隙占比推化学式，再核对电中性。",
+          "question": "最密堆积中N个球对应多少八面体和四面体空隙？",
+          "answer": "分别是N和2N（忽略边界）。"
+        },
+        {
+          "id": "coordIso",
+          "title": "配位几何与配合物异构",
+          "prerequisites": [
+            "complex",
+            "sym"
+          ],
+          "key": "辨识平面四边形、四面体与八面体配位。区分顺反、面式/经式、连接和光学异构。",
+          "method": "画所有可能的位置排列，借旋转对称去重。",
+          "question": "八面体MA₃B₃的两种几何异构叫什么？",
+          "answer": "面式（fac）与经式（mer）。"
+        },
+        {
+          "id": "cft",
+          "title": "晶体场分裂、颜色与自旋",
+          "prerequisites": [
+            "coordIso",
+            "orb"
+          ],
+          "key": "掌握八面体t₂g与e_g分裂；比较Δₒ和成对能判断高、低自旋。",
+          "method": "写金属氧化数、d电子数，再画能级填电子。",
+          "question": "低自旋八面体d⁶配合物有几个未成对电子？",
+          "answer": "0，t₂g填满，e_g为空。"
+        },
+        {
+          "id": "element",
+          "title": "主族、过渡元素与无机推断",
+          "prerequisites": [
+            "sn",
+            "fe",
+            "nernst"
+          ],
+          "key": "结合价态、酸碱性、配位、沉淀和电子构型分析元素转化。认识惰性电子对效应及镧系收缩。",
+          "method": "用颜色、计量、物态各条线索交叉排除候选。",
+          "question": "同价态的镧系三价离子，半径沿原子序数通常怎样变化？",
+          "answer": "逐渐减小，4f电子屏蔽较弱，有效核电荷增加。"
+        },
+        {
+          "id": "solid",
+          "title": "固体缺陷与非化学计量",
+          "prerequisites": [
+            "lattice"
+          ],
+          "key": "认识空位、间隙及肖特基、弗伦克尔缺陷。用位点数、占有率和电中性求组成。",
+          "method": "分开写每个子晶格的实际离子数和净电荷。",
+          "question": "阳离子离开正常位点并进入间隙构成什么缺陷？",
+          "answer": "弗伦克尔缺陷。"
+        },
+        {
+          "id": "diff",
+          "title": "晶面、衍射与布拉格关系",
+          "prerequisites": [
+            "lattice",
+            "modern"
+          ],
+          "key": "认识晶面间距与衍射角，应用nλ=2d sinθ并区分θ和2θ。",
+          "method": "在峰表标出仪器给的角度，再代入布拉格关系。",
+          "question": "同阶次、同波长下，晶面间距增大，θ如何变化？",
+          "answer": "θ减小，sinθ与间距成反比。"
+        }
+      ]
+    },
+    {
+      "id": "o4",
+      "stage": "o",
+      "title": "有机竞赛 · 机理、波谱与合成",
+      "resources": [
+        "org",
+        "moocOrg",
+        "mitOrg"
+      ],
+      "topics": [
+        {
+          "id": "stereo",
+          "title": "立体化学、构象及R/S和E/Z",
+          "prerequisites": [
+            "func",
+            "sym"
+          ],
+          "key": "用CIP规则排优先级。区分对映、非对映、内消旋体、构象与构型。",
+          "method": "用楔线式和纽曼投影表达同一结构，检查旋转后是否重合。",
+          "question": "一个分子有两个手性中心，是否必然有四种立体异构体？",
+          "answer": "不必然，可能有内消旋体导致总数减少。"
+        },
+        {
+          "id": "electron",
+          "title": "诱导、共振与有机酸碱",
+          "prerequisites": [
+            "bond",
+            "weak"
+          ],
+          "key": "以共轭碱稳定性比较酸性。区分诱导、共振、溶剂与空间效应。",
+          "method": "先画共轭碱的主要共振式，再比较电荷分布。",
+          "question": "乙酸通常比乙醇酸性强的主要结构原因是什么？",
+          "answer": "乙酸根的负电荷可在两个氧上共振离域。"
+        },
+        {
+          "id": "subs",
+          "title": "SN1、SN2、E1与E2",
+          "prerequisites": [
+            "stereo",
+            "electron"
+          ],
+          "key": "按底物、亲核体或碱、溶剂和温度判断竞争。SN2背面进攻，E2常需反式共平面。",
+          "method": "画电子箭头与过渡态，分别预测速率和立体结果。",
+          "question": "SN2发生在手性反应中心时有何几何结果？",
+          "answer": "发生构型反转。R/S字母是否改变还取决于CIP优先级。"
+        },
+        {
+          "id": "addition",
+          "title": "烯炔加成与立体选择性",
+          "prerequisites": [
+            "subs",
+            "hydrocarbon"
+          ],
+          "key": "用中间体、过渡态预测区域与立体选择性，区分顺式/反式加成与马氏取向。",
+          "method": "先画两种可能产物，标出每条路径关键的中间体。",
+          "question": "无过氧化物时丙烯与HBr通常生成什么主要产物？",
+          "answer": "2-溴丙烷，符合典型离子机理的马氏取向。"
+        },
+        {
+          "id": "aromatic",
+          "title": "芳香性与芳香取代",
+          "prerequisites": [
+            "electron",
+            "hydrocarbon"
+          ],
+          "key": "判断环状、平面、共轭与4n＋2 π电子条件。用中间体稳定性理解亲电取代定位。",
+          "method": "给每个环原子标p轨道和参与的π电子数。",
+          "question": "吡啶氮的孤电子对是否计入芳香六电子？",
+          "answer": "不计入，孤对位于平面内的杂化轨道。"
+        },
+        {
+          "id": "carbonyl",
+          "title": "羰基加成、酰基取代与烯醇化",
+          "prerequisites": [
+            "oxygen",
+            "electron"
+          ],
+          "key": "比较醛酮亲核加成与羧酸衍生物加成–消除，认识烯醇盐、羟醛及缩合。",
+          "method": "先标亲电中心、亲核中心、α位和离去基团。",
+          "question": "羟醛加成中，形成的新键通常是哪类键？",
+          "answer": "C–C键，烯醇或烯醇盐的α碳与另一个羰基碳连接。"
+        },
+        {
+          "id": "special",
+          "title": "自由基、重排与周环反应",
+          "prerequisites": [
+            "addition",
+            "mo"
+          ],
+          "key": "区分单电子与双电子箭头。认识链反应、碳正离子重排和Diels–Alder环加成。",
+          "method": "用原子编号跟踪连接变化，核对电荷和电子数。",
+          "question": "Diels–Alder反应的典型成环尺寸是几元？",
+          "answer": "六元环，由共轭二烯的4个原子和亲二烯体的2个原子组成。"
+        },
+        {
+          "id": "orgSpec",
+          "title": "IR、NMR、MS联合解析",
+          "prerequisites": [
+            "spec",
+            "stereo"
+          ],
+          "key": "用分子离子及同位素线索、IR官能团、NMR位移/积分/裂分交叉验证。",
+          "method": "先列分子式和不饱和度，最后给每组峰归属。",
+          "question": "C₄H₈O的不饱和度为多少？",
+          "answer": "1，可对应一个环或一个双键。"
+        },
+        {
+          "id": "synthesis",
+          "title": "逆合成、保护基与选择性",
+          "prerequisites": [
+            "carbonyl",
+            "aromatic",
+            "orgSpec"
+          ],
+          "key": "按目标键断开，识别合成等价体和官能团兼容性，区分化学、区域及立体选择性。",
+          "method": "从产物逆推两种断键，再比较步数与选择性并正向验证。",
+          "question": "把酯逆推为羧酸和醇时，通常断哪种键？",
+          "answer": "常断酰基碳与烷氧基氧之间的键，对应常见酯化路线。"
+        }
+      ]
+    },
+    {
+      "id": "o5",
+      "stage": "o",
+      "title": "真题与实验决赛训练",
+      "resources": [
+        "ccho",
+        "paper",
+        "icho",
+        "icho2026"
+      ],
+      "topics": [
+        {
+          "id": "labO",
+          "title": "实验记录、分离与定量训练",
+          "prerequisites": [
+            "labsep",
+            "analTitr",
+            "error",
+            "chrom"
+          ],
+          "key": "把原始读数、处理结果和误差分开记录，认识薄层色谱与萃取回收。实验技能由教师在实验室指导。",
+          "method": "对一组公开实验数据按单位、有效位数、平行性逐项复核。",
+          "question": "薄层色谱样点迁移3 cm，溶剂前沿迁移6 cm，Rf是多少？",
+          "answer": "0.50，Rf为迁移距离之比。"
+        },
+        {
+          "id": "paperO",
+          "title": "初赛综合题与计时复盘",
+          "prerequisites": [
+            "element",
+            "kin",
+            "stereo"
+          ],
+          "key": "按结构、原理、计量、推断标注小问。将题干陌生信息翻译成可计算关系。",
+          "method": "限时完成一组小问，隔天不看解析重写失分步骤。",
+          "question": "题干给出一种未学过的晶体结构，开始计算式量或密度前先提取什么？",
+          "answer": "晶胞尺寸、粒子位置及占有率，用共享规则求晶胞中各粒子数。"
+        },
+        {
+          "id": "ichoO",
+          "title": "决赛与IChO资料阅读",
+          "prerequisites": [
+            "labO",
+            "paperO",
+            "synthesis"
+          ],
+          "key": "对照当届准备题、理论与实验公开材料，整理英文术语和数据单位。",
+          "method": "阅读一题，先把反应、单位和所求量抄成三列。",
+          "question": "英文题中equivalence point与end point分别指什么？",
+          "answer": "等量点指计量上恰好反应，终点指实验观察到的指示信号。"
+        }
+      ]
+    }
+  ],
+  "resources": [
+    [
+      "jun",
+      "初中同步微课",
+      "视频 · 中文",
+      "山东中小学智慧教育平台，按教材和章节查微课与练习。",
+      "https://basic.sd.smartedu.cn/swkc/ke/home/course/syncourselist?period=cz&servPlatformCode=370000&subject=jcsub14"
+    ],
+    [
+      "smart",
+      "国家中小学智慧教育平台",
+      "视频 · 中文",
+      "进入课程教学，选学段、化学、教材版本，按知识点名称找对应课时。",
+      "https://basic.smartedu.cn/"
+    ],
+    [
+      "senVideo",
+      "高中化学同步课",
+      "视频 · 中文",
+      "山东中小学智慧教育平台，高中化学同步课程目录。",
+      "https://basic.sd.smartedu.cn/swkc/ke/home/course/syncourselist?period=pg&subject=jcsub14"
+    ],
+    [
+      "mooc",
+      "北京理工大学 · 大学化学",
+      "视频 · 中文",
+      "竞赛衔接，选择热力学、动力学、平衡与结构相关章节。",
+      "https://www.icourse163.org/course/BIT-1206873802"
+    ],
+    [
+      "moocInorg",
+      "中南大学 · 无机化学",
+      "视频 · 中文",
+      "补充元素化学、配位化合物和反应原理。",
+      "https://www.icourse163.org/course/CSU-1206635811?from=searchPage&outVendor=zw_mooc_pcssjg_"
+    ],
+    [
+      "moocOrg",
+      "有机化学 · 结构、反应、机理、合成",
+      "视频 · 中文",
+      "按反应机理、选择性与波谱章节查课。",
+      "https://www.icourse163.org/course/detail.htm?cid=1003380007"
+    ],
+    [
+      "mit",
+      "MIT 5.111SC · 化学原理",
+      "视频 · 英文",
+      "课程资源索引包含分课视频、讲义、练习及解答。",
+      "https://ocw.mit.edu/courses/5-111sc-principles-of-chemical-science-fall-2014/pages/resource-index/"
+    ],
+    [
+      "mitOrg",
+      "MIT 5.12 · 有机化学 I",
+      "讲义与练习 · 英文",
+      "查反应机理讲义、习题和考试题。",
+      "https://ocw.mit.edu/courses/5-12-organic-chemistry-i-spring-2005/"
+    ],
+    [
+      "open",
+      "OpenStax Chemistry 2e",
+      "教材 · 英文",
+      "计量、结构、热化学、平衡、电化学等章节含例题与练习。",
+      "https://openstax.org/details/books/chemistry-2e"
+    ],
+    [
+      "org",
+      "OpenStax Organic Chemistry",
+      "教材 · 英文",
+      "按命名、官能团、立体化学、机理或谱学阅读。",
+      "https://openstax.org/details/books/organic-chemistry"
+    ],
+    [
+      "phetAtom",
+      "PhET · 原子模型",
+      "仿真 · 中文",
+      "拖动质子、中子和电子，观察元素及电荷变化。",
+      "https://phet.colorado.edu/zh_CN/simulations/build-an-atom"
+    ],
+    [
+      "phetBalance",
+      "PhET · 方程式配平",
+      "仿真 · 中文",
+      "用可视化原子计数练习化学方程式。",
+      "https://phet.colorado.edu/zh_CN/simulations/balancing-chemical-equations"
+    ],
+    [
+      "phetAcid",
+      "PhET · 酸碱溶液",
+      "仿真 · 中文",
+      "对比酸碱浓度、强弱、pH及微粒分布。",
+      "https://phet.colorado.edu/zh_CN/simulations/acid-base-solutions"
+    ],
+    [
+      "ccho",
+      "中国化学会 · 化学奥林匹克资料库",
+      "公告与真题 · 中文",
+      "查当届规则、历年材料。部分参考答案需要会员权限。",
+      "https://www.chemsoc.org.cn/library/p42/all"
+    ],
+    [
+      "paper",
+      "第40届中国化学奥林匹克初赛试题",
+      "真题 · 中文",
+      "从中国化学会试题公告打开原题，按专题挑选小问。",
+      "https://www.chemsoc.org.cn/notice/a7491.html"
+    ],
+    [
+      "icho",
+      "IChO · 历届竞赛题",
+      "真题 · 英文",
+      "历史题集，适合理论与实验专题训练。",
+      "https://icho.sk/competition-problems/"
+    ],
+    [
+      "icho2026",
+      "第58届 IChO · 试题与答案",
+      "真题 · 英文",
+      "主办方的理论与实验试题入口。",
+      "https://www.icho2026.uz/problems"
+    ],
+    [
+      "junStd",
+      "义务教育化学课程标准",
+      "课程标准 · 中文",
+      "教育部 2022 年版。",
+      "https://www.moe.gov.cn/srcsite/A26/s8001/202204/W020230605524875861384.pdf"
+    ],
+    [
+      "sen",
+      "普通高中化学课程标准",
+      "课程标准 · 中文",
+      "2017 年版 2025 年修订文本，涵盖必修、选择性必修、选修。",
+      "https://cdn.zizzs.com/zixunzhan/%E6%99%AE%E9%80%9A%E9%AB%98%E4%B8%AD%E5%8C%96%E5%AD%A6%E8%AF%BE%E7%A8%8B%E6%A0%87%E5%87%86%E6%97%A5%E5%B8%B8%E4%BF%AE%E8%AE%A2%E7%89%88%EF%BC%882017%E5%B9%B4%E7%89%882025%E5%B9%B4%E4%BF%AE%E8%AE%A2%EF%BC%891762762441233.pdf"
+    ]
+  ]
+}
+</script>
+<script id="lesson-depth" type="application/json">
+{
+  "change": {
+    "model": "判断时先确定“变化前后各是什么物质”，再问是否有生成新物质的证据。",
+    "example": "把盐水蒸干后又得到盐，说明水挥发，盐从溶解态变成固态。对照铁生锈，生成物的性质与铁不同。",
+    "pitfall": "有气泡未必是反应，水沸腾也会产生气泡。",
+    "transfer": "白醋滴到小苏打上起泡，与水沸腾的气泡怎样区分？",
+    "solution": "前者可进一步鉴别生成的CO₂，后者的气泡主要是水蒸气，遇冷凝结。",
+    "rubric": "能说明一个现象支持什么结论，以及还需要什么证据。"
+  },
+  "class": {
+    "model": "分类先数物质种类，再数构成纯净物的元素种类，最后检查氧化物的组成条件。",
+    "example": "冰水共存时，虽然有固液两相，均为H₂O，所以仍是纯净物和化合物。",
+    "pitfall": "同种元素可以形成多种单质，如O₂和O₃。",
+    "transfer": "只含氧元素的O₂与O₃混合气，是单质、化合物还是混合物？",
+    "solution": "是混合物，含两种纯净物。",
+    "rubric": "能为“只含一种元素就一定是单质”构造反例。"
+  },
+  "particle": {
+    "model": "用模型追踪单个粒子的成分和粒子间距。状态变化主要改变粒子间距及运动，化学反应改变原子的组合。",
+    "example": "表示2H₂＋O₂→2H₂O时，分别画4个H、2个O。反应前后原子数相同，分子种类与总数改变。",
+    "pitfall": "空气或水扩散时，微粒的体积不会因此变大。",
+    "transfer": "同样质量的水由液体变成蒸气，分子个数和平均距离如何变化？",
+    "solution": "个数不变，平均距离增大。",
+    "rubric": "能把宏观现象翻译为粒子图和符号式。"
+  },
+  "atom": {
+    "model": "用Z表示质子数，用A−Z求中子数。离子的电子数等于Z减去带正负号的电荷数。",
+    "example": "²⁴Mg²⁺的Z=12，所以含12个质子、12个中子、10个电子。",
+    "pitfall": "离子电荷由得失电子改变，元素身份仍由质子数确定。",
+    "transfer": "³⁷Cl⁻含多少质子、中子和电子？",
+    "solution": "17个质子、20个中子、18个电子。",
+    "rubric": "能区分元素、同位素、原子和离子并做逆向推断。"
+  },
+  "formula": {
+    "model": "写化合物化学式时先列元素符号与常见化合价，再用最简整数比满足代数和为零。",
+    "example": "Al为＋3、氧为−2，要配成＋6与−6，得到Al₂O₃。若是Al³⁺与SO₄²⁻，则写Al₂(SO₄)₃。",
+    "pitfall": "多原子离子重复出现时用括号，系数乘整条化学式。",
+    "transfer": "3Al₂(SO₄)₃中共有几个Al、S、O原子？",
+    "solution": "6、9、36。",
+    "rubric": "能从化合价写化学式并正确展开括号与系数。"
+  },
+  "mass": {
+    "model": "元素质量比等于“下标×相对原子质量”之比。给样品质量时，用元素质量分数乘纯物质质量。",
+    "example": "CaCO₃的式量为40＋12＋48=100。25 g纯CaCO₃含钙10 g。",
+    "pitfall": "原子个数比与质量比是两个不同量。",
+    "transfer": "含80% CaCO₃的50 g样品，来自CaCO₃的钙有多少？",
+    "solution": "50×0.80×0.40=16 g。",
+    "rubric": "能由样品含量、式量和元素含量做两级换算。"
+  },
+  "air": {
+    "model": "区分氧气作为助燃物的作用和燃料的作用，比较燃烧、缓慢氧化和自燃的共同点。",
+    "example": "用灯罩盖灭小火苗时，罩内有限的氧不断被消耗。冷却灭火则让温度低于可燃物的着火点。",
+    "pitfall": "降温灭火改变的是物体温度，材料自身的着火点在条件一定时并未改变。",
+    "transfer": "移除纸堆周围的可燃纸箱，对应哪条灭火原理？",
+    "solution": "移走可燃物，减少火势蔓延的燃料。",
+    "rubric": "能对不同灭火情境指出改变的条件。"
+  },
+  "water": {
+    "model": "按颗粒大小、溶解性、吸附和沸点差理解净水步骤。水电解的气体物质的量比由方程式决定。",
+    "example": "理想状态下2H₂O→2H₂＋O₂。同温同压，若得到10 mL氧气，对应20 mL氢气。",
+    "pitfall": "过滤能除泥沙，已溶解的离子需要其他方法去除。",
+    "transfer": "泥水中还含有溶解盐，怎样解释过滤与蒸馏处理结果的差异？",
+    "solution": "过滤截留泥沙，蒸馏收集冷凝水，常见不挥发盐主要留在原容器。",
+    "rubric": "能为不同污染物匹配分离原理，并用方程式解释电解数据。"
+  },
+  "carbon": {
+    "model": "用碳价态和物质类别梳理C、CO₂和CO₃²⁻。用是否生成或消耗CaCO₃解释石灰水现象。",
+    "example": "少量CO₂使澄清石灰水变浑浊。继续通入过量CO₂时，CaCO₃可转化为可溶性Ca(HCO₃)₂，浑浊可能减弱。",
+    "pitfall": "单凭“没有浑浊”不能排除曾经通入过量CO₂。",
+    "transfer": "同样由碳元素组成，石墨能导电而金刚石通常不导电，说明什么？",
+    "solution": "单质的结构不同可导致性质不同。",
+    "rubric": "能解释石灰水两阶段现象及同素异形体性质差异。"
+  },
+  "metal": {
+    "model": "先比较活动性顺序，再看溶液条件和表面膜。解释腐蚀时逐个检查水和氧。",
+    "example": "铁片放入CuSO₄溶液可出现铜色固体，反应为Fe＋CuSO₄→FeSO₄＋Cu。",
+    "pitfall": "判断溶液中置换时，活泼金属可能先与水反应。",
+    "transfer": "用“铁接触干燥空气”“铁接触空气和水”两组能检验哪个因素？",
+    "solution": "比较水的作用，其他条件应保持一致。",
+    "rubric": "能把置换与锈蚀问题分别用适用模型解释。"
+  },
+  "balance": {
+    "model": "先写正确化学式。由只在一侧各出现一次的元素开始定系数，最后化成最简整数并逐项复查。",
+    "example": "C₃H₈＋O₂→CO₂＋H₂O，先定3CO₂和4H₂O，右侧10个O，故系数为1、5、3、4。",
+    "pitfall": "配平不能修改化学式下标，也不能只核对某一种元素。",
+    "transfer": "配平Al＋O₂→Al₂O₃，说明最小公倍数用在哪。",
+    "solution": "4Al＋3O₂→2Al₂O₃，O在两种含氧式中分别成对和成组三个出现，取6。",
+    "rubric": "能独立配平并解释系数如何确定。"
+  },
+  "types": {
+    "model": "先判断各物质是单质还是化合物，再看一变多、多变一、单质换元素或两种化合物交换组分。",
+    "example": "Zn＋CuSO₄→ZnSO₄＋Cu符合单质＋化合物→化合物＋单质，是置换。",
+    "pitfall": "有些反应不归入四类基本反应，例如甲烷燃烧。",
+    "transfer": "2CO＋O₂→2CO₂与CH₄＋2O₂→CO₂＋2H₂O，哪一个是化合？",
+    "solution": "前者是，多种反应物生成一种物质。",
+    "rubric": "能按反应物和生成物结构给出分类依据。"
+  },
+  "calc": {
+    "model": "把样品质量×纯度得到纯物质质量，再用配平系数×相对式量列质量比。",
+    "example": "25 g、纯度80%的CaCO₃样品含20 g CaCO₃。理论生成CO₂为20×44/100=8.8 g。",
+    "pitfall": "不能用化学计量数之比直接当质量比。",
+    "transfer": "若20 g石灰石样品只因CaCO₃分解放出6.6 g CO₂，且完全分解，纯度多少？",
+    "solution": "CaCO₃质量=6.6×100/44=15 g，纯度75%。",
+    "rubric": "能由产物质量逆推纯度，并写清前提。"
+  },
+  "hardwater": {
+    "model": "先区分矿物离子导致的硬度与悬浮颗粒、微生物。某些暂时硬度可因加热形成沉淀而降低。",
+    "example": "同温下用相同肥皂液比较两水样，泡沫少且浮渣多的一组可能较硬。",
+    "pitfall": "“看上去清澈”和“硬度低”是不同判断。",
+    "transfer": "煮沸后壶壁出现水垢，能证明水中所有Ca²⁺、Mg²⁺均已除去吗？",
+    "solution": "不能，部分硬度可降低，仍可能有离子留在水中。",
+    "rubric": "能把软化、净化、消毒对应到各自目标。"
+  },
+  "sol": {
+    "model": "给定温度、溶剂和溶质，检查当前溶质质量与该水量所能溶解的上限。",
+    "example": "若上限是20 g、当前溶有15 g，再加3 g仍不饱和。若加8 g，充分平衡后溶20 g、余3 g固体。",
+    "pitfall": "“浓溶液”与“饱和溶液”分别描述浓度和能否继续溶解。",
+    "transfer": "观察到杯底有固体，什么条件下可以判定溶液已饱和？",
+    "solution": "固体是同一种溶质，温度等条件恒定，且有足够时间达到溶解平衡。",
+    "rubric": "能解释何时用剩余固体作饱和证据。"
+  },
+  "solub": {
+    "model": "同一水量下，热态和冷态的溶解上限相减可求理想析晶量。混合物分离要比较曲线斜率。",
+    "example": "100 g水中热溶解度60 g、冷溶解度20 g，热饱和溶液降温且不失水，析出40 g。",
+    "pitfall": "溶解度基准为100 g溶剂，不能拿100 g溶液直接代入。",
+    "transfer": "上述条件改为50 g水、热态已溶25 g，冷却到冷溶解度20 g时析出多少？",
+    "solution": "冷态最多溶10 g，析出15 g。",
+    "rubric": "能处理起始不饱和或水量改变的变式。"
+  },
+  "fraction": {
+    "model": "混合时分别加总溶质质量和溶液质量。蒸发时先判断溶质有无挥发或析出。",
+    "example": "把40 g的5%盐水与60 g的15%盐水混合，溶质质量2＋9=11 g，浓度11%。",
+    "pitfall": "不同质量的溶液混合，不能直接取两个百分数的平均值。",
+    "transfer": "将100 g的12%盐水稀释到8%，应加多少水？",
+    "solution": "溶质12 g，末态溶液150 g，应加50 g水。",
+    "rubric": "能在稀释、混合、蒸发题里选对守恒量。"
+  },
+  "acid": {
+    "model": "在25 ℃用pH与7比较酸碱性。强弱、浓稀和pH分别受电离性质、浓度和溶液条件控制。",
+    "example": "pH试纸提供近似pH。指示剂能显示一定范围的颜色变化，通常无法精确读出pH。",
+    "pitfall": "测样品时避免把整条试纸插进待测原液，避免样品被污染。",
+    "transfer": "酸溶液加水稀释，在普通中学题设下pH往哪个方向变化？",
+    "solution": "pH增大并趋近中性，常规稀释不会让单纯酸溶液越过中性变成碱性。",
+    "rubric": "能用定性pH变化解释稀释，并说明测量工具的局限。"
+  },
+  "neutral": {
+    "model": "先识别参与反应的酸性和碱性成分，再用投料量判断有无剩余。",
+    "example": "等物质的量的一元强酸与一元强碱在水中恰好反应，产物是相应盐和水。",
+    "pitfall": "“有盐和水生成”不能保证最终溶液一定中性。",
+    "transfer": "向过量稀盐酸中加少量NaOH，发生中和后溶液呈什么性？",
+    "solution": "仍呈酸性，因为酸有剩余。",
+    "rubric": "能同时判断反应类型和剩余溶液酸碱性。"
+  },
+  "safe": {
+    "model": "按用途区分量取、转移、混合、加热与称量器具。对每步操作说明误差或风险来源。",
+    "example": "使用量筒量取时，俯视读数大于实际液面对应值。若要量取固定刻度，俯视到刻度时实际取液偏少。",
+    "pitfall": "“读数偏大”和“实际量取体积偏小”可以同时成立。",
+    "transfer": "量取10 mL时从下方仰视，看到10 mL就停止，实际体积如何？",
+    "solution": "偏大，仰视所读数值小于实际对应刻度。",
+    "rubric": "能画示意图解释读数误差与操作误差方向。"
+  },
+  "separate": {
+    "model": "每一步都记录目标物在哪一相、杂质去了哪里。固液过滤后还要区分滤渣和滤液。",
+    "example": "盐与砂混合物可先用水溶盐，过滤得砂和盐水，再从盐水回收盐。",
+    "pitfall": "过滤时弃错一相会损失目标物。",
+    "transfer": "若需要尽量回收滤渣夹带的可溶盐，洗涤滤渣所得液如何处理？",
+    "solution": "与原滤液合并后再回收盐。",
+    "rubric": "能设计连续分离并追踪每种物质去向。"
+  },
+  "gas": {
+    "model": "用溶解性和反应性判断能否用水作收集介质，用密度判断排空气方式。",
+    "example": "CO₂相对空气较重且能溶于水，课堂装置图中常用向上排空气法。石灰水现象可用来鉴别CO₂。",
+    "pitfall": "“密度比空气大”是收集方式的依据，气体鉴别还要用特征现象。",
+    "transfer": "一种气体易溶于水、密度小于空气，且不与空气反应，用哪类收集方式更合适？",
+    "solution": "向下排空气法。",
+    "rubric": "能用气体性质解释收集选择并区分检验与验满。"
+  },
+  "inquiry": {
+    "model": "先写可检验的假设，再确定自变量、因变量和控制变量。计时、称量或图像可把现象转成数据。",
+    "example": "比较粉末和颗粒的溶解速度时，保持溶质质量、水量、水温和搅拌方式相同，测完全溶解的时间。",
+    "pitfall": "同时改变水温与颗粒大小，会混淆两个因素的影响。",
+    "transfer": "两次重复测得20 s和35 s，应直接取平均并下结论吗？",
+    "solution": "先核查操作和计时条件，增加重复并报告离散程度。",
+    "rubric": "能找出实验中的混杂因素并提出改进。"
+  },
+  "soc": {
+    "model": "比较材料或处理路线时，把同一功能下的原料、能耗、寿命、回收和废物放在同一边界。",
+    "example": "一次性杯与耐用杯可按“提供相同饮用次数”比较。耐用杯还要计入清洗用水和使用次数。",
+    "pitfall": "仅比较单件质量或只看是否可回收，无法判断总体环境影响。",
+    "transfer": "轻量包装减少运输用能，但回收率很低，应补查哪些数据？",
+    "solution": "运输里程、使用量、实际回收率、废弃处理方式及原生材料消耗。",
+    "rubric": "能围绕同一用途列证据并说明比较的边界。"
+  },
+  "mole": {
+    "model": "统一把质量、体积或粒子数换成mol，再用方程式或组成关系转换。",
+    "example": "11 g CO₂为0.25 mol分子，含0.50 mol氧原子和0.25 mol碳原子。",
+    "pitfall": "“1 mol氧”必须说明指O原子、O₂分子还是其他粒子。",
+    "transfer": "0.20 mol Al₂(SO₄)₃含多少mol O原子？",
+    "solution": "2.40 mol，每个式量单位含12个O。",
+    "rubric": "能用同一套单位换算多种粒子数量。"
+  },
+  "vm": {
+    "model": "使用pV=nRT或题给Vₘ，先核对温度和压力。标准状况的近似数值不能套给任意条件。",
+    "example": "同温同压，2 L N₂和3 L O₂的粒子数比为2∶3。",
+    "pitfall": "在标准状况下，水通常为液体，不能用气体摩尔体积计算液态水体积。",
+    "transfer": "固定气体物质的量和绝对温度，体积减半，理想气体压强怎样变化？",
+    "solution": "压强变为原来的两倍。",
+    "rubric": "能先判断状态条件，再选体积公式。"
+  },
+  "conc": {
+    "model": "配液从目标体积和浓度反推物质的量，计算试剂用量时还要核对纯度或结晶水。",
+    "example": "配250 mL 0.200 mol/L NaCl需0.0500 mol，约2.92 g。溶解、冷却、转移和定容后混匀。",
+    "pitfall": "加入250 mL水与配成250 mL溶液含义不同。",
+    "transfer": "转移后漏洗烧杯，最后仍准确定容，浓度偏向哪边？",
+    "solution": "偏低，部分溶质未进入容量瓶。",
+    "rubric": "能从目标浓度算用量并解释主要误差。"
+  },
+  "ion": {
+    "model": "先判实际参与反应的物种，再做守恒。难溶物、气体、弱电解质及水通常保留整体形式。",
+    "example": "Na₂CO₃溶液遇足量酸，净离子式为CO₃²⁻＋2H⁺→CO₂↑＋H₂O。",
+    "pitfall": "不能把水中的弱酸全部写成其组成离子。",
+    "transfer": "BaCl₂和Na₂SO₄溶液混合，去掉哪些旁观离子？",
+    "solution": "Na⁺、Cl⁻，净离子式为Ba²⁺＋SO₄²⁻→BaSO₄↓。",
+    "rubric": "能从物态、强弱和用量决定拆分与保留。"
+  },
+  "redox": {
+    "model": "标氧化数，求每个原子变化值并乘实际原子数，再使总失电子数等于总得电子数。",
+    "example": "2Fe³⁺＋Cu→2Fe²⁺＋Cu²⁺中，两个Fe³⁺各得1e⁻，一个Cu失2e⁻。",
+    "pitfall": "氧化剂得电子，本身发生还原。",
+    "transfer": "Cl₂＋2Br⁻→2Cl⁻＋Br₂中，每生成1 mol Br₂转移多少电子？",
+    "solution": "2 mol电子，两个Br⁻各失1 mol电子。",
+    "rubric": "能用电子守恒独立确定反应物比例。"
+  },
+  "lim": {
+    "model": "用各投料的n/系数比较可进行的反应进度，较小者决定理论产量。剩余量按反应进度回算。",
+    "example": "2Al＋3Cu²⁺→2Al³⁺＋3Cu，投0.10 mol Al和0.12 mol Cu²⁺，进度=min(0.05,0.04)=0.04 mol。",
+    "pitfall": "过量试剂仍会被部分消耗。",
+    "transfer": "上述条件实际得到0.090 mol Cu，求Al剩余量和产率。",
+    "solution": "余Al 0.020 mol，理论Cu 0.120 mol，产率75%。",
+    "rubric": "能在同一道题中求限制物、剩余量和产率。"
+  },
+  "basicOrg": {
+    "model": "从结构简式圈出C=C、醇羟基、羧基，再关联加成、酸性与酯化等典型性质。",
+    "example": "乙烯含C=C，可作聚乙烯单体。乙酸含羧基，可与碳酸盐反应生成CO₂。",
+    "pitfall": "分子式相同的物质可能有不同官能团与性质。",
+    "transfer": "乙醇与乙酸中哪种能使碳酸氢钠溶液明显放出CO₂？",
+    "solution": "乙酸，羧酸提供质子使HCO₃⁻转化为CO₂和水。",
+    "rubric": "能根据结构而非物质名称预测简单反应。"
+  },
+  "basicEnergy": {
+    "model": "用能量图解释吸放热，用反应物浓度和温度解释速率，用动态平衡描述可逆反应的限度。",
+    "example": "反应物能量高于生成物时反应放热，但仍可能需要跨过活化能。",
+    "pitfall": "放热反应不一定快，平衡也不表示微观反应停止。",
+    "transfer": "使用催化剂会让某可逆反应在相同条件下得到更多平衡产物吗？",
+    "solution": "不会，正逆过程均加速，最终平衡组成不因催化剂改变。",
+    "rubric": "能区分能量变化、速率和平衡组成。"
+  },
+  "period": {
+    "model": "比较原子先看电子层数与有效核电荷。等电子离子可先固定电子数，再比较质子数。",
+    "example": "O²⁻、F⁻、Na⁺、Mg²⁺都含10个电子，核电荷递增，半径依次减小。",
+    "pitfall": "周期趋势存在例外，电离能需要考虑亚层和电子配对。",
+    "transfer": "Na与K哪个第一电离能通常更小？",
+    "solution": "K，价电子层更远，屏蔽更强。",
+    "rubric": "能说明趋势背后的层数、屏蔽或核吸引因素。"
+  },
+  "colloid": {
+    "model": "分散系的区别在于分散粒子尺度和相行为。用可见光散射、沉降和过滤行为做证据组合。",
+    "example": "分散的细胶体粒子可散射光，但通常能通过常见滤纸。较粗的悬浮颗粒则更容易沉降或被截留。",
+    "pitfall": "丁达尔光路提示有散射粒子，单独出现光路无法准确确定化学成分。",
+    "transfer": "牛奶稀释后仍产生明显散射，是否应只按“均匀”判断为真溶液？",
+    "solution": "不应，需看分散粒子尺度及散射行为。",
+    "rubric": "能解释外观相似的分散系如何区分。"
+  },
+  "na": {
+    "model": "酸加入碳酸根溶液时，按CO₃²⁻、HCO₃⁻两阶段做质子当量账。",
+    "example": "理想计量题中，0.10 mol CO₃²⁻先加0.10 mol H⁺变成HCO₃⁻，继续加0.10 mol H⁺可生成0.10 mol CO₂。",
+    "pitfall": "题目给不同滴加次序时，局部酸过量可影响实际现象。",
+    "transfer": "理想分步计量下0.10 mol CO₃²⁻加入0.15 mol H⁺，生成多少CO₂？",
+    "solution": "约0.05 mol，第一阶段消耗0.10 mol H⁺。",
+    "rubric": "能分段计算并说明计量近似。"
+  },
+  "fe": {
+    "model": "铁重点追踪Fe²⁺与Fe³⁺互变，铝重点看Al³⁺、Al(OH)₃与铝酸根物种随pH变化。",
+    "example": "向Al³⁺溶液加入OH⁻，先有Al(OH)₃沉淀，足量强碱条件下可形成可溶的[Al(OH)₄]⁻。",
+    "pitfall": "把Al(OH)₃当作只与酸反应的一般氢氧化物会漏掉两性。",
+    "transfer": "含Fe³⁺与Al³⁺的理想化溶液生成两种氢氧化物后，加过量强碱，哪种主要进入滤液？",
+    "solution": "Al以可溶的羟基配合物进入滤液，Fe(OH)₃通常仍在固相。",
+    "rubric": "能用价态图与pH解释元素分离。"
+  },
+  "hal": {
+    "model": "用X₂＋2e⁻→2X⁻比较氧化能力，检验卤离子时结合沉淀和溶解性。",
+    "example": "Cl₂能将Br⁻氧化为Br₂，Cl₂本身还原成Cl⁻。",
+    "pitfall": "检验Cl⁻时不能引入含Cl⁻的试剂作为酸化剂。",
+    "transfer": "若Br₂通入含Cl⁻的水溶液，能否按活动性顺序把Cl⁻氧化为Cl₂？",
+    "solution": "通常不能，Br₂氧化性弱于Cl₂。",
+    "rubric": "能判断卤素置换方向并识别检验干扰。"
+  },
+  "sn": {
+    "model": "画价态轴区分酸碱转化与氧化还原。NH₃和NH₄⁺的氮均为−3，SO₂和SO₄²⁻中的硫分别为＋4和＋6。",
+    "example": "分析含硫气体被氧化后形成硫酸盐时，每摩尔硫失2 mol电子。",
+    "pitfall": "气体溶于水形成酸性或碱性溶液本身不一定涉及电子转移。",
+    "transfer": "NH₄⁺→NO₃⁻的氮氧化数变化多少？",
+    "solution": "从−3到＋5，升高8。",
+    "rubric": "能结合价态和物质类别判断转化的驱动力。"
+  },
+  "si": {
+    "model": "区分晶体硅、二氧化硅及硅酸盐材料。晶体硅作半导体，光纤常用高纯石英玻璃。",
+    "example": "硅的导电性可受掺杂调控，SiO₂的网络结构使其通常绝缘。",
+    "pitfall": "玻璃的组成和结构不能用一种固定化学式概括。",
+    "transfer": "硅芯片与石英光纤都含硅元素，分别依赖什么性质？",
+    "solution": "芯片依赖半导体电学特性，光纤依赖透光性与折射率设计。",
+    "rubric": "能为不同用途找到结构或性质依据。"
+  },
+  "heat": {
+    "model": "盖斯定律相加时同一物质的物态、系数要一致，反向变号、乘倍数时焓变同步变化。",
+    "example": "C→CO₂为−394 kJ/mol，CO→CO₂为−283 kJ/mol。前者减后者得C→CO为−111 kJ/mol。",
+    "pitfall": "同一物质的气态和液态不能直接消掉。",
+    "transfer": "若原反应每计量式放出100 kJ，将逆反应的系数再整体乘2，ΔH如何变？",
+    "solution": "变为＋200 kJ，先反号再乘2。",
+    "rubric": "能用相加消元，并核对物态和基准。"
+  },
+  "entropy": {
+    "model": "用统一单位计算ΔG，温度取K。临界温度可用ΔH/ΔS估计，前提是二者在温区近似恒定。",
+    "example": "ΔH=40 kJ/mol、ΔS=100 J/(mol·K)，则ΔG=40−0.100T，约400 K变号。",
+    "pitfall": "ΔG<0描述方向，无法单凭它判断反应能否短时间完成。",
+    "transfer": "ΔH=−20 kJ/mol、ΔS=−50 J/(mol·K)时，哪段温区正向有利？",
+    "solution": "近似T<400 K，因ΔG=−20＋0.050T。",
+    "rubric": "能把符号规律转成定量临界温度。"
+  },
+  "rate": {
+    "model": "在同一反应中，用浓度变化除以时间和计量系数，可得到统一的平均反应速率。",
+    "example": "N₂＋3H₂→2NH₃，H₂每分钟减少0.30 mol/L，则反应速率为0.10，NH₃增加速率为0.20 mol/(L·min)。",
+    "pitfall": "曲线两点间斜率给平均速率，切线斜率给瞬时速率。",
+    "transfer": "若NH₃生成速率为0.12 mol/(L·min)，N₂消耗速率是多少？",
+    "solution": "0.060 mol/(L·min)，两者计量比为2∶1。",
+    "rubric": "能在图像、浓度变化和计量速率间换算。"
+  },
+  "eq": {
+    "model": "先写K式，再用扰动后的即时组成写Q。同温改变组成时K固定，温度变化可改变K。",
+    "example": "对N₂O₄(g)⇌2NO₂(g)，恒温减小体积使浓度均翻倍，则Q'=2K，平衡向左。",
+    "pitfall": "压强升高并不能直接判断移动方向，需看反应物分压是否改变。",
+    "transfer": "该体系恒温恒容加入惰性气体后，Q是否改变？",
+    "solution": "不变，反应物种的浓度和分压不变。",
+    "rubric": "能用Q解释不同加压情境。"
+  },
+  "weak": {
+    "model": "单元弱酸初始浓度C时，忽略水电离可写Kₐ=x²/(C−x)。只有x/C足够小才用平方根近似。",
+    "example": "C=0.10 mol/L、Kₐ=10⁻⁵，近似[H⁺]=10⁻³ mol/L，电离约1%，pH≈3。",
+    "pitfall": "加水可增加电离百分率，同时[H⁺]常下降。",
+    "transfer": "稀释上述弱酸十倍，平方根近似下pH增加多少？",
+    "solution": "约0.5，因[H⁺]缩小为原来的1/√10。",
+    "rubric": "能检查近似并区分电离百分率和浓度。"
+  },
+  "hydro": {
+    "model": "先列主要粒子。物料守恒追踪原有组分，电荷守恒对所有带电粒子加权求和。",
+    "example": "NaHCO₃中碳守恒为C=[H₂CO₃]+[HCO₃⁻]+[CO₃²⁻]。电荷守恒含[Na⁺]、[H⁺]、[HCO₃⁻]、2[CO₃²⁻]与[OH⁻]。",
+    "pitfall": "Na⁺是旁观离子，但仍应计入电荷守恒。",
+    "transfer": "为什么写[Na⁺]+[H⁺]=[HCO₃⁻]+[CO₃²⁻]+[OH⁻]会错？",
+    "solution": "CO₃²⁻每个带两个负电荷，右边对应项需乘2。",
+    "rubric": "能完整列物种并独立写两个守恒式。"
+  },
+  "ksp": {
+    "model": "混合先做体积稀释，再求瞬时离子积。Ksp的指数取溶解方程式的化学计量数。",
+    "example": "CaF₂⇌Ca²⁺＋2F⁻，纯水中若摩尔溶解度s且忽略其他平衡，Ksp=s(2s)²=4s³。",
+    "pitfall": "不同计量类型的固体不能仅按Ksp大小比较摩尔溶解度。",
+    "transfer": "加入少量NaF后，平衡时CaF₂的溶解量趋势如何？",
+    "solution": "减小，F⁻共同离子提高离子积，使平衡向沉淀侧移动。",
+    "rubric": "能从计量式求溶解度并判断共同离子效应。"
+  },
+  "cell": {
+    "model": "先判发生氧化和还原的电极，再标外电路与内电路。原电池氧化电极为负极。",
+    "example": "锌铜原电池中Zn→Zn²⁺＋2e⁻，Cu²⁺＋2e⁻→Cu，盐桥阴离子趋向产生Zn²⁺的一侧。",
+    "pitfall": "电子走外电路，盐桥主要靠离子迁移导电。",
+    "transfer": "运行时铜极附近Cu²⁺被消耗，盐桥哪类离子补偿该侧电荷？",
+    "solution": "阳离子。",
+    "rubric": "能同时画出两极反应、电子和离子方向。"
+  },
+  "elect": {
+    "model": "恒定电流时Q=It，电子物质的量为Q/F。由半反应换算产物量，若有电流效率需乘效率。",
+    "example": "通过1930 C，约为0.0200 mol电子。若全部用于还原Cu²⁺，沉积0.0100 mol Cu。",
+    "pitfall": "阳极是氧化、阴极是还原，这两条在原电池和电解池均成立。",
+    "transfer": "同样电量还原Ag⁺，理想生成多少mol Ag？",
+    "solution": "约0.0200 mol，Ag⁺＋e⁻→Ag。",
+    "rubric": "能从电量预测产物量并考虑副反应效率。"
+  },
+  "titrCurve": {
+    "model": "加滴定剂后先做快速中和的计量，再按剩余物种判断主导平衡。半等量点常有[HA]≈[A⁻]。",
+    "example": "用NaOH滴定乙酸，半等量点pH≈pKₐ，等量点有乙酸根水解，过量区由剩余OH⁻主导。",
+    "pitfall": "等量点不必然是pH 7，指示剂需匹配突跃范围。",
+    "transfer": "若弱酸更弱、原浓度相同，等量点pH一般如何变？",
+    "solution": "共轭碱更强，等量点pH一般更高。",
+    "rubric": "能分区列式，并说明指示剂选择依据。"
+  },
+  "orb": {
+    "model": "先按基态排布填电子，再判断离子的失电子次序。过渡金属形成阳离子时通常先移除ns电子。",
+    "example": "Fe为[Ar]3d⁶4s²，Fe²⁺为[Ar]3d⁶，Fe³⁺为[Ar]3d⁵。",
+    "pitfall": "填充时4s常先于3d，形成阳离子时却先移除4s电子。",
+    "transfer": "孤立基态Fe³⁺的3d轨道有几个未成对电子？",
+    "solution": "5个，五个d轨道各单占。",
+    "rubric": "能从原子排布推出离子排布和未成对数。"
+  },
+  "bond": {
+    "model": "画路易斯结构时先统计价电子，连骨架后补满外层，再检查形式电荷和分子偶极。",
+    "example": "CO₂有两个C=O，每条双键有一个σ键和一个π键。分子线形，两键偶极抵消。",
+    "pitfall": "存在极性键的分子仍可能整体非极性。",
+    "transfer": "H₂O的两个O–H键偶极为何不相互抵消？",
+    "solution": "分子为弯曲形，两个偶极不在相反直线方向。",
+    "rubric": "能从电子式、几何到整体极性连续推理。"
+  },
+  "vsepr": {
+    "model": "中心原子电子域由σ成键方向和孤电子对组成。多重键作为一个域，孤电子对影响构型和键角。",
+    "example": "NH₃为AX₃E，电子域近四面体，分子为三角锥。H₂O为AX₂E₂，分子为弯曲形。",
+    "pitfall": "电子域几何与只看原子位置的分子几何可能不同。",
+    "transfer": "SO₂以两个成键方向和一个孤电子对近似，电子域几何和分子几何？",
+    "solution": "平面三角电子域，分子为弯曲形。",
+    "rubric": "能区分两类几何并解释孤对电子影响。"
+  },
+  "forces": {
+    "model": "先确认物质间主要作用，再考虑分子质量、接触面积、极性与分子内氢键。",
+    "example": "同分子式的正戊烷与新戊烷相比，正戊烷接触面积较大，沸点更高。",
+    "pitfall": "分子量更大不总有更高沸点，氢键和构型也会改变结果。",
+    "transfer": "同温下乙醇与二甲醚相比，哪种更易在纯物质中形成分子间氢键？",
+    "solution": "乙醇，具有O–H氢键给体；二甲醚仅有受体位点。",
+    "rubric": "能用多种作用共同解释物性而非只背顺序。"
+  },
+  "crystal": {
+    "model": "先按位置分摊晶胞粒子，再用ρ=ZM/(NₐV)求密度。注意长度转体积时单位也立方。",
+    "example": "面心立方单质晶胞含8×1/8＋6×1/2=4个原子，立方边长a时ρ=4M/(Nₐa³)。",
+    "pitfall": "算化合物的Z时，Z对应化学式单位，不等于晶胞总离子数。",
+    "transfer": "NaCl晶胞含4个Na⁺和4个Cl⁻，取M为NaCl摩尔质量时Z为多少？",
+    "solution": "4个NaCl化学式单位。",
+    "rubric": "能由位置、化学式、密度在三个方向上换算。"
+  },
+  "complex": {
+    "model": "配位数数直接与中心成键的供体原子，氧化数由整个配离子电荷和配体电荷平衡得出。",
+    "example": "[Fe(CN)₆]⁴⁻含6个−1配体，铁为＋2，配位数6。",
+    "pitfall": "多齿配体分子数可以小于配位数。",
+    "transfer": "[Co(en)₃]³⁺中的en为中性二齿配体，中心离子氧化数和配位数？",
+    "solution": "＋3，配位数6。",
+    "rubric": "能同时处理配体电荷、齿数和内界电荷。"
+  },
+  "func": {
+    "model": "以包含主官能团的骨架确定母体，再编号与命名。异构枚举先数碳架，再考虑位置和官能团。",
+    "example": "C₄H₁₀O只算醇时，有丁-1-醇、丁-2-醇、2-甲基丙-1-醇和2-甲基丙-2-醇。",
+    "pitfall": "从另一端编号可能只是同一结构，记得用对称性去重。",
+    "transfer": "丁-2-醇为何还可有两种对映形式？",
+    "solution": "2号碳连接H、OH、CH₃和C₂H₅四种不同基团。",
+    "rubric": "能系统枚举构造异构并识别立体异构条件。"
+  },
+  "hydrocarbon": {
+    "model": "根据σ、π键和芳香性判断容易发生的反应类型。烯炔常加成，芳香体系常取代以保留芳香性。",
+    "example": "乙烯发生加成时π键被消耗并形成两个新的σ键。苯的典型芳香取代保留环上共轭。",
+    "pitfall": "苯环常画交替双键，但不能据此套用孤立烯烃的全部性质。",
+    "transfer": "乙烯加成与乙烯加聚是否都会改变C=C的键型？",
+    "solution": "都会，双键的π键被用于形成新的σ键。",
+    "rubric": "能从键型解释反应分类和产物变化。"
+  },
+  "oxygen": {
+    "model": "用官能团转化串联氧化、还原和酯化。一级醇常可氧化为醛再到酸，二级醇对应酮。",
+    "example": "丙-1-醇氧化先得丙醛，丙-2-醇氧化得丙酮，两者产物同分子式但官能团不同。",
+    "pitfall": "酯化产物含酯基，普通醇与酚的酸性也有差异。",
+    "transfer": "乙酸乙酯完全水解且最后酸化，有机产物是什么？",
+    "solution": "乙酸和乙醇。",
+    "rubric": "能按官能团写转化网络并预测反应产物。"
+  },
+  "macro": {
+    "model": "先看连接单元的键，再预测水解产物。油脂含酯键，蛋白质含肽键，多糖含糖苷键。",
+    "example": "甘油三酯在碱性条件下充分水解给甘油和脂肪酸盐，酸化后可得脂肪酸。",
+    "pitfall": "变性主要改变蛋白质高级结构，不能直接等同于肽键完全水解。",
+    "transfer": "由3个氨基酸组成的线性三肽有几个肽键，形成时净失去几分子水？",
+    "solution": "2个肽键，净失2分子水。",
+    "rubric": "能用连接方式而非名称判断水解和缩合。"
+  },
+  "poly": {
+    "model": "从单体的反应位点推重复单元。加聚常打开π键，缩聚常以双官能团反应形成新键并释放小分子。",
+    "example": "乙二醇和二元羧酸形成聚酯时，每形成一个酯键净脱一分子水。",
+    "pitfall": "高分子相对分子质量常是分布，不能把重复单元式量当整条链式量。",
+    "transfer": "若线性聚合物主链反复出现–CO–NH–，它属于哪类材料？",
+    "solution": "聚酰胺，主链含重复酰胺键。",
+    "rubric": "能识别重复单元并逆推可行的单体类型。"
+  },
+  "spec": {
+    "model": "由分子式算不饱和度，结合IR和NMR缩小结构候选，最后核对全部氢环境与积分。",
+    "example": "C₂H₆O无环或双键。宽O–H信号和两类碳上氢支持乙醇，二甲醚无O–H且两端甲基等效。",
+    "pitfall": "同分异构体可能有相同分子量，单靠质谱分子量通常无法区分。",
+    "transfer": "IR出现明显羰基吸收时，C₂H₄O的环氧乙烷与乙醛哪个更符合？",
+    "solution": "乙醛有C=O，环氧乙烷无羰基。",
+    "rubric": "能从多条独立谱学信息逐步排除结构。"
+  },
+  "haloamine": {
+    "model": "卤代烃常比较亲核取代和消除，胺则从氮孤对电子分析质子化。",
+    "example": "乙基卤化物取代可得到乙醇，消除可得到乙烯，区别在新形成C–O键或C=C。",
+    "pitfall": "消除要求合适的邻位氢，存在卤素不表示必然可消除。",
+    "transfer": "甲基卤化物能发生普通β-消除生成烯烃吗？",
+    "solution": "不能，只有一个碳，没有β位。",
+    "rubric": "能按底物结构判断基本转化是否可行。"
+  },
+  "labsep": {
+    "model": "根据物质的相、沸点、溶解度及分配行为组合操作。评估产率时注意目标物在两相中的分布。",
+    "example": "重结晶中，目标物在热溶剂中较易溶而在冷溶剂中较难溶，冷却得到晶体，母液仍有少量目标物。",
+    "pitfall": "萃取后有机相未必在上层，位置取决于两相密度。",
+    "transfer": "重结晶洗涤晶体时，用大量温溶剂可能怎样影响回收率？",
+    "solution": "回收率降低，更多晶体重新溶解。",
+    "rubric": "能解释操作选择及纯度与回收率之间的取舍。"
+  },
+  "titr": {
+    "model": "把滴定剂浓度×实际用量转换为物质的量，再按反应计量与样品体积计算。",
+    "example": "用0.100 mol/L NaOH滴定10.0 mL二元酸至第二等量点，耗20.0 mL，则酸为0.100 mol/L。",
+    "pitfall": "滴定管读数差包括流出量，也可能包含填补初始气泡的液量。",
+    "transfer": "初始尖嘴有气泡，终点时气泡消失，按记录体积计算样品浓度偏高还是偏低？",
+    "solution": "偏高，读数差中含填补尖嘴气泡所需液体。",
+    "rubric": "能分别从计量和仪器误差解释浓度。"
+  },
+  "flow": {
+    "model": "先确定目标元素的价态和所处相，再逐步标注杂质去向。调pH必须兼顾沉淀选择性和目标损失。",
+    "example": "某流程将两种金属离子溶于滤液，逐步升pH，使更易形成氢氧化物的一种先沉淀，再保留滤液。",
+    "pitfall": "每次过滤后都应明确要的是滤液还是滤渣。",
+    "transfer": "若pH过高导致目标离子同时沉淀，最后产品产率如何？",
+    "solution": "通常下降，目标组分随除杂滤渣损失。",
+    "rubric": "能读陌生流程并依据平衡预测操作影响。"
+  },
+  "green": {
+    "model": "把目标产物的计量质量除以反应物总计量质量求原子经济性，再分别比较实际产率、能耗与废物。",
+    "example": "理想加成反应若唯一产物是目标物，原子经济性可达100%，但实际仍可能消耗较多溶剂和能源。",
+    "pitfall": "溶剂回收率、实际产率和原子经济性衡量的是不同维度。",
+    "transfer": "两条路线原子经济性相同，怎样进一步比较环境代价？",
+    "solution": "比较溶剂及能耗、危险性、废物量、实际收率和回收方式。",
+    "rubric": "能列出多项指标并说明各自衡量对象。"
+  },
+  "chrom": {
+    "model": "Rf是斑点移动距离与溶剂前沿移动距离之比。吸附型色谱中，与固定相结合更强的组分通常移动更慢。",
+    "example": "斑点距原点2.4 cm，前沿6.0 cm，则Rf=0.40。未知与对照有相同Rf只提供同一物质的线索。",
+    "pitfall": "更换溶剂或固定相后，Rf数值通常不能直接比较。",
+    "transfer": "同板两个斑点Rf分别0.25和0.75，哪个更靠近原点？",
+    "solution": "0.25的斑点。",
+    "rubric": "能从色谱数据比较分离与鉴定的证据强弱。"
+  },
+  "env": {
+    "model": "总排放负荷可用浓度×流量×时间近似。环境影响还取决于毒性、形态和转化。",
+    "example": "流量加倍、浓度减半，其他条件相同，单位时间排放质量不变。",
+    "pitfall": "稀释可以降低测得浓度，但污染物排放质量可能没变。",
+    "transfer": "甲排口2 mg/L、100 L/h，乙排口1 mg/L、300 L/h，哪个小时负荷大？",
+    "solution": "乙为300 mg/h，甲为200 mg/h。",
+    "rubric": "能结合浓度和流量评价治理措施。"
+  },
+  "modern": {
+    "model": "按问题选表征方法。衍射看长程有序结构，IR看振动和官能团，显微成像看形貌。",
+    "example": "比较两种聚合物，若关注表面孔洞，用显微成像。若关注有无羰基，用红外光谱。",
+    "pitfall": "单一谱峰一般只回答一个有限的结构问题。",
+    "transfer": "新材料加入填料后，如何分别看填料分散和晶相是否改变？",
+    "solution": "用合适显微成像看分散，用X射线衍射对比晶相。",
+    "rubric": "能将两种证据分别对应到明确的结构假设。"
+  },
+  "ideal": {
+    "model": "p、V、T、n单位与R配套。混合气分压用摩尔分数，不直接用质量分数。",
+    "example": "4 g He和28 g N₂各约1 mol，理想混合总压为2 bar时各自分压约1 bar。",
+    "pitfall": "气体压强需使用绝对压强，温度用K。",
+    "transfer": "若在恒容恒温容器中加入同样物质的量的惰性气体，原有组分分压变吗？",
+    "solution": "不变，pᵢ=nᵢRT/V，只有总压增大。",
+    "rubric": "能用分压公式同时解释总压与平衡变化。"
+  },
+  "therm": {
+    "model": "先确定系统和正负号。理想气体等温过程ΔU=0，绝热过程q=0，两者含义不同。",
+    "example": "气体对恒定外压100 kPa膨胀2.0 L，w=−200 J。若吸热250 J，则ΔU=＋50 J。",
+    "pitfall": "用外压算不可逆体积功，不能直接套体系压强。",
+    "transfer": "气体绝热向真空膨胀，只有体积功时ΔU如何？",
+    "solution": "为0，q=0且外压为0，因此w=0。",
+    "rubric": "能从题设区分热、功和状态函数。"
+  },
+  "gibbs": {
+    "model": "先将反应式转成活度反应商，再用ΔᵣG=RT ln(Q/K)判断方向。逆反应时K取倒数。",
+    "example": "若K=100、Q=10，则Q/K=0.10，在298 K时ΔᵣG约−5.71 kJ/mol。",
+    "pitfall": "ΔᵣG°的符号描述标准状态，实际方向还要看Q。",
+    "transfer": "原反应K=9，把方程式全部乘以1/2，新K为多少？",
+    "solution": "3，因为新标准反应自由能减半，K变为原来的平方根。",
+    "rubric": "能处理方程式倍乘、逆向和非标准状态。"
+  },
+  "phase": {
+    "model": "先数独立组分和相数。定压时自由度减少一个。二元两相区，用系线端点求相组成和相比例。",
+    "example": "总体组成x=0.40，两相端点0.20、0.80，富集相比例(0.40−0.20)/(0.80−0.20)=1/3。",
+    "pitfall": "杠杆规则的相比例对应对侧线段。",
+    "transfer": "总体组成改为0.65，端点不变，富集相占比？",
+    "solution": "0.75。",
+    "rubric": "能从相图分开读取相组成与相比例。"
+  },
+  "kin": {
+    "model": "通过改变一种反应物的初浓度看初速变化，积分式则检验随时间的浓度关系。",
+    "example": "A浓度翻倍时初速变4倍，B不变，则对A为二级。若整体二级，常用k单位L·mol⁻¹·s⁻¹。",
+    "pitfall": "总反应方程式系数一般不能直接当反应级数。",
+    "transfer": "某反应k为0.20 s⁻¹且遵从一级速率式，半衰期约多久？",
+    "solution": "3.47 s，t½=0.693/0.20。",
+    "rubric": "能从两组数据提取级数并检查k的量纲。"
+  },
+  "arr": {
+    "model": "用ln(k₂/k₁)=Eₐ/R(1/T₁−1/T₂)。机理推导中用快速平衡或稳态消去不能直接测量的中间体。",
+    "example": "A⇌I为快速平衡、I→P慢，则[I]=K[A]，v=k₂K[A]。",
+    "pitfall": "慢步速率式含中间体时，通常还需换成可测的反应物浓度。",
+    "transfer": "若表观活化能为正且温度从300 K升到330 K，k的趋势？",
+    "solution": "增大，1/T下降，ln k上升。",
+    "rubric": "能把图线斜率换成活化能并说明机理近似。"
+  },
+  "collig": {
+    "model": "用ΔT_f=iK_f m比较凝固点降低。m是每千克溶剂中的溶质物质的量。",
+    "example": "0.10 mol/kg蔗糖水溶液近似ΔT_f=1.86×0.10=0.186 K。理想完全解离NaCl在同m时约为0.372 K。",
+    "pitfall": "电解质的实际范特霍夫因子未必等于整数，浓溶液也偏离理想。",
+    "transfer": "理想稀溶液中0.10 mol/kg NaCl与0.20 mol/kg蔗糖的ΔT_f怎样？",
+    "solution": "近似相同，有效粒子质量摩尔浓度均约0.20 mol/kg。",
+    "rubric": "能将有效粒子数和溶液浓度区分开。"
+  },
+  "buffer": {
+    "model": "先用计量式消耗加入的强酸或强碱，再用剩余HA与A⁻的比例近似计算pH。",
+    "example": "HA与A⁻各10 mmol，加入2 mmol强酸后变为12和8 mmol，pH≈pKₐ＋log(8/12)=pKₐ−0.176。",
+    "pitfall": "缓冲组分用尽后不能继续套对数式，且比例相同也可能有不同缓冲容量。",
+    "transfer": "若改加5 mmol强碱，两个缓冲组分各剩多少？",
+    "solution": "HA变为5 mmol，A⁻变为15 mmol，pH≈pKₐ＋log 3。",
+    "rubric": "能在加入强酸碱后重列物料账，检查缓冲是否仍成立。"
+  },
+  "analPrecip": {
+    "model": "用Ksp和给定自由阴离子浓度算开始沉淀的自由阳离子阈值。开始析出后再用物料守恒算残留。",
+    "example": "同为MX型，设[X⁻]=0.010 M，Ksp=10⁻¹⁰时自由[M⁺]达到10⁻⁸ M开始沉淀。",
+    "pitfall": "若同时有络合剂，金属总浓度可以远高于自由金属浓度。",
+    "transfer": "给定自由[M⁺]=10⁻⁴ M，上例溶液饱和时残留[X⁻]约多少？",
+    "solution": "10⁻⁶ M，由Ksp除以自由[M⁺]。",
+    "rubric": "能用阈值与残留量判断是否达到分离目标。"
+  },
+  "edta": {
+    "model": "设α为总游离EDTA中Y⁴⁻的比例，忽略其他副反应时K′=αK。低pH下质子化会使α变小。",
+    "example": "若K=10¹⁶且α=10⁻⁴，则K′=10¹²。等量点计量比仍为1∶1。",
+    "pitfall": "配合反应的计量比与反应完成程度是不同问题。",
+    "transfer": "若将pH调低使α降到10⁻⁷，其余条件不变，K′如何变？",
+    "solution": "降为10⁹，配合反应驱动力减小。",
+    "rubric": "能用条件常数说明为何选特定pH。"
+  },
+  "nernst": {
+    "model": "先写总反应、电子数与Q。25 ℃可用E=E°−(0.05916/n)log Q。",
+    "example": "Zn＋Cu²⁺→Zn²⁺＋Cu，n=2。若活度比a(Zn²⁺)/a(Cu²⁺)=100，E比E°低0.0592 V。",
+    "pitfall": "把半反应倍乘时电势不随倍数乘，ΔG随倍数乘。",
+    "transfer": "相同温度下Q改为0.01，E比E°如何变化？",
+    "solution": "升高约0.0592 V。",
+    "rubric": "能写Q并判断浓度改变对电压的方向和数量。"
+  },
+  "analTitr": {
+    "model": "按电子守恒或计量关系将滴定剂换成剩余试剂，再用“加入−剩余”得到样品消耗。",
+    "example": "加入5.00 mmol试剂，剩余需2.00 mmol另一试剂滴定，两者计量为2∶1，则剩余4.00 mmol，样品消耗1.00 mmol。",
+    "pitfall": "返滴剂的mol数通常要先按比例换算。",
+    "transfer": "若同样加入5.00 mmol，返滴剂用量减至1.50 mmol，样品消耗多少？",
+    "solution": "2.00 mmol，剩余试剂为3.00 mmol。",
+    "rubric": "能分清样品、过量试剂和返滴剂三者关系。"
+  },
+  "absorb": {
+    "model": "校准线可写A=kc+b，先扣背景或用截距校正。浓度超出校准范围时稀释后测量。",
+    "example": "若A=0.080c＋0.020，样品吸光度0.420，则稀释液c=5.00（按曲线单位）。",
+    "pitfall": "不能忽略截距后直接用A/k。",
+    "transfer": "若测定前取原样1份定容成5份，原样浓度多少？",
+    "solution": "25.0，按校准曲线使用的浓度单位。",
+    "rubric": "能从吸光度反推浓度并还原稀释倍数。"
+  },
+  "error": {
+    "model": "用均值和离散程度描述重复性，用标准样和空白检查偏差。异常值处置需记录依据。",
+    "example": "若空白也耗0.20 mL滴定剂，样品读数10.20 mL，合理扣除后对应10.00 mL。",
+    "pitfall": "重复值接近说明精密度可能高，准确度仍需标准检验。",
+    "transfer": "同一标准10.00 mL测得10.30、10.31、10.29 mL，如何评价？",
+    "solution": "精密度高，但有约＋0.30 mL系统偏差，准确度偏低。",
+    "rubric": "能分辨误差类型并给出适配的校正措施。"
+  },
+  "mo": {
+    "model": "键级=(成键电子数−反键电子数)/2。增减电子时看实际占据的最高能轨道。",
+    "example": "O₂键级2。形成O₂⁺时移走一个π*反键电子，键级变2.5，仍有一个未成对电子。",
+    "pitfall": "路易斯式不能直接解释O₂的顺磁性。",
+    "transfer": "O₂⁻相对O₂，键级怎样变化？",
+    "solution": "增加一个反键电子，键级由2降至1.5。",
+    "rubric": "能用电子填充同时推出键级和磁性。"
+  },
+  "sym": {
+    "model": "用旋转、反射、反演后是否与原结构重合判断对称元素。仅移动编号不改变几何。",
+    "example": "线形CO₂在C原子处有反演中心，两个O可互换。弯曲H₂O没有反演中心。",
+    "pitfall": "分子轮廓对称不足以判定所有原子都映射到同种原子。",
+    "transfer": "线形OCS是否有反演中心？",
+    "solution": "没有，反演会将O与S对换。",
+    "rubric": "能用具体操作证明存在或不存在某种对称性。"
+  },
+  "lattice": {
+    "model": "先找最密堆积骨架粒子数N，再按N个八面体、2N个四面体位置乘占位率。",
+    "example": "阴离子最密堆积，阳离子填一半四面体空隙，阳离子数为N，离子比1∶1。",
+    "pitfall": "空隙占据率描述空间占位，化学式还要核对电中性。",
+    "transfer": "若只填四分之一八面体空隙，阳、阴离子个数比是多少？",
+    "solution": "1∶4。",
+    "rubric": "能从占据率推出化学式，或由化学式逆推占据率。"
+  },
+  "coordIso": {
+    "model": "对八面体可用±x、±y、±z六个位点，夹角90°为顺式，180°为反式。",
+    "example": "MA₄B₂中，若两个B都在同一轴的两端，就是trans；若分属两轴，就是cis。",
+    "pitfall": "旋转后重合的图形只算一种异构体。",
+    "transfer": "MA₃B₃面式中三条M–B方向是否有一对反式？",
+    "solution": "没有，三个B位点互成90°。",
+    "rubric": "能借位点模型判断顺反和面经异构。"
+  },
+  "cft": {
+    "model": "先数金属d电子，再根据八面体分裂和配对能决定排布。磁性由未成对电子数判断。",
+    "example": "高自旋d⁶为t₂g⁴e_g²，有4个未成对电子。低自旋d⁶为t₂g⁶，未成对数0。",
+    "pitfall": "同是d⁶，配体场强不同会给出不同磁性。",
+    "transfer": "八面体低自旋d⁵有几个未成对电子？",
+    "solution": "1个，t₂g⁵中两个轨道双占，一个单占。",
+    "rubric": "能由氧化数、d电子数和场强推出自旋状态。"
+  },
+  "element": {
+    "model": "把陌生化合物推断拆为组成、价态、反应环境与特征证据。配位和沉淀会改变给定条件下的稳定性。",
+    "example": "已知氧均为−2，MnO₄⁻的Mn为＋7。还原产物可能随酸碱环境变化，题目给出的产物再决定电子数。",
+    "pitfall": "记住一种介质中的典型产物，不能直接推广到所有介质。",
+    "transfer": "若MnO₄⁻转成MnO₂，每摩尔Mn获得多少电子？",
+    "solution": "3 mol电子，由＋7降至＋4。",
+    "rubric": "能把陌生物种数据转成氧化数、电子数和物料关系。"
+  },
+  "solid": {
+    "model": "肖特基缺陷可视为相应离子按电中性组合缺位，弗伦克尔缺陷是离子从正常位移到间隙。",
+    "example": "理想1∶1盐少一个阳离子与一个阴离子，体积近似不变时密度下降。",
+    "pitfall": "弗伦克尔缺陷中的离子仍在晶体内，不能按晶体总离子数减少处理。",
+    "transfer": "若只发生弗伦克尔缺陷且体积近似不变，密度是否明显改变？",
+    "solution": "按理想模型基本不变，因为总质量近似不变。",
+    "rubric": "能区分晶格占位变化与整体组成变化。"
+  },
+  "diff": {
+    "model": "衍射图横轴若为2θ，代式前先除以2。注意波长与晶面间距使用相同长度单位。",
+    "example": "一阶峰位于2θ=60°，则θ=30°，d=λ/(2sin30°)=λ。",
+    "pitfall": "把60°直接当θ会显著低估d。",
+    "transfer": "同一波长一阶峰若位于2θ=90°，d为多少？",
+    "solution": "λ/√2，约0.707λ。",
+    "rubric": "能由实验峰位换算间距并检查角度定义。"
+  },
+  "stereo": {
+    "model": "CIP先比直接连接原子的原子序数，打平则逐层比较。最低优先级背向时，1→2→3顺时针为R。",
+    "example": "对CH(OH)(CH₃)(CH₂CH₃)H，优先次序OH、CH₂CH₃、CH₃、H。",
+    "pitfall": "最低优先级若朝向观察者，平面上读出的顺逆时针结果须反转。",
+    "transfer": "最低优先级背向，1→2→3为逆时针，构型是什么？",
+    "solution": "S。若最低优先级朝向观察者，同样投影则为R。",
+    "rubric": "能解释并正确执行CIP排序与观察方向。"
+  },
+  "electron": {
+    "model": "比较酸性时先画失H⁺后的结构，标明负电荷能否离域及吸电子取代基的位置。",
+    "example": "氯乙酸的氯通过诱导效应稳定羧酸根，通常比乙酸更酸。",
+    "pitfall": "共振形式之间不能移动原子骨架，且不表示分子在不同形式间振荡。",
+    "transfer": "吸电子取代基离羧基更远时，诱导增强酸性的效应通常怎样？",
+    "solution": "减弱，诱导效应随距离增加而衰减。",
+    "rubric": "能用共轭碱的结构解释酸性排序。"
+  },
+  "subs": {
+    "model": "用四项判断主路径：底物拥挤程度、亲核性或碱性、溶剂和立体条件。SN2速率依赖底物和亲核体。",
+    "example": "甲基底物没有β位，经典E2受结构排除。甲基中心空间位阻小，适合SN2。",
+    "pitfall": "SN2的几何反转与R/S标签是否互换需要分别判断。",
+    "transfer": "若反应确为SN2，亲核体浓度加倍、其余不变，初速如何？",
+    "solution": "理想速率式v=k[底物][亲核体]下加倍。",
+    "rubric": "能把机理判断同时落实到结构、速率和立体结果。"
+  },
+  "addition": {
+    "model": "区分区域选择性与立体选择性。若机理经桥式中间体，背面进攻常产生反式加成。",
+    "example": "环己烯与Br₂作典型纸面分析时，经溴鎓离子再被Br⁻从背面打开，产物主要为反式邻二溴代物。",
+    "pitfall": "“马氏”描述连到哪一端，不直接说明两基团从同面或异面加入。",
+    "transfer": "环己烯若进行催化氢化，两个新H通常从同面还是异面加入？",
+    "solution": "通常从同面加入，双键在催化剂表面吸附。",
+    "rubric": "能依据中间体解释两类选择性。"
+  },
+  "aromatic": {
+    "model": "先看环是否连续共轭且近似平面，再数环内π电子。芳香亲电取代定位可从σ络合物稳定性判断。",
+    "example": "吡咯氮的孤对参与形成6π电子，吡啶氮的平面内孤对不参与。",
+    "pitfall": "4n＋2只适用于满足环状、连续共轭与平面条件的体系。",
+    "transfer": "中性环辛四烯有8π电子，为什么通常不把其基态说成反芳香？",
+    "solution": "它倾向于非平面构象，避免形成完整平面共轭的反芳香体系。",
+    "rubric": "能先判断结构前提，再按电子数分类。"
+  },
+  "carbonyl": {
+    "model": "羰基碳亲电。醛酮加成后一般保留原有碳骨架，酰基衍生物可在四面体中间体形成后离去取代。",
+    "example": "乙醛可用α位生成烯醇或烯醇盐，其α碳进攻另一羰基，给β-羟基醛骨架。",
+    "pitfall": "把亲核试剂的氧或氮误画成进攻中心之前，先按题给形式标电荷与共振位置。",
+    "transfer": "甲醛能形成普通α-烯醇盐作羟醛给体吗？",
+    "solution": "不能，无相邻α碳，但可作羰基受体。",
+    "rubric": "能判定羰基物种担当给体、受体或酰基衍生物。"
+  },
+  "special": {
+    "model": "自由基用单电子箭头，极性机理用双电子箭头。周环反应可用协同电子重排追踪成键。",
+    "example": "Diels–Alder用4π二烯和2π亲二烯体形成两条新σ键，并在环中保留一条新的π键。",
+    "pitfall": "二烯需要能够采取s-cis构象，两条双键存在本身并不足够。",
+    "transfer": "Diels–Alder的典型反应中，原先3条π键变成几条？",
+    "solution": "1条π键，同时新形成2条σ键。",
+    "rubric": "能按原子编号核对旧键和新键。"
+  },
+  "orgSpec": {
+    "model": "分子式先给不饱和度，IR定位官能团，NMR用积分、等效性与相邻氢裂分确定连接。",
+    "example": "C₄H₈O₂有1个不饱和度。若IR显示酯羰基，¹H NMR有3H单峰、2H四重峰、3H三重峰，符合乙酸乙酯。",
+    "pitfall": "n＋1是常见一级近似，耦合不等价或峰重叠时需结合题给证据。",
+    "transfer": "上述乙酸乙酯中3H单峰对应哪组？",
+    "solution": "CH₃–C(=O)–，它旁边的羰基碳没有氢，不出现常见邻氢裂分。",
+    "rubric": "能给每组峰分配结构并核对积分总数。"
+  },
+  "synthesis": {
+    "model": "从目标键向前体回推，再按官能团兼容性和选择性做正向验证。每步写新增或改变的键。",
+    "example": "目标乙酸乙酯可断酰基碳–氧键，回到乙酸和乙醇。倒推后核对两者组合确实给对应酯。",
+    "pitfall": "路线逆推成立还需判断正向是否存在竞争反应，以及官能团是否会一并改变。",
+    "transfer": "若目标分子同时有需保留的醇和要转化的羟基，如何比较两条路线？",
+    "solution": "判断两位点反应性差异能否实现选择性，否则评估暂时保护其中一位点或调整反应顺序。",
+    "rubric": "能比较路线、写出风险步骤并给出正向验证。"
+  },
+  "labO": {
+    "model": "原始记录保留读数和单位，处理页另算平均、稀释倍数和偏差。重复操作要求明确接受标准。",
+    "example": "两次滴定消耗24.18、24.22 mL，平均24.20 mL。若另一次为24.92 mL，应先查记录与操作再决定是否采用。",
+    "pitfall": "仅因数据偏离预期就删除，会破坏记录可追溯性。",
+    "transfer": "对照样正常而样品平行结果差异大，先查哪类环节？",
+    "solution": "检查样品均匀性、取样量、终点判断及各份操作记录。",
+    "rubric": "能提交可复核的原始数据和误差判断依据。"
+  },
+  "paperO": {
+    "model": "初赛训练按题干数据、模型假设、方程和单位四列拆分。复盘把问题定位到读题、建模、代数或单位。",
+    "example": "晶胞边长0.400 nm、每胞4个原子、M=60 g/mol。代入a=4.00×10⁻⁸ cm，密度约6.23 g/cm³。",
+    "pitfall": "边长由nm换成cm后还要立方，单位换算错误会把结果放大多个数量级。",
+    "transfer": "若改为每晶胞2个原子，其他条件相同，密度如何？",
+    "solution": "减半，约3.11 g/cm³。",
+    "rubric": "能限定时间内从陌生叙述建式并复盘关键失分步骤。"
+  },
+  "ichoO": {
+    "model": "阅读英文题先圈命令动词和单位，如 calculate、deduce、justify，再把所求量与给定式对应。",
+    "example": "题目给stock溶液、aliquot和dilution factor，先记录取用原液的体积，再区分定容后的总体积。",
+    "pitfall": "molar concentration与molality基准分别是溶液体积和溶剂质量，读错会选错模型。",
+    "transfer": "题目说“a 5.00 mL aliquot was diluted to 50.00 mL”，稀释倍数多少？",
+    "solution": "10.00，定容总体积除以原取样体积。",
+    "rubric": "能独立读英文题、写单位、用中文或英文解释每一步。"
+  }
+}
+</script>
+<script>
+"use strict";
+const data = JSON.parse(document.getElementById("curriculum").textContent);
+const lessonDepth = JSON.parse(document.getElementById("lesson-depth").textContent);
+const stages = [
+  {id:"j", name:"初中基础", description:"物质认识、基本反应与实验探究"},
+  {id:"h", name:"高中化学", description:"必修、选择性必修与选修专题"},
+  {id:"o", name:"化学竞赛", description:"初赛衔接、专题拓展与决赛训练"}
+];
+const levels = ["未评估","待巩固","会做基础题","已掌握"];
+const topics = new Map(data.modules.flatMap(module => module.topics.map(topic => [topic.id, {...topic, module}])));
+const resources = new Map(data.resources.map(([id,title,type,description,url]) => [id,{title,type,description,url}]));
+const byId = id => document.getElementById(id);
+const escape = value => String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+const storageKey = "chemistry-knowledge-map-progress-v1";
+const practiceKey = "chemistry-knowledge-map-practice-v1";
+const petKey = "chemistry-knowledge-map-pets-v1";
+const plantPotKey = "chemistry-knowledge-map-plant-pot-v1";
+const pointsByKind = {b:5,v:8,r:6,c:5,d:5};
+const feedCost = 5;
+const petRanks = [0,3,7,14];
+const petSpecies = {
+  rose:{name:"绯玫瑰", kind:"观花", final:"双枝盛放", sky:"#533444", glow:"#f2ba70", fur:"#c6516c", light:"#f3b5ba",shadow:"#426e56"},
+  bamboo:{name:"青玉竹", kind:"观叶", final:"青竹成丛", sky:"#294b46", glow:"#a8c580", fur:"#6fa666", light:"#bbd294",shadow:"#305d4a"},
+  echeveria:{name:"蓝石莲", kind:"多肉", final:"莲座抽花", sky:"#344964", glow:"#97b6d1", fur:"#76a6ae", light:"#f1cd9c",shadow:"#3e6772"}
+};
+const legacySpecies = {fox:"rose",rabbit:"bamboo",dragon:"echeveria"};
+const plantDetails = {
+  rose:{
+    stages:["嫩枝","花苞","初花","双枝盛放"], labels:["嫩叶","花苞","花瓣","侧枝花朵"],
+    spots:[[.15,.14,0],[.02,.47,0],[.02,.77,0],[-.40,.61,-.27]],
+    notes:["嫩叶长在主茎两侧，转到侧面能看清叶片与茎的夹角。","顶端的花瓣仍包在一起。转一圈看看花苞下方的支撑结构。","外层花瓣向外舒展，内层仍向上聚拢。试着从上方比较两层。","第二朵花长在侧枝上。转到背面，顺着侧枝找到它与主茎的连接处。"]
+  },
+  bamboo:{
+    stages:["初笋","拔节","展叶","青竹成丛"], labels:["竹梢","竹节","叶丛","新竹秆"],
+    spots:[[.06,.22,-.13],[-.19,.17,0],[.25,.64,-.13],[-.28,.56,0]],
+    notes:["初笋上已有细叶，试着从侧面看叶片伸展的方向。","竹秆上凸起的一圈是竹节。比较这一节上下的距离。","细长的竹叶朝不同方向伸出。转动模型，看看哪些叶子原先被遮住。","竹丛有高低不同的竹秆。看看新竹和较高的竹秆各有多少可见竹节。"]
+  },
+  echeveria:{
+    stages:["小莲座","展叶","层叠莲座","莲座抽花"], labels:["叶尖","外层叶","叶片排列","花梗"],
+    spots:[[.20,-.29,0],[.40,-.26,0],[.51,-.12,.15],[.33,.82,.03]],
+    notes:["短而厚的叶片从中心向外展开。试着转到斜上方看叶尖。","外层叶伸得更远。比较外层与靠近中心的叶片。","叶片绕中心交错排列，从上方看更容易辨认每一层。","花梗从莲座上方抽出。沿着花梗找一找分布在不同高度的小花。"]
+  }
+};
+const plantPots = {
+  clay:{name:"陶盆",rule:"默认可用",base:"#8b5a46",trim:"#ce9777"},
+  celadon:{name:"青瓷盆",rule:"累计完成 5 道变式题",base:"#638f82",trim:"#a9cfaf"},
+  glaze:{name:"深釉盆",rule:"累计完成 3 次有积分的隔天复习",base:"#41496d",trim:"#9badd1"},
+  copper:{name:"铜纹盆",rule:"首次养到最终形态",base:"#896844",trim:"#efc589"}
+};
+let selectedPot = "clay";
+let pets = [];
+let practice = {};
+let progress = {};
+let activeTopic = null;
+let opener = null;
+let mapDirty = false;
+const expanded = new Set(data.modules.filter((module, index) => index === 0 || data.modules[index - 1].stage !== module.stage).map(module => module.id));
+const dialog = byId("detail");
+
+function validated(entries) {
+  if (!entries || typeof entries !== "object" || Array.isArray(entries)) throw Error("缺少有效的进度记录。");
+  const result = {};
+  for (const [id,value] of Object.entries(entries)) {
+    if (!topics.has(id)) continue;
+    if (!Number.isInteger(value) || value < 0 || value >= levels.length) throw Error("进度文件含有无效的掌握度。");
+    result[id] = value;
+  }
+  return result;
+}
+
+try {
+  const saved = localStorage.getItem(storageKey);
+  if (saved) progress = validated(JSON.parse(saved));
+} catch {
+  byId("notice").textContent = "当前浏览器中的旧进度未能读取。";
+}
+
+function saveLocal(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    byId("save-message").textContent = "当前浏览器无法持久保存进度。请在关闭页面前导出。";
+  }
+}
+
+function dayNumber(value = new Date()) {
+  return Date.UTC(value.getFullYear(), value.getMonth(), value.getDate()) / 86400000;
+}
+
+function validPractice(entries) {
+  if (!entries || typeof entries !== "object" || Array.isArray(entries)) throw Error("练习记录无效。");
+  const records = {};
+  for (const [key,day] of Object.entries(entries)) {
+    const [kind,id,step] = key.split(":");
+    const known = kind === "c"
+      ? casePracticeKeys.has(key)
+      : kind === "d" ? key === "d:" + day : ["b","v","r"].includes(kind) && step === undefined && topics.has(id);
+    if (!known || !Number.isInteger(day) || day < 0 || day > 100000) throw Error("练习记录无效。");
+    records[key] = day;
+  }
+  for (const [key,day] of Object.entries(records)) {
+    if (key.startsWith("r:") && !(records["b:" + key.slice(2)] < day)) throw Error("复习日期无效。");
+  }
+  return records;
+}
+
+function mergePractice(left, right) {
+  const merged = {...left};
+  for (const [key,day] of Object.entries(right)) merged[key] = Math.min(merged[key] ?? day,day);
+  return merged;
+}
+
+function practiceOffer(key, today = dayNumber()) {
+  const [kind,id] = key.split(":");
+  if (practice[key] === undefined) return {key, label:"记录本次练习"};
+  if (kind === "b" && practice[key] < today && practice["r:" + id] === undefined) {
+    return {key:"r:" + id, label:"记录隔天复习"};
+  }
+  if (kind === "b" && practice["r:" + id] < today && practice["d:" + today] === undefined) {
+    return {key:"d:" + today, label:"记录今日复习"};
+  }
+  return null;
+}
+
+function practiceControls(key) {
+  const offer = practiceOffer(key);
+  if (!offer) {
+    let label = "已记录首次练习";
+    if (key.startsWith("b:")) {
+      label = practice["r:" + key.slice(2)] !== undefined
+        ? "已记录隔天复习，可改天再来练"
+        : "已记录首次练习，明天可回来复习";
+    }
+    return '<span class="hint">' + label + '</span><output role="status"></output>';
+  }
+  return '<button type="button" data-practice="' + offer.key + '">' + offer.label + ' · +' + pointsByKind[offer.key[0]] +
+    '</button><output role="status"></output>';
+}
+
+function recordPractice(button) {
+  const block = button.closest(".quiz-item");
+  const key = block.dataset.practiceKey;
+  const actions = block.querySelector(".practice-actions");
+  const feedback = actions.querySelector("output");
+  const today = dayNumber();
+  const offer = practiceOffer(key,today);
+  if (!offer || offer.key !== button.dataset.practice) {
+    actions.innerHTML = practiceControls(key);
+    actions.querySelector("output").textContent = "练习状态已更新，可重新查看。";
+    return;
+  }
+  if (!block.querySelector("textarea").value.trim() || !block.querySelector("details").open) {
+    feedback.textContent = "请写下自己的思路，展开并核对参考答案后再记录。";
+    return;
+  }
+  practice[offer.key] = today;
+  saveLocal(practiceKey,practice);
+  actions.innerHTML = practiceControls(key);
+  const result = actions.querySelector("output");
+  result.textContent = "已记录，获得 +" + pointsByKind[offer.key[0]] + " 积分";
+  result.tabIndex = -1;
+  result.focus();
+  renderLab();
+}
+
+function earnedPoints(records = practice) {
+  return Object.keys(records).reduce((sum,key) => sum + pointsByKind[key[0]],0);
+}
+
+function petSpending(records = pets) {
+  return records.reduce((sum,pet) => sum + feedCost * pet.fed.length,0);
+}
+
+function validPets(records) {
+  if (!Array.isArray(records)) throw Error("植物备份无效。");
+  const ids = new Set();
+  return records.map(pet => {
+    const species = pet && (Object.hasOwn(legacySpecies,pet.species) ? legacySpecies[pet.species] : pet.species);
+    if (!pet || typeof pet.id !== "string" || !/^[a-f0-9-]{36}$/.test(pet.id) || ids.has(pet.id) ||
+        !Object.hasOwn(petSpecies,species) || !Number.isInteger(pet.start) || pet.start < 0 ||
+        pet.start > 100000 || !Array.isArray(pet.fed) ||
+        pet.fed.some((day,index) => {
+          const firstAllowed = index ? pet.fed[index-1]+1 : pet.start;
+          return !Number.isInteger(day) || day < firstAllowed || day > firstAllowed+1 || day > 100000;
+        })) throw Error("植物备份无效。");
+    ids.add(pet.id);
+    return {id:pet.id,species,start:pet.start,fed:[...pet.fed]};
+  }).sort((a,b) => a.start - b.start);
+}
+
+function mergePets(left,right) {
+  const merged = new Map(left.map(pet => [pet.id,pet]));
+  for (const pet of right) {
+    const previous = merged.get(pet.id);
+    if (previous && (previous.start !== pet.start || previous.species !== pet.species)) throw Error("植物种植记录冲突。");
+    if (previous && previous.fed.some((day,index) => index < pet.fed.length && pet.fed[index] !== day)) {
+      throw Error("同一株植物的浇水日期有冲突。");
+    }
+    if (!previous || pet.fed.length > previous.fed.length) merged.set(pet.id,pet);
+  }
+  const records = [...merged.values()].sort((a,b) => a.start - b.start);
+  for (let i = 1; i < records.length; i++) {
+    const previous = records[i - 1];
+    // Older versions allowed replanting after one missed day.
+    if (records[i].start <= (previous.fed.at(-1) ?? previous.start-1)+1) {
+      throw Error("两份备份有重叠的植物种植记录，无法合并。");
+    }
+  }
+  return records;
+}
+
+function petState(pet,today) {
+  const latest = pet.fed.at(-1) ?? pet.start-1;
+  if (today < pet.start || today < latest) return "future";
+  if (today === latest) return "fed";
+  if (today === latest+1) return "hungry";
+  return today === latest+2 ? "wilted" : "dead";
+}
+
+function paintPet(canvas,species,rank,appearance) {
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+  const mesh = buildPetMesh(species,rank,appearance);
+  const yaw = -.48;
+  const pitch = .14;
+  const cy = Math.cos(yaw), sy = Math.sin(yaw);
+  const cx = Math.cos(pitch), sx = Math.sin(pitch);
+  function rotate(x,y,z) {
+    const depth = -sy*x+cy*z;
+    return [cy*x+sy*z,cx*y-sx*depth,sx*y+cx*depth];
+  }
+  const triangles = [];
+  for (let i=0;i<mesh.length;i+=27) {
+    const normal = rotate(mesh[i+3]+mesh[i+12]+mesh[i+21],
+      mesh[i+4]+mesh[i+13]+mesh[i+22],mesh[i+5]+mesh[i+14]+mesh[i+23]);
+    if (normal[2] <= 0) continue;
+    const length = Math.hypot(...normal) || 1;
+    const lighting = .53+.47*Math.max(0,(-.39*normal[0]+.55*normal[1]+.74*normal[2])/length);
+    const points = [i,i+9,i+18].map(offset => rotate(mesh[offset],mesh[offset+1],mesh[offset+2]));
+    const depth = points.reduce((sum,p) => sum+p[2],0);
+    const color = mesh.slice(i+6,i+9).map(value => Math.round(value*lighting*255));
+    triangles.push({points,depth,color});
+  }
+  triangles.sort((a,b) => a.depth-b.depth);
+  for (const {points,color} of triangles) {
+    ctx.beginPath();
+    points.forEach(([x,y,z],index) => {
+      const unit = canvas.height*1.28/(4.35-z*.94);
+      const px = canvas.width/2+x*unit*.94, py = canvas.height/2-y*unit*.94;
+      if (index) ctx.lineTo(px,py);
+      else ctx.moveTo(px,py);
+    });
+    ctx.closePath();
+    const paint = "rgb(" + Array.from(color).join(",") + ")";
+    ctx.fillStyle = paint;
+    ctx.strokeStyle = paint;
+    ctx.lineWidth = .55;
+    ctx.stroke();
+    ctx.fill();
+  }
+}
+
+
+function buildPetMesh(species,rank,{pot="clay",wet=false,wilted=false}={}) {
+  const vertices = [];
+  const color = hex => [1,3,5].map(i => parseInt(hex.slice(i,i+2),16)/255);
+  const {fur,light,glow,shadow} = Object.fromEntries(
+    ["fur","light","glow","shadow"].map(key => [key,color(petSpecies[species][key])])
+  );
+  const mix = (a,b,t) => a.map((value,i) => value*(1-t)+b[i]*t);
+  const growth = [.40,.65,.83,1][rank];
+
+  function add(position,normal,paint) {
+    if (wilted && position[1]>-.45) {
+      const [x,y,z] = position;
+      position = [x*1.08,-.45+(y+.45)*.78,z*1.08];
+      paint = mix(paint,[.49,.38,.21],.46);
+    }
+    vertices.push(...position,...normal,...paint);
+  }
+  function surface(sample,paint,rows,columns) {
+    for (let row=0;row<rows;row++) {
+      for (let col=0;col<columns;col++) {
+        const a = sample(row/rows,col/columns);
+        const b = sample((row+1)/rows,col/columns);
+        const c = sample((row+1)/rows,(col+1)/columns);
+        const d = sample(row/rows,(col+1)/columns);
+        for (const point of [a,b,c,a,c,d]) add(point.p,point.n,point.color ?? paint);
+      }
+    }
+  }
+  function ring(profile,paint,columns=42) {
+    for (let i=1;i<profile.length;i++) {
+      const [y0,r0] = profile[i-1], [y1,r1] = profile[i];
+      surface((t,u) => {
+        const a = u*2*Math.PI, r = r0+(r1-r0)*t;
+        return {p:[r*Math.cos(a),y0+(y1-y0)*t,r*Math.sin(a)],
+          n:[Math.cos(a)*(y1-y0),r0-r1,Math.sin(a)*(y1-y0)]};
+      },paint,1,columns);
+    }
+  }
+  function ellipsoid(x,y,z,rx,ry,rz,paint) {
+    surface((v,u) => {
+      const a = Math.PI*v,b = 2*Math.PI*u;
+      const n = [Math.sin(a)*Math.cos(b),Math.cos(a),Math.sin(a)*Math.sin(b)];
+      return {p:[x+rx*n[0],y+ry*n[1],z+rz*n[2]],n:[n[0]/rx,n[1]/ry,n[2]/rz]};
+    },paint,9,15);
+  }
+  function stem(a,b,c,r0,r1,paint) {
+    surface((t,u) => {
+      const s = 1-t, angle = 2*Math.PI*u;
+      const x = Math.cos(angle), z = Math.sin(angle), r = r0+(r1-r0)*t;
+      const p = a.map((value,i) => s*s*value+2*s*t*b[i]+t*t*c[i]);
+      return {p:[p[0]+x*r,p[1],p[2]+z*r],n:[x,.13,z]};
+    },paint,11,14);
+  }
+  function blade(x,y,z,angle,length,rise,width,paint,fold=.12) {
+    if (wet) {
+      length *= 1.08;
+      width *= 1.08;
+      fold *= .82;
+    }
+    const dx = Math.cos(angle), dz = Math.sin(angle);
+    for (const side of [1,-1]) {
+      surface((t,u) => {
+        const spread = Math.pow(Math.sin(Math.PI*t),.76)*(u*2-1);
+        const lift = Math.sin(Math.PI*t)*fold*(1-Math.abs(2*u-1));
+        return {p:[x+dx*length*t-dz*width*spread,y+rise*t+lift,z+dz*length*t+dx*width*spread],
+          n:[-dx*rise/Math.max(.1,length),side,-dz*rise/Math.max(.1,length)],
+          color:mix(paint,light,.19*(1-Math.abs(2*u-1)))};
+      },paint,9,8);
+    }
+  }
+  function bloom(x,y,z,size) {
+    for (const [count,radius,tilt,w] of [[9,.50,.17,.29],[7,.39,.40,.28],[5,.26,.54,.20]]) {
+      for (let i=0;i<count;i++) {
+        blade(x,y,z,2*Math.PI*i/count+tilt,radius*size,tilt*size,w*size,
+          mix(fur,light,tilt),.13*size);
+      }
+    }
+    ellipsoid(x,y+.13*size,z,.145*size,.102*size,.145*size,glow);
+  }
+
+  const potColor = color(plantPots[pot].base), trim = color(plantPots[pot].trim);
+  ring([[-.97,0],[-.97,.39],[-.92,.42],[-.53,.53],[-.49,.53]],potColor);
+  ring([[-.59,.51],[-.57,.57],[-.48,.57],[-.45,.54],[-.45,.48],[-.49,.47]],trim);
+  ring([[-.50,.48],[-.50,0]],color(wet ? "#231b18" : "#624b3b"));
+  ring([[-.90,.426],[-.88,.431]],trim);
+  if (pot === "copper") {
+    ring([[-.78,.464],[-.76,.470]],trim);
+    ring([[-.71,.483],[-.69,.490]],trim);
+  }
+
+  if (species === "rose") {
+    const top = -.5+1.26*growth;
+    stem([0,-.50,0],[.09,top-.44,.04],[.02,top,0],.051,.035,shadow);
+    for (let i=0;i<rank+2;i++) {
+      const angle=i*2.4;
+      blade(0,-.36+i*.21*growth,0,angle,.46*growth,.19*growth,.12*growth,shadow,.077);
+    }
+    if (rank<2) ellipsoid(.02,top+.09,0,.12*growth+.04,.19*growth+.04,.12*growth+.04,fur);
+    else bloom(.02,top,0,growth);
+    if (rank===3) {
+      stem([0,-.23,0],[-.25,.15,-.13],[-.40,.43,-.27],.029,.021,shadow);
+      bloom(-.40,.43,-.27,.63);
+    }
+  } else if (species === "bamboo") {
+    for (let i=0;i<rank+1;i++) {
+      const x = (i%2 ? -.19 : .16)*(i===0 ? .4 : 1);
+      const z = (i-1)*.13;
+      const top = -.48+(1.75-i*.24)*growth;
+      const bend = x*.48;
+      stem([x,-.49,z],[x,top*.51,z],[x+bend,top,z],.054,.034,fur);
+      for (let j=1;j<=rank+2;j++) {
+        const y = -.49+(top+.49)*j/(rank+3);
+        ellipsoid(x+bend*(j/(rank+3))**2,y,z,.057,.027,.055,glow);
+        const angle = i*2.4+j*2.0;
+        for (let k=0;k<3;k++) blade(x+bend*.65,y+.02,z,angle+k*.42,
+          (.40+k*.07)*growth,.09+k*.064,.071, k%2 ? light : fur,.067);
+      }
+    }
+  } else {
+    for (let row=0;row<rank+2;row++) {
+      const count = Math.max(4,9-row);
+      for (let i=0;i<count;i++) {
+        const angle=2*Math.PI*i/count+row*.31;
+        blade(0,-.46+row*.065,0,angle,(.87-row*.137)*growth,
+          (.32+row*.14)*growth,(.19-row*.023)*growth,mix(fur,glow,row*.12),.23*growth);
+      }
+    }
+    if (rank===3) {
+      stem([.01,-.31,0],[.19,.46,.05],[.34,.84,.03],.035,.015,shadow);
+      for (let i=0;i<3;i++) {
+        const y=.55+i*.115, x=.24+i*.044;
+        for (let j=0;j<5;j++) blade(x,y,.03,j*Math.PI*.4+i,.17,.075,.062,light,.032);
+        ellipsoid(x,y+.054,.03,.047,.044,.047,glow);
+      }
+    }
+  }
+  return new Float32Array(vertices);
+}
+
+
+const viewerStates = new Map();
+let petViewers = [];
+
+function petViewerMarkup(species,rank,label,preview=false,appearance={}) {
+  const {pot="clay",wet=false,wilted=false} = appearance;
+  const spot = plantDetails[species].labels[rank];
+  return '<div class="pet-viewer" style="--pet-sky:' + petSpecies[species].sky + '">' +
+    '<canvas width="540" height="414" tabindex="0" aria-label="' + escape(label) +
+    '，3D 模型。方向键旋转，加减键缩放，回车互动。" data-art="' + species + '" data-rank="' + rank +
+    '" data-preview="' + preview + '" data-pot="' + pot + '" data-wet="' + wet + '" data-wilted="' + wilted +
+    '"></canvas><button type="button" class="plant-spot" data-observe aria-label="观察' + spot +
+    '">⊙ ' + spot + '</button><output class="pet-reaction" role="status" hidden></output></div>' +
+    '<div class="pet-viewer-tools"><button type="button" data-viewer-action="play">' + (preview ? "看微风" : "吹一阵风") +
+    '</button><button type="button" data-viewer-action="reset">回正</button>' +
+    '<button type="button" data-viewer-action="out" aria-label="缩小植物">−</button>' +
+    '<button type="button" data-viewer-action="in" aria-label="放大植物">＋</button>' +
+    '<button type="button" data-observe>观察' + spot + '</button><span>拖动旋转 · 双指或滚轮缩放</span></div>' +
+    '<p class="plant-observation" role="status" hidden></p>';
+}
+
+function plantAppearance(canvas) {
+  return {pot:canvas.dataset.pot,wet:canvas.dataset.wet==="true",wilted:canvas.dataset.wilted==="true"};
+}
+
+function createPetViewer(canvas) {
+  const gl = canvas.getContext("webgl",{alpha:true,antialias:true});
+  if (!gl) return null;
+  const vertexSource = `
+    attribute vec3 position;
+    attribute vec3 normal;
+    attribute vec3 color;
+    uniform vec4 view;
+    uniform float aspect;
+    uniform float jump;
+    varying vec3 vNormal;
+    varying vec3 vColor;
+    varying vec3 vPosition;
+    vec3 rotate(vec3 p) {
+      float cy=cos(view.x),sy=sin(view.x),cx=cos(view.y),sx=sin(view.y);
+      vec3 y=vec3(cy*p.x+sy*p.z,p.y,-sy*p.x+cy*p.z);
+      return vec3(y.x,cx*y.y-sx*y.z,sx*y.y+cx*y.z);
+    }
+    void main() {
+      vec3 model=position;
+      model.x+=view.w*.38*pow(max(0.,model.y+.45),1.3);
+      vec3 p=rotate(model*view.z);
+      p.y+=jump;
+      float depth=4.35-p.z;
+      gl_Position=vec4(p.x*2.75/aspect,p.y*2.75,depth*1.025-.45,depth);
+      vPosition=p;
+      vNormal=rotate(normal);
+      vColor=color;
+    }`;
+  const fragmentSource = `
+    precision mediump float;
+    varying vec3 vNormal;
+    varying vec3 vColor;
+    varying vec3 vPosition;
+    void main() {
+      vec3 n=normalize(vNormal);
+      vec3 l=normalize(vec3(-.55,.85,1.0));
+      vec3 eye=normalize(vec3(0.,0.,4.35)-vPosition);
+      float key=max(dot(n,l),0.);
+      float rim=pow(1.-max(dot(n,eye),0.),2.4)*max(dot(n,vec3(.7,.3,-.3)),0.);
+      float spec=pow(max(dot(n,normalize(eye+l)),0.),36.);
+      vec3 base=vColor*(.53+.47*key)+vec3(.10,.14,.23)*rim+vec3(.09,.08,.07)*spec;
+      gl_FragColor=vec4(base,1.);
+    }`;
+  function shader(type,source) {
+    const compiled = gl.createShader(type);
+    gl.shaderSource(compiled,source);
+    gl.compileShader(compiled);
+    if (gl.getShaderParameter(compiled,gl.COMPILE_STATUS)) return compiled;
+    gl.deleteShader(compiled);
+    return null;
+  }
+  const vertex = shader(gl.VERTEX_SHADER,vertexSource);
+  const fragment = shader(gl.FRAGMENT_SHADER,fragmentSource);
+  const program = gl.createProgram();
+  if (vertex && fragment) {
+    gl.attachShader(program,vertex);
+    gl.attachShader(program,fragment);
+    gl.linkProgram(program);
+  }
+  if (vertex) gl.deleteShader(vertex);
+  if (fragment) gl.deleteShader(fragment);
+  if (!gl.getProgramParameter(program,gl.LINK_STATUS)) {
+    gl.deleteProgram(program);
+    return null;
+  }
+  const mesh = buildPetMesh(canvas.dataset.art,Number(canvas.dataset.rank),plantAppearance(canvas));
+  const buffer = gl.createBuffer();
+  gl.useProgram(program);
+  gl.bindBuffer(gl.ARRAY_BUFFER,buffer);
+  gl.bufferData(gl.ARRAY_BUFFER,mesh,gl.STATIC_DRAW);
+  ["position","normal","color"].forEach((name,index) => {
+    const attribute = gl.getAttribLocation(program,name);
+    gl.enableVertexAttribArray(attribute);
+    gl.vertexAttribPointer(attribute,3,gl.FLOAT,false,36,index*12);
+  });
+  const view = gl.getUniformLocation(program,"view");
+  const aspect = gl.getUniformLocation(program,"aspect");
+  const jump = gl.getUniformLocation(program,"jump");
+  gl.enable(gl.DEPTH_TEST);
+  gl.clearColor(0,0,0,0);
+  const viewport = canvas.parentElement;
+  const tools = viewport.nextElementSibling;
+  const reaction = viewport.querySelector("output");
+  const stateKey = (canvas.closest("#plant-collection") ? "album" : canvas.dataset.preview) + ":" + canvas.dataset.art;
+  const initial = {yaw:-.48,pitch:.14,zoom:.94};
+  const state = viewerStates.get(stateKey) ?? {...initial};
+  viewerStates.set(stateKey,state);
+  const pointers = new Map();
+  let dragged = false;
+  let frame = 0;
+  let timeout = 0;
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const marker = viewport.querySelector(".plant-spot");
+  function placeMarker(wag) {
+    let [x,y,z] = plantDetails[canvas.dataset.art].spots[Number(canvas.dataset.rank)];
+    if (canvas.dataset.wilted === "true") {
+      x *= 1.08;
+      y = -.45+(y+.45)*.78;
+      z *= 1.08;
+    }
+    x += wag*.38*Math.pow(Math.max(0,y+.45),1.3);
+    const cy = Math.cos(state.yaw), sy = Math.sin(state.yaw);
+    const cx = Math.cos(state.pitch), sx = Math.sin(state.pitch);
+    const horizontal = (cy*x+sy*z)*state.zoom;
+    const depth = (-sy*x+cy*z)*state.zoom;
+    const vertical = cx*y*state.zoom-sx*depth;
+    const perspective = 4.35-(sx*y*state.zoom+cx*depth);
+    marker.style.left = Math.max(18,Math.min(82,50+horizontal*137.5/perspective/(canvas.width/canvas.height))) + "%";
+    marker.style.top = Math.max(12,Math.min(86,50-vertical*137.5/perspective)) + "%";
+  }
+  const draw = (bounce=0,wag=0) => {
+    gl.viewport(0,0,canvas.width,canvas.height);
+    gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+    gl.uniform4f(view,state.yaw,state.pitch,state.zoom,wag);
+    gl.uniform1f(aspect,canvas.width/canvas.height);
+    gl.uniform1f(jump,bounce);
+    gl.drawArrays(gl.TRIANGLES,0,mesh.length/9);
+    placeMarker(wag);
+  };
+  const zoomBy = ratio => {
+    state.zoom = Math.max(.70,Math.min(1.55,state.zoom*ratio));
+    draw();
+  };
+  const rotate = (x,y) => {
+    state.yaw = (state.yaw+x) % (Math.PI*2);
+    state.pitch = Math.max(-1.35,Math.min(1.35,state.pitch+y));
+    draw();
+  };
+  function play() {
+    const messages = {rose:"花枝随风轻摆",bamboo:"竹叶随风轻摆",echeveria:"叶片随风轻晃"};
+    reaction.textContent = messages[canvas.dataset.art];
+    reaction.hidden = false;
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {reaction.hidden = true;},2200);
+    cancelAnimationFrame(frame);
+    if (reducedMotion) return;
+    const start = performance.now();
+    function bounce(now) {
+      const t = Math.min(1,(now-start)/720);
+      draw(0,Math.sin(t*Math.PI*4)*(1-t)*.24);
+      if (t<1) frame = requestAnimationFrame(bounce);
+    }
+    frame = requestAnimationFrame(bounce);
+  }
+  function celebrate(event) {
+    cancelAnimationFrame(frame);
+    if (reducedMotion) return;
+    const start = performance.now();
+    function settle(now) {
+      const t = Math.min(1,(now-start)/(event.detail ? 1350 : 780));
+      const wave = Math.sin(Math.PI*t);
+      const yaw = state.yaw, zoom = state.zoom;
+      if (event.detail) {
+        state.yaw += wave*.36;
+        state.zoom *= 1+wave*.17;
+      }
+      draw(0,wave*.18);
+      state.yaw = yaw;
+      state.zoom = zoom;
+      if (t<1) frame = requestAnimationFrame(settle);
+    }
+    frame = requestAnimationFrame(settle);
+  }
+  canvas.addEventListener("plant-watered",celebrate);
+  const distance = () => {
+    const [a,b] = pointers.values();
+    return Math.hypot(a.x-b.x,a.y-b.y);
+  };
+  canvas.addEventListener("pointerdown",event => {
+    if (event.button !== 0 || pointers.size >= 2) return;
+    if (!pointers.size) dragged = false;
+    else dragged = true;
+    canvas.setPointerCapture(event.pointerId);
+    pointers.set(event.pointerId,{x:event.clientX,y:event.clientY,startX:event.clientX,startY:event.clientY});
+  });
+  canvas.addEventListener("pointermove",event => {
+    const previous = pointers.get(event.pointerId);
+    if (!previous) return;
+    const before = pointers.size === 2 ? distance() : 0;
+    pointers.set(event.pointerId,{...previous,x:event.clientX,y:event.clientY});
+    if (before > 1) zoomBy(distance()/before);
+    else {
+      if (Math.hypot(event.clientX-previous.startX,event.clientY-previous.startY) > 4) dragged = true;
+      if (dragged) rotate((event.clientX-previous.x)*.013,(event.clientY-previous.y)*.011);
+    }
+  });
+  canvas.addEventListener("pointerup",event => {
+    if (!pointers.delete(event.pointerId)) return;
+    if (!dragged && !pointers.size) play();
+  });
+  for (const type of ["pointercancel","lostpointercapture"]) {
+    canvas.addEventListener(type,event => pointers.delete(event.pointerId));
+  }
+  canvas.addEventListener("wheel",event => {
+    if (document.activeElement !== canvas) return;
+    event.preventDefault();
+    zoomBy(Math.exp(-event.deltaY*.002));
+  },{passive:false});
+  const reset = () => {
+    cancelAnimationFrame(frame);
+    reaction.hidden = true;
+    Object.assign(state,initial);
+    draw();
+  };
+  canvas.addEventListener("keydown",event => {
+    const actions = {
+      ArrowLeft:() => rotate(-.22,0),ArrowRight:() => rotate(.22,0),
+      ArrowUp:() => rotate(0,-.16),ArrowDown:() => rotate(0,.16),
+      "+":() => zoomBy(1.12),"=":() => zoomBy(1.12),"-":() => zoomBy(.89),
+      Home:reset,Enter:play," ":play
+    };
+    if (!Object.hasOwn(actions,event.key)) return;
+    event.preventDefault();
+    actions[event.key]();
+  });
+  tools.querySelector('[data-viewer-action="play"]').addEventListener("click",play);
+  tools.querySelector('[data-viewer-action="reset"]').addEventListener("click",reset);
+  tools.querySelector('[data-viewer-action="out"]').addEventListener("click",() => zoomBy(.89));
+  tools.querySelector('[data-viewer-action="in"]').addEventListener("click",() => zoomBy(1.12));
+  tools.querySelector("span").textContent = "拖动旋转 · 双指或聚焦后滚轮缩放";
+  draw();
+  return () => {
+    clearTimeout(timeout);
+    cancelAnimationFrame(frame);
+    gl.deleteBuffer(buffer);
+    gl.deleteProgram(program);
+    gl.getExtension("WEBGL_lose_context")?.loseContext();
+  };
+}
+
+function mountPetViewers(home,viewers=petViewers) {
+  for (const canvas of home.querySelectorAll("canvas")) {
+    const viewport = canvas.parentElement;
+    const tools = viewport.nextElementSibling;
+    const note = tools.nextElementSibling;
+    const showNote = () => {
+      note.hidden = false;
+      note.textContent = plantDetails[canvas.dataset.art].notes[Number(canvas.dataset.rank)];
+    };
+    viewport.querySelector("[data-observe]").addEventListener("click",showNote);
+    tools.querySelector("[data-observe]").addEventListener("click",showNote);
+    const dispose = createPetViewer(canvas);
+    if (dispose) {
+      viewers.push(dispose);
+      continue;
+    }
+    const fallback = canvas.cloneNode();
+    fallback.width = 240;
+    fallback.height = 180;
+    fallback.removeAttribute("tabindex");
+    fallback.setAttribute("role","img");
+    fallback.setAttribute("aria-label",canvas.getAttribute("aria-label").split("，")[0]);
+    canvas.replaceWith(fallback);
+    fallback.parentElement.dataset.fallback = "";
+    viewport.querySelector(".plant-spot").hidden = true;
+    tools.querySelectorAll("[data-viewer-action]").forEach(button => button.remove());
+    tools.querySelector("span").textContent = "静态预览 · 可查看观察提示";
+    paintPet(fallback,fallback.dataset.art,Number(fallback.dataset.rank),plantAppearance(fallback));
+  }
+}
+
+function unlockedPots(activities=practice,plants=pets) {
+  const keys = Object.keys(activities);
+  return new Set([
+    "clay",
+    keys.filter(key => key.startsWith("v:")).length >= 5 ? "celadon" : null,
+    keys.filter(key => key.startsWith("r:") || key.startsWith("d:")).length >= 3 ? "glaze" : null,
+    plants.some(plant => plant.fed.length >= petRanks.at(-1)) ? "copper" : null
+  ].filter(Boolean));
+}
+
+function plantArchive() {
+  const archive = {};
+  for (const plant of pets) archive[plant.species] = Math.max(archive[plant.species] ?? 0,plant.fed.length);
+  return archive;
+}
+
+const collection = byId("plant-collection");
+const collectionViewers = [];
+let collectionType = "";
+let albumSelection = null;
+
+function showCollection(type) {
+  collectionType = type;
+  if (type === "album") albumSelection = null;
+  renderCollection();
+  if (!collection.open) collection.showModal();
+}
+
+function renderCollection() {
+  collectionViewers.splice(0).forEach(dispose => dispose());
+  const body = byId("plant-collection-content");
+  byId("plant-collection-title").textContent = collectionType === "album" ? "成长图鉴" : "花盆收藏";
+  if (collectionType === "pots") {
+    const unlocked = unlockedPots();
+    body.innerHTML = '<p>已解锁的花盆可随时免费更换，应用于当前和以后种植的植物。</p><div class="plant-pots">' +
+      Object.entries(plantPots).map(([id,pot]) => '<button type="button" data-plant-pot="' + id + '" ' +
+        (unlocked.has(id) ? 'aria-pressed="' + (selectedPot === id) + '"' : 'disabled') + '><strong>' + pot.name +
+        '</strong><small>' + (selectedPot === id ? "正在使用" : unlocked.has(id) ? "已解锁 · 免费使用" : "待解锁 · " + pot.rule) + '</small></button>'
+      ).join("") + '</div>';
+    return;
+  }
+  const archive = plantArchive();
+  if (albumSelection) {
+    const [species,rank] = albumSelection;
+    const label = petSpecies[species].name + " · " + plantDetails[species].stages[rank];
+    body.innerHTML = '<p><button type="button" data-album-back>返回图鉴</button></p><h3>' + label + '</h3>' +
+      petViewerMarkup(species,rank,label,true,{pot:selectedPot});
+    mountPetViewers(body,collectionViewers);
+    body.querySelector("[data-album-back]").focus();
+    return;
+  }
+  body.innerHTML = '<p>种下后点亮第一张，累计浇水 3、7、14 天解锁后三张。枯萎或重新种植后仍可回看。</p>' +
+    Object.entries(plantDetails).map(([species,details]) => '<h3>' + petSpecies[species].name + '</h3><div class="plant-album-row">' +
+      details.stages.map((label,rank) => {
+        const reached = (archive[species] ?? -1) >= petRanks[rank];
+        return '<button type="button" data-album-stage="' + species + ':' + rank + '"' + (reached ? '' : ' disabled') + '>' +
+          label + ' · ' + (reached ? "已点亮" : petRanks[rank] ? petRanks[rank] + " 天" : "待种植") + '</button>';
+      }).join("") + '</div>'
+    ).join("");
+}
+
+collection.addEventListener("close",() => {
+  if (collection.open) return;
+  collectionViewers.splice(0).forEach(dispose => dispose());
+  byId("plant-collection-content").replaceChildren();
+  byId("pet-home").querySelector('[data-collection="' + collectionType + '"]')?.focus();
+});
+
+function renderPetHome(today) {
+  const home = byId("pet-home");
+  const pet = pets.at(-1);
+  const state = pet ? petState(pet,today) : "none";
+  const total = earnedPoints();
+  const balance = total - petSpending();
+  byId("lab-entry").textContent = "去看我的植物 · " + balance + " 可用积分";
+  const wallet = '<div class="pet-stats"><strong>可用 ' + balance + ' 分</strong><span>累计获得 ' + total + ' 分</span></div>';
+  const signature = JSON.stringify([pet?.id,state,total,balance,pet?.fed.length,selectedPot]);
+  if (home.dataset.signature === signature) return;
+  home.dataset.signature = signature;
+  petViewers.forEach(dispose => dispose());
+  petViewers = [];
+  byId("lab-view").classList.toggle("pet-choose",state === "none" || state === "dead");
+  if (state === "none" || state === "dead") {
+    const farewell = pet
+      ? '<p class="pet-status" data-state="dead">' + petSpecies[pet.species].name +
+        '连续两天没有浇水，已经枯萎。你可以重新种植。</p>' : '';
+    home.innerHTML = wallet + farewell + '<h3>选择要种的植物</h3><p class="hint">下方是三种植物的最终形态。每天午夜前可花 5 分浇水一次，累计浇水 14 天解锁最终形态。漏浇一天，次日可补救。</p>' +
+      '<div class="pet-choice-grid">' + Object.entries(petSpecies).map(([id,species]) =>
+        '<article class="pet-choice">' + petViewerMarkup(id,3,species.final,true) + '<h4>' + species.name + ' · ' + species.kind +
+        '</h4><p>最终形态 · ' + species.final + '</p><button type="button" data-adopt="' + id + '">种下' + species.name + '</button></article>'
+      ).join("") + '</div>';
+  } else {
+    const species = petSpecies[pet.species];
+    const rank = petRanks.findLastIndex(days => pet.fed.length >= days);
+    const next = petRanks[rank + 1];
+    const form = plantDetails[pet.species].stages[rank];
+    const status = {hungry:"今天还没浇水，请在当地时间午夜前浇水。",wilted:"昨天没浇水，植物已萎蔫。今天午夜前浇水可恢复。",fed:"今天已浇水，土壤湿润。",future:"设备日期早于种植或最近浇水日期，请检查时间设置。"}[state];
+    home.innerHTML = petViewerMarkup(pet.species,rank,species.name + ' · ' + form,false,{pot:selectedPot,wet:state==="fed",wilted:state==="wilted"}) + '<h3>' + species.name + ' · ' + form + '</h3>' + wallet +
+      '<p class="pet-status" data-state="' + state + '">' + status + '</p>' +
+      '<p>已浇水 ' + pet.fed.length + ' 天' + (next ? '，再浇水 ' + (next-pet.fed.length) + ' 天进入下一形态。' : '，已解锁最终形态，仍需每天浇水。') + '</p>' +
+      (state === "hungry" || state === "wilted" ? (balance >= feedCost
+        ? '<button type="button" id="pet-feed">' + (state === "wilted" ? "补救浇水" : "浇水") + ' · 5 分</button>'
+        : '<p class="hint">还差 ' + (feedCost-balance) + ' 分，可以从右侧选择一道练习。</p>') : '');
+  }
+  home.insertAdjacentHTML("beforeend",'<p class="plant-update" role="status"></p><div class="plant-options">' +
+    '<button type="button" data-collection="album">成长图鉴</button><button type="button" data-collection="pots">花盆收藏 · ' +
+    plantPots[selectedPot].name + '</button></div>');
+  mountPetViewers(home);
+}
+
+function renderLab() {
+  const today = dayNumber();
+  renderPetHome(today);
+  const activeDays = new Set(Object.values(practice));
+  const mondayOf = day => day - ((day + 3) % 7);
+  const monday = mondayOf(today);
+  const days = Array.from({length:7},(_,index) => monday + index);
+  const count = days.filter(day => day <= today && activeDays.has(day)).length;
+  const reviews = Object.keys(practice).filter(key => key.startsWith("r:")).length;
+  const weeks = new Map();
+  for (const day of activeDays) {
+    if (day > today) continue;
+    const week = mondayOf(day);
+    weeks.set(week,(weeks.get(week) ?? 0) + 1);
+  }
+  const selected = byId("lab-stage").value;
+  const candidates = [...topics.values()].filter(topic => topic.module.stage === selected);
+  const review = candidates.find(topic => ["r","d"].includes(practiceOffer("b:" + topic.id,today)?.key[0]));
+  const fresh = candidates.find(topic => practice["b:" + topic.id] === undefined);
+  const stretch = candidates.find(topic => practice["b:" + topic.id] !== undefined && practice["v:" + topic.id] === undefined);
+  const reviewPoints = review ? pointsByKind[practiceOffer("b:" + review.id,today).key[0]] : 0;
+  const missions = [[review,"复习基础题 +" + reviewPoints,"b"],[fresh,"完成新基础题 +5","b"],[stretch,"尝试变式题 +8","v"]]
+    .filter(([topic]) => topic)
+    .map(([topic,label,kind]) => '<button type="button" data-topic="' + topic.id +
+      '" data-quiz="' + kind + '">' + label + ' · ' + escape(topic.title) + '</button>');
+  byId("lab-missions").innerHTML = missions.length
+    ? '<div class="lab-choices" style="margin-top:8px">' + missions.join("") + '</div>'
+    : '<p class="hint">该学段暂无新的积分任务。可切换学段或去学习路线做综合题。</p>';
+  byId("lab-week").innerHTML = '<h3>本周学习日历</h3><p>' + count + ' / 3 天 · ' +
+    (count >= 3 ? '本周目标达成！' : '任选三天做一道题') + '</p><ol class="lab-days">' +
+    days.map((day,index) => {
+      const done = day <= today && activeDays.has(day);
+      const date = new Date(day * 86400000);
+      return '<li data-done="' + done + '"><span>周' + "一二三四五六日"[index] +
+        '</span><time datetime="' + date.toISOString().slice(0,10) + '">' + (date.getUTCMonth() + 1) + '/' + date.getUTCDate() +
+        '</time><span>' + (done ? '已练' : day === today ? '今天' : '—') + '</span></li>';
+    }).join("") + '</ol>';
+  const awards = [
+    ["第一次练习","完成任意一题",activeDays.size > 0],["隔天见","完成一次隔天复习",reviews > 0],
+    ["一周三练","同一周练习三天",[...weeks.values()].some(value => value >= 3)],
+    ["变式挑战者","完成五道变式题",Object.keys(practice).filter(key => key.startsWith("v:")).length >= 5]
+  ];
+  byId("lab-awards").innerHTML = '<h3>学习徽章</h3><ul class="lab-badges">' +
+    awards.map(([label,requirement,done]) => '<li data-done="' + done + '">' + (done ? '✓ ' : '○ ') + label +
+      '<span class="hint"> · ' + (done ? '已获得' : requirement) + '</span></li>').join("") + '</ul>';
+}
+
+const levelOf = id => progress[id] ?? 0;
+const mastered = list => list.filter(topic => levelOf(topic.id) === 3).length;
+const dot = status => '<i class="dot" data-s="' + status + '" aria-hidden="true"></i>';
+const percent = (done,total) => total ? Math.round(done / total * 100) : 0;
+const bar = (done,total) => '<span class="meter" role="progressbar" aria-label="已掌握比例" aria-valuenow="' + percent(done,total) + '"><i style="width:' + percent(done,total) + '%"></i></span>';
+const chip = id => '<button type="button" class="chip" data-topic="' + id + '">' + escape(topics.get(id).title) + '</button>';
+
+function updateOverall() {
+  const list = [...topics.values()];
+  const done = mastered(list);
+  const assessed = list.filter(topic => levelOf(topic.id) > 0).length;
+  byId("overall").innerHTML = '<div class="statline"><strong>' + done + ' / ' + list.length + '</strong><span>已掌握</span></div>' + bar(done,list.length) + '<p>已评估 ' + assessed + ' 项 · 掌握率 ' + percent(done,list.length) + '%</p>';
+}
+
+function normalize(value) {
+  return value.normalize("NFKC").toLowerCase().replace(/[\s·-]/g,"");
+}
+
+function renderMap() {
+  const stageFilter = byId("stage").value;
+  const statusFilter = byId("status").value;
+  const words = byId("query").value.trim().split(/\s+/).map(normalize).filter(Boolean);
+  const groups = [];
+  let count = 0;
+  for (const stage of stages.filter(stage => !stageFilter || stage.id === stageFilter)) {
+    const modules = data.modules.filter(module => module.stage === stage.id);
+    const list = modules.flatMap(module => module.topics);
+    const blocks = [];
+    for (const module of modules) {
+      const matching = module.topics.filter(topic => {
+        const searchable = normalize([topic.title,topic.key,module.title,stage.name].join(" "));
+        return words.every(word => searchable.includes(word)) && (!statusFilter || levelOf(topic.id) === Number(statusFilter));
+      });
+      if (!matching.length) continue;
+      count += matching.length;
+      const open = expanded.has(module.id);
+      blocks.push('<details class="module" data-module="' + module.id + '"' + (open ? ' open' : '') +
+        '><summary>' + escape(module.title) + ' <small>' + mastered(module.topics) + '/' + module.topics.length + '</small></summary><div class="nodes">' +
+        matching.map(topic => '<button type="button" class="node" data-topic="' + topic.id + '" aria-label="' + escape(topic.title + '，' + levels[levelOf(topic.id)]) + '">' + dot(levelOf(topic.id)) + '<span class="label">' + escape(topic.title) + '</span><span class="arr" aria-hidden="true">›</span></button>').join("") +
+        '</div></details>');
+    }
+    if (blocks.length) {
+      groups.push('<article class="branch" data-stage="' + stage.id + '"><div class="branch-head"><div class="headline"><h2>' + stage.name + '</h2><span>已掌握 ' + mastered(list) + '/' + list.length + '</span></div><p>' + stage.description + '</p>' + bar(mastered(list),list.length) + '</div><div class="modules">' + blocks.join("") + '</div></article>');
+    }
+  }
+  byId("legend").innerHTML = '<span>显示 ' + count + ' 项</span>' + levels.map((level,index) => '<span>' + dot(index) + level + '</span>').join("");
+  const map = byId("map");
+  if (!groups.length) {
+    map.innerHTML = '<p class="empty">没有符合条件的知识点。可更换关键词或筛选条件。</p>';
+    return;
+  }
+  map.innerHTML = '<div class="root">化学</div><div class="branches ' + (groups.length > 1 ? 'multi' : '') + '" style="--cols:' + groups.length + '">' + groups.join("") + '</div>';
+}
+
+function resourceCard(id) {
+  const item = resources.get(id);
+  return '<article class="res"><small>' + escape(item.type) + '</small><a href="' + escape(item.url) + '" target="_blank" rel="noopener noreferrer">' + escape(item.title) + ' ↗</a><p>' + escape(item.description) + '</p></article>';
+}
+
+function quizItem(title, question, answer, key) {
+  return '<div class="quiz-item" data-practice-key="' + key + '"><h4>' + escape(title) + '</h4><p>' + escape(question) + '</p>' +
+    '<textarea aria-label="' + escape(title + "草稿") + '" placeholder="先写出结论和依据"></textarea>' +
+    '<details><summary>查看参考答案</summary><p>' + escape(answer) + '</p></details>' +
+    '<div class="practice-actions">' + practiceControls(key) + '</div></div>';
+}
+
+function openTopic(id, trigger) {
+  const topic = topics.get(id);
+  if (!topic) return;
+  if (!dialog.open) opener = trigger;
+  activeTopic = id;
+  const lesson = lessonDepth[id];
+  const stage = stages.find(stage => stage.id === topic.module.stage);
+  const next = [...topics.values()].filter(item => item.prerequisites.includes(id)).map(item => item.id);
+  const related = new Set(topic.module.resources);
+  if (stage.id === "h") related.add("senVideo");
+  if (stage.id === "j") related.add("junStd");
+  if (stage.id === "o") related.add("ccho");
+  byId("topic-path").textContent = stage.name + " / " + topic.module.title;
+  byId("topic-title").textContent = topic.title;
+  byId("topic-content").innerHTML =
+    '<section><h3>学习要点</h3><p>' + escape(topic.key) + '</p></section>' +
+    '<section><h3>判断依据与解题步骤</h3><p>' + escape(lesson.model) + '</p></section>' +
+    '<section class="lesson-example"><h3>典型例题与推导</h3><p>' + escape(lesson.example) + '</p></section>' +
+    '<section class="lesson-pitfall"><h3>常见错因</h3><p>' + escape(lesson.pitfall) + '</p></section>' +
+    '<section><h3>学习方法</h3><p>' + escape(topic.method) + '</p></section>' +
+    '<section class="quiz"><h3>闭卷自测</h3>' +
+    quizItem("基础题", topic.question, topic.answer, "b:" + id) +
+    quizItem("变式题", lesson.transfer, lesson.solution, "v:" + id) + '</section>' +
+    '<section><h3>标记掌握度</h3><p class="lesson-rubric">基础题需提示时标为「待巩固」。独立答对基础题可标为「会做基础题」。变式题也答对，并达到下方要求后，可标为「已掌握」。</p>' +
+    '<p><strong>本知识点的掌握要求</strong>　' + escape(lesson.rubric) + '</p><div id="topic-levels" class="status-list"></div></section>' +
+    (topic.prerequisites.length ? '<section><h3>前置知识</h3>' + topic.prerequisites.map(chip).join("") + '</section>' : '') +
+    (next.length ? '<section><h3>后续知识</h3>' + next.map(chip).join("") + '</section>' : '') +
+    '<section><h3>配套资料与网课</h3><div class="resource-grid">' + [...related].map(resourceCard).join("") + '</div></section>';
+  renderTopicLevels();
+  if (!dialog.open) dialog.showModal();
+  dialog.scrollTop = 0;
+  dialog.querySelector(".dialog-head button").focus();
+  if (trigger.dataset.quiz) {
+    dialog.querySelector('[data-practice-key="' + trigger.dataset.quiz + ':' + id + '"] textarea').focus();
+  }
+}
+
+function renderTopicLevels() {
+  byId("topic-levels").innerHTML = levels.map((level,index) =>
+    '<button type="button" data-level="' + index + '" aria-pressed="' + (index === levelOf(activeTopic)) + '">' + dot(index) + escape(level) + '</button>'
+  ).join("");
+}
+
+const routes = [
+  ["计量与定量实验","先做守恒，再处理浓度、限量和误差。",["formula","balance","calc","mole","lim","titr","analTitr"]],
+  ["结构、周期律与材料","先看电子排布，再判断几何、晶体或配位结构。",["atom","period","orb","vsepr","crystal","lattice","cft"]],
+  ["酸碱、溶解与分析","从定性判断过渡到平衡、守恒和条件常数。",["acid","ion","weak","hydro","ksp","buffer","edta"]],
+  ["有机结构与反应","先识别官能团，再学习立体化学、机理和逆合成。",["func","hydrocarbon","oxygen","stereo","subs","orgSpec","synthesis"]],
+  ["反应原理与电化学","分开判断热力学方向、反应速率和电子转移。",["redox","heat","rate","eq","cell","gibbs","nernst"]],
+  ["竞赛刷题与实验训练","选专题做小问，完成后按失分原因复做。",["inquiry","flow","error","labO","paperO","ichoO"]]
+];
+
+byId("routes").innerHTML = routes.map(([title,description,ids]) => '<article><h3>' + escape(title) + '</h3><p>' + escape(description) + '</p>' + ids.map(chip).join("") + '</article>').join("");
+
+const caseStudies = [
+  {
+    title:"初中 · 石灰石纯度与气体检验",
+    situation:"取25.0 g石灰石样品，假设只有CaCO₃能与足量酸反应放出CO₂。充分反应后，收集到8.80 g干燥CO₂。取CaCO₃和CO₂的相对式量为100和44。",
+    ids:["balance","calc","carbon","inquiry"],
+    steps:[
+      ["写出CaCO₃与盐酸的化学方程式。","CaCO₃＋2HCl→CaCl₂＋CO₂↑＋H₂O。CaCO₃与CO₂的计量比为1∶1。"],
+      ["求样品中CaCO₃的质量和纯度。","m(CaCO₃)=8.80×100/44=20.0 g，纯度为20.0/25.0×100%=80.0%。"],
+      ["若部分CO₂留在反应液中，实测纯度偏高还是偏低？怎样用另一个现象支持气体是CO₂？","收集质量偏小，所以反推纯度偏低。少量气体通入澄清石灰水可生成CaCO₃沉淀而变浑浊。"]
+    ]
+  },
+  {
+    title:"高中 · 弱酸滴定的计量、pH和误差",
+    situation:"25 ℃下，用0.1000 mol/L NaOH滴定25.00 mL乙酸样品，到等量点用去20.00 mL。乙酸pKₐ=4.76，忽略活度影响与体积非加和。",
+    ids:["conc","weak","hydro","titr","titrCurve"],
+    steps:[
+      ["求乙酸原浓度。","乙酸和OH⁻以1∶1反应。乙酸为2.000 mmol，浓度0.08000 mol/L。"],
+      ["加入10.00 mL时估算pH，并说明为什么达到等量点时pH会超过7。","10.00 mL是半等量点，HA与A⁻近似相等，pH≈4.76。等量点主要是乙酸根，A⁻＋H₂O⇌HA＋OH⁻。"],
+      ["若滴定管尖嘴初始有气泡，滴定后气泡消失，计算得到的乙酸浓度有何偏差？","体积读数差包含填补尖嘴气泡的液体，记录体积偏大，计算的乙酸浓度偏高。"]
+    ]
+  },
+  {
+    title:"竞赛 · 用沉淀阈值判断能否分离",
+    situation:"假定溶液中Cl⁻和Br⁻初始自由浓度均为0.0100 M。缓慢提高自由Ag⁺浓度，忽略体积变化和络合。取Ksp(AgCl)=1.8×10⁻¹⁰，Ksp(AgBr)=5.0×10⁻¹³。",
+    ids:["ksp","analPrecip","lim","error"],
+    steps:[
+      ["分别算两种盐开始沉淀时所需的自由Ag⁺浓度。","用Ksp/[X⁻]。AgBr在5.0×10⁻¹¹ M开始沉淀，AgCl在1.8×10⁻⁸ M开始沉淀。"],
+      ["当AgCl刚要析出时，溶液中自由Br⁻约多少？已除去多少比例？","[Br⁻]≈5.0×10⁻¹³/(1.8×10⁻⁸)=2.8×10⁻⁵ M。残留约0.28%，即除去约99.72%。"],
+      ["若要求Br⁻至少除去99.9%，同时Cl⁻不开始沉淀，该模型下能做到吗？","不能。99.9%去除要求[Br⁻]≤1.0×10⁻⁵ M，对应自由Ag⁺至少5.0×10⁻⁸ M，超过AgCl开始沉淀的阈值。"]
+    ]
+  }
+];
+
+const casePracticeKeys = new Set(caseStudies.flatMap(({steps},caseIndex) =>
+  steps.map((_,stepIndex) => "c:" + caseIndex + ":" + stepIndex)
+));
+
+try {
+  const savedPractice = localStorage.getItem(practiceKey);
+  if (savedPractice) practice = validPractice(JSON.parse(savedPractice));
+} catch {
+  byId("notice").textContent = "当前浏览器中的练习记录未能读取。";
+}
+
+try {
+  const savedPets = localStorage.getItem(petKey);
+  if (savedPets) {
+    const restored = mergePets([],validPets(JSON.parse(savedPets)));
+    if (petSpending(restored) > earnedPoints()) throw Error("积分记录不完整。");
+    pets = restored;
+  }
+} catch {
+  byId("notice").textContent = "当前浏览器中的植物记录未能读取。";
+}
+
+try {
+  const savedPot = localStorage.getItem(plantPotKey);
+  if (savedPot && unlockedPots().has(JSON.parse(savedPot))) selectedPot = JSON.parse(savedPot);
+} catch {
+  selectedPot = "clay";
+}
+
+const adoptDialog = byId("adopt-dialog");
+let pendingSpecies = null;
+let displayedDay = dayNumber();
+
+function refreshPetDate() {
+  const today = dayNumber();
+  if (today === displayedDay) return;
+  displayedDay = today;
+  renderLab();
+  for (const block of document.querySelectorAll('.quiz-item[data-practice-key^="b:"]')) {
+    block.querySelector(".practice-actions").innerHTML = practiceControls(block.dataset.practiceKey);
+  }
+}
+
+function canAdopt(today) {
+  const lastPet = pets.at(-1);
+  return !lastPet || petState(lastPet,today) === "dead";
+}
+
+function confirmAdoption(species) {
+  const today = dayNumber();
+  if (!Object.hasOwn(petSpecies,species) || !canAdopt(today)) return;
+  pendingSpecies = species;
+  adoptDialog.returnValue = "cancel";
+  byId("adopt-copy").textContent = "种下" + petSpecies[species].name +
+    "免费。每天午夜前可花 5 分浇水一次。漏浇一天会萎蔫，次日可浇水恢复，连续两天未浇水会枯萎。" +
+    (earnedPoints()-petSpending() < feedCost ? " 你的积分还不够浇水，可先做一道题再来种植。" : "");
+  adoptDialog.showModal();
+}
+
+adoptDialog.querySelector("form").addEventListener("submit",event => {
+  if (event.submitter?.value !== "adopt") return;
+  event.preventDefault();
+  const today = dayNumber();
+  const species = pendingSpecies;
+  adoptDialog.close("adopt");
+  if (species && canAdopt(today)) {
+    const bytes = crypto.getRandomValues(new Uint8Array(16));
+    const hex = Array.from(bytes,value => value.toString(16).padStart(2,"0")).join("");
+    const id = [hex.slice(0,8),hex.slice(8,12),hex.slice(12,16),hex.slice(16,20),hex.slice(20)].join("-");
+    pets.push({id,species,start:today,fed:[]});
+    saveLocal(petKey,pets);
+    renderLab();
+    focusPetHome();
+  }
+  pendingSpecies = null;
+});
+
+function focusPetHome() {
+  const heading = byId("pet-home").querySelector("h3");
+  heading.tabIndex = -1;
+  heading.focus();
+}
+
+function feedPet() {
+  const pet = pets.at(-1);
+  const today = dayNumber();
+  const state = pet && petState(pet,today);
+  const watered = (state === "hungry" || state === "wilted") && earnedPoints()-petSpending() >= feedCost;
+  if (watered) {
+    pet.fed.push(today);
+    saveLocal(petKey,pets);
+  }
+  renderLab();
+  if (watered) {
+    const rank = petRanks.indexOf(pet.fed.length);
+    const details = plantDetails[pet.species];
+    const milestone = rank > 0;
+    const update = milestone
+      ? "图鉴已点亮「" + details.stages[rank] + "」。" + details.notes[rank]
+      : state === "wilted" ? "补救成功，叶片已恢复舒展。" : "浇水成功，土壤变深，叶片舒展开了。";
+    byId("pet-home").querySelector(".plant-update").textContent = update;
+    byId("pet-home").querySelector("canvas").dispatchEvent(new CustomEvent("plant-watered",{detail:milestone}));
+  }
+  focusPetHome();
+}
+
+window.addEventListener("focus",refreshPetDate);
+window.setInterval(refreshPetDate,30000);
+
+function renderCases() {
+  byId("case-studies").innerHTML = caseStudies.map(({title,situation,ids,steps},caseIndex) =>
+    '<details class="module"><summary>' + escape(title) + '</summary><div class="dialog-body">' +
+    '<p>' + escape(situation) + '</p><div>' + ids.map(chip).join("") + '</div>' +
+    steps.map(([question,answer],index) => quizItem("第 " + (index + 1) + " 问",question,answer,"c:" + caseIndex + ":" + index)).join("") +
+    '</div></details>'
+  ).join("");
+}
+
+byId("library").innerHTML = [...resources.keys()].map(resourceCard).join("");
+
+document.addEventListener("click", event => {
+  const button = event.target.closest("button");
+  if (!button) return;
+  if (button.dataset.collection) showCollection(button.dataset.collection);
+  if (button.dataset.albumStage) {
+    const [species,rank] = button.dataset.albumStage.split(":");
+    albumSelection = [species,Number(rank)];
+    renderCollection();
+  }
+  if (button.hasAttribute("data-album-back")) {
+    const stage = albumSelection.join(":");
+    albumSelection = null;
+    renderCollection();
+    collection.querySelector('[data-album-stage="' + stage + '"]')?.focus();
+  }
+  if (button.dataset.plantPot && unlockedPots().has(button.dataset.plantPot)) {
+    selectedPot = button.dataset.plantPot;
+    saveLocal(plantPotKey,selectedPot);
+    renderPetHome(dayNumber());
+    renderCollection();
+    collection.querySelector('[data-plant-pot="' + selectedPot + '"]').focus();
+  }
+  if (button.dataset.practice && displayedDay !== dayNumber()) {
+    refreshPetDate();
+    return;
+  }
+  if (button.dataset.topic) openTopic(button.dataset.topic,button);
+  if (button.dataset.practice) recordPractice(button);
+  if (button.dataset.adopt) confirmAdoption(button.dataset.adopt);
+  if (button.id === "pet-feed") feedPet();
+  if (button.dataset.view) {
+    document.querySelectorAll("nav [data-view]").forEach(tab => tab.setAttribute("aria-pressed",String(tab.dataset.view === button.dataset.view)));
+    for (const id of ["map","routes","library","lab"]) byId(id + "-view").hidden = button.dataset.view !== id;
+    if (button.dataset.view === "lab") {
+      renderLab();
+      if (button.id === "lab-entry") byId("lab-view").scrollIntoView({block:"start"});
+    }
+  }
+  if (button.dataset.level !== undefined && activeTopic) {
+    const value = Number(button.dataset.level);
+    if (value) progress[activeTopic] = value;
+    else delete progress[activeTopic];
+    saveLocal(storageKey,progress);
+    updateOverall();
+    mapDirty = true;
+    renderTopicLevels();
+    byId("topic-levels").querySelector('[data-level="' + value + '"]').focus();
+  }
+});
+
+byId("lab-stage").addEventListener("change",renderLab);
+
+dialog.addEventListener("close", () => {
+  activeTopic = null;
+  if (mapDirty) {
+    renderMap();
+    mapDirty = false;
+  }
+  if (opener?.isConnected) opener.focus();
+  else if (opener) {
+    const view = byId("lab-view").hidden ? byId("map") : byId("lab-missions");
+    const replacement = view.querySelector('[data-topic="' + opener.dataset.topic + '"]');
+    (replacement ?? (byId("lab-view").hidden ? byId("query") : byId("lab-stage"))).focus();
+  }
+  opener = null;
+});
+
+byId("map").addEventListener("toggle", event => {
+  const detail = event.target;
+  if (!detail.isConnected || !detail.dataset.module) return;
+  if (detail.open) expanded.add(detail.dataset.module);
+  else expanded.delete(detail.dataset.module);
+},true);
+
+function updateFilters() {
+  if (byId("query").value.trim() || byId("status").value) {
+    data.modules.forEach(module => expanded.add(module.id));
+  }
+  renderMap();
+}
+
+byId("query").addEventListener("input",updateFilters);
+byId("stage").addEventListener("change",updateFilters);
+byId("status").addEventListener("change",updateFilters);
+byId("expand").addEventListener("click",() => {
+  data.modules.forEach(module => expanded.add(module.id));
+  renderMap();
+});
+byId("collapse").addEventListener("click",() => {
+  expanded.clear();
+  renderMap();
+});
+
+byId("export").addEventListener("click",() => {
+  const payload = JSON.stringify({format:storageKey,progress,practice,pets,plantPot:selectedPot},null,2);
+  const url = URL.createObjectURL(new Blob([payload],{type:"application/json"}));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "chemistry-progress.json";
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url),1000);
+  byId("notice").textContent = "已生成进度备份。";
+});
+byId("import").addEventListener("click",() => byId("file").click());
+byId("file").addEventListener("change",async event => {
+  const file = event.target.files[0];
+  if (!file) return;
+  try {
+    const payload = JSON.parse(await file.text());
+    if (payload?.format !== storageKey) throw Error("请选择本图谱导出的进度文件。");
+    const imported = validated(payload.progress);
+    const importedPractice = payload.practice === undefined ? {} : validPractice(payload.practice);
+    const importedPets = payload.pets === undefined ? [] : validPets(payload.pets);
+    const combinedPractice = mergePractice(practice,importedPractice);
+    const combinedPets = mergePets(pets,importedPets);
+    if (petSpending(combinedPets) > earnedPoints(combinedPractice)) throw Error("浇水支出超过已赚积分。");
+    const importedPot = payload.plantPot ?? "clay";
+    if (!Object.hasOwn(plantPots,importedPot)) throw Error("花盆记录无效。");
+    selectedPot = unlockedPots(combinedPractice,combinedPets).has(importedPot) ? importedPot : "clay";
+    progress = {...progress,...imported};
+    practice = combinedPractice;
+    pets = combinedPets;
+    saveLocal(storageKey,progress);
+    saveLocal(practiceKey,practice);
+    saveLocal(petKey,pets);
+    saveLocal(plantPotKey,selectedPot);
+    updateOverall();
+    renderMap();
+    renderCases();
+    renderLab();
+    byId("notice").textContent = "已合并 " + Object.keys(imported).length + " 项掌握度和 " +
+      Object.keys(importedPractice).length + " 项练习记录、" + importedPets.length + " 项植物记录。重复记录已去重。";
+  } catch (error) {
+    byId("notice").textContent = "导入失败。" + error.message;
+  } finally {
+    event.target.value = "";
+  }
+});
+
+updateOverall();
+renderMap();
+renderCases();
+renderLab();
+</script>
+</body>
+</html>
